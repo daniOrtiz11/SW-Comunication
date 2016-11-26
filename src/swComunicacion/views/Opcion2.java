@@ -20,7 +20,7 @@ import javax.swing.JTextArea;
 import swComunicacion.Controller;
 import swComunicacion.Observer;
 
-public class Opcion2 extends JFrame implements Observer{
+public class Opcion2 extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private  JTextArea textArea;
@@ -58,12 +58,12 @@ public class Opcion2 extends JFrame implements Observer{
 	private int frecuencia = 500;
 	private ToolbarSup t;
 	private Controller c;
-	
+
 	public Opcion2(Controller controlador) {
 		this.c = controlador;
 		setTitle("Opcion 2");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 574, 379);
+		setBounds(100, 100, 670, 413);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -71,8 +71,8 @@ public class Opcion2 extends JFrame implements Observer{
 		botones = new LinkedList<JButton>();
 		bBotones = new LinkedList<Boolean>();
 		JPanel panel = new JPanel();
-		t = new ToolbarSup(c);
-		contentPane.add(t, BorderLayout.NORTH);
+//		t = new Toolbar(c);
+//		contentPane.add(t, BorderLayout.NORTH);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
@@ -84,325 +84,281 @@ public class Opcion2 extends JFrame implements Observer{
 		textArea = new JTextArea();
 		textArea.setEditable(true);
 		textArea.setFocusable(false);
-		textArea.setBounds(10, 11, 529, 60);
+		textArea.setBounds(10, 11, 624, 100);
 		panel.add(textArea);
-		JButton btnQ = new JButton("Q");
-		btnQ.setBounds(10, 82, 44, 44);
-		btnQ.addKeyListener(new KeyAdapter() {
+		
+		KeyAdapter ka = new KeyAdapter() {
 			public void keyPressed(KeyEvent e) { 
 				timer.stop();
-				if(bBotones.get(0)==true)
-					textArea.append("q");
 				if(bBotones.get(1)==true)
-					textArea.append("w");
+					textArea.append("q");
 				if(bBotones.get(2)==true)
-					textArea.append("e");
+					textArea.append("w");
 				if(bBotones.get(3)==true)
-					textArea.append("r");
+					textArea.append("e");
 				if(bBotones.get(4)==true)
-					textArea.append("t");
+					textArea.append("r");
 				if(bBotones.get(5)==true)
-					textArea.append("y");
+					textArea.append("t");
 				if(bBotones.get(6)==true)
-					textArea.append("u");
+					textArea.append("y");
 				if(bBotones.get(7)==true)
-					textArea.append("i");
+					textArea.append("u");
 				if(bBotones.get(8)==true)
-					textArea.append("o");
+					textArea.append("i");
 				if(bBotones.get(9)==true)
-					textArea.append("p");
+					textArea.append("o");
 				if(bBotones.get(10)==true)
-					textArea.append("a");
+					textArea.append("p");
 				if(bBotones.get(11)==true)
-					textArea.append("s");
+					textArea.append("a");
 				if(bBotones.get(12)==true)
-					textArea.append("d");
+					textArea.append("s");
 				if(bBotones.get(13)==true)
-					textArea.append("f");
+					textArea.append("d");
 				if(bBotones.get(14)==true)
-					textArea.append("g");
+					textArea.append("f");
 				if(bBotones.get(15)==true)
-					textArea.append("h");
+					textArea.append("g");
 				if(bBotones.get(16)==true)
-					textArea.append("j");
+					textArea.append("h");
 				if(bBotones.get(17)==true)
-					textArea.append("k");
+					textArea.append("j");
 				if(bBotones.get(18)==true)
-					textArea.append("l");
+					textArea.append("k");
 				if(bBotones.get(19)==true)
-					textArea.append("\u00D1");
+					textArea.append("l");
 				if(bBotones.get(20)==true)
-					textArea.append("z");
+					textArea.append("\u00D1");
 				if(bBotones.get(21)==true)
-					textArea.append("x");
+					textArea.append("z");
 				if(bBotones.get(22)==true)
-					textArea.append("c");
+					textArea.append("x");
 				if(bBotones.get(23)==true)
-					textArea.append("v");
+					textArea.append("c");
 				if(bBotones.get(24)==true)
-					textArea.append("b");
+					textArea.append("v");
 				if(bBotones.get(25)==true)
-					textArea.append("n");
+					textArea.append("b");
 				if(bBotones.get(26)==true)
-					textArea.append("m");
+					textArea.append("n");
 				if(bBotones.get(27)==true)
+					textArea.append("m");
+				if(bBotones.get(28)==true)
 					textArea.setText(textArea.getText().substring(0, (textArea.getText().length()-1)));
-				if(bBotones.get(28)==true){
+				if(bBotones.get(0)==true){
 					textArea.append("\u0020");
 					}
 					
 				timer.restart();
 			}			
-		});
+		};
+		
+		JButton btnQ = new JButton("Q");
+		btnQ.setBounds(34, 126, 44, 44);
+		btnQ.addKeyListener(ka);
 		panel.add(btnQ);
 		botones.add(btnQ);
 		
 		btnW = new JButton("W");
-		btnW.setBounds(63, 82, 44, 44);
-		btnW.addKeyListener(new KeyAdapter() {
-			
-			public void keyPressed(KeyEvent e) { 
-				timer.stop();
-				if(bBotones.get(2)==true)
-					textArea.append("w");
-				timer.restart();
-			}			
-		});		
+		btnW.setBounds(88, 126, 50, 44);
+		btnW.addKeyListener(ka);		
 		panel.add(btnW);
 		botones.add(btnW);
 		
 		btnE = new JButton("E");
-		btnE.setBounds(117, 82, 44, 44);
-		btnE.addKeyListener(new KeyAdapter() {
-			
-			public void keyPressed(KeyEvent e) { 
-				timer.stop();
-				if(bBotones.get(3)==true)
-					textArea.append("e");
-				timer.restart();
-			}			
-		});
+		btnE.setBounds(148, 126, 44, 44);
+		btnE.addKeyListener(ka);
 		panel.add(btnE);
 		botones.add(btnE);
 		
 		btnR = new JButton("R");
-		btnR.setBounds(171, 82, 44, 44);
-		btnR.addKeyListener(new KeyAdapter() {
-			
-			public void keyPressed(KeyEvent e) { 
-				timer.stop();
-				if(bBotones.get(4)==true)
-					textArea.append("r");
-				timer.restart();
-			}			
-		});
+		btnR.setBounds(202, 126, 44, 44);
+		btnR.addKeyListener(ka);
 		panel.add(btnR);
 		botones.add(btnR);
 		
 		btnT = new JButton("T");
-		btnT.setBounds(225, 82, 44, 44);
-		btnT.addKeyListener(new KeyAdapter() {
-			
-			public void keyPressed(KeyEvent e) { 
-				timer.stop();
-				if(bBotones.get(5)==true)
-					textArea.append("t");
-				timer.restart();
-			}			
-		});
+		btnT.setBounds(256, 126, 44, 44);
+		btnT.addKeyListener(ka);
 		panel.add(btnT);
 		botones.add(btnT);
 		
 		btnY = new JButton("Y");
-		btnY.setBounds(279, 82, 44, 44);
-		btnY.addKeyListener(new KeyAdapter() {
-			
-			public void keyPressed(KeyEvent e) { 
-				timer.stop();
-				if(bBotones.get(6)==true)
-					textArea.append("y");
-				timer.restart();
-			}			
-		});
+		btnY.setBounds(317, 126, 44, 44);
+		btnY.addKeyListener(ka);
 		panel.add(btnY);
 		botones.add(btnY);
 		
 		btnU = new JButton("U");
-		btnU.setBounds(333, 82, 44, 44);
+		btnU.setBounds(371, 126, 44, 44);
+		btnU.addKeyListener(ka);
 	
 		panel.add(btnU);
 		botones.add(btnU);
 		
 		btnI = new JButton("I");
-		btnI.setBounds(387, 82, 44, 44);
-		
+		btnI.setBounds(425, 126, 44, 44);
+		btnI.addKeyListener(ka);
 		panel.add(btnI);
 		botones.add(btnI);
 		
 		btnO = new JButton("O");
-		btnO.setBounds(441, 82, 44, 44);
-		
+		btnO.setBounds(482, 126, 44, 44);
+		btnO.addKeyListener(ka);
 		panel.add(btnO);
 		botones.add(btnO);
 		
 		btnP = new JButton("P");
-		btnP.setBounds(495, 82, 44, 44);
-		
+		btnP.setBounds(536, 126, 44, 44);
+		btnP.addKeyListener(ka);
 		panel.add(btnP);
 		botones.add(btnP);
 		
 		btnA = new JButton("A");
-		btnA.setBounds(10, 137, 44, 44);
-		
+		btnA.setBounds(44, 181, 44, 44);
+		btnA.addKeyListener(ka);
 		panel.add(btnA);
 		botones.add(btnA);
 		
 		btnS = new JButton("S");
-		btnS.setBounds(62, 137, 44, 44);
-		
+		btnS.setBounds(98, 181, 44, 44);
+		btnS.addKeyListener(ka);
 		panel.add(btnS);
 		botones.add(btnS);
 		
 		btnD = new JButton("D");
-		btnD.setBounds(116, 137, 44, 44);
-		
+		btnD.setBounds(158, 181, 44, 44);
+		btnD.addKeyListener(ka);
 		panel.add(btnD);
 		botones.add(btnD);
 		
 		btnF = new JButton("F");
-		btnF.setBounds(170, 137, 44, 44);
-		
+		btnF.setBounds(212, 181, 44, 44);
+		btnF.addKeyListener(ka);
 		panel.add(btnF);
 		botones.add(btnF);
 		
 		btnG = new JButton("G");
-		btnG.setBounds(224, 137, 44, 44);
-		
+		btnG.setBounds(266, 181, 44, 44);
+		btnG.addKeyListener(ka);
 		panel.add(btnG);
 		botones.add(btnG);
 		
 		btnH = new JButton("H");
-		btnH.setBounds(276, 137, 43, 44);
-		
+		btnH.setBounds(324, 181, 43, 44);
+		btnH.addKeyListener(ka);
 		panel.add(btnH);
 		botones.add(btnH);
 		
 		btnJ = new JButton("J");
-		btnJ.setBounds(327, 137, 44, 44);
-		
+		btnJ.setBounds(381, 181, 44, 44);
+		btnJ.addKeyListener(ka);
 		panel.add(btnJ);
 		botones.add(btnJ);
 		
 		btnK = new JButton("K");
-		btnK.setBounds(381, 137, 44, 44);
-		
+		btnK.setBounds(435, 181, 44, 44);
+		btnK.addKeyListener(ka);
 		panel.add(btnK);
 		botones.add(btnK);
 		
 		btnL = new JButton("L");
-		btnL.setBounds(435, 137, 44, 44);
-		
+		btnL.setBounds(492, 181, 44, 44);
+		btnL.addKeyListener(ka);
 		panel.add(btnL);
 		botones.add(btnL);
 		
 		btnEnie = new JButton("\u00D1");
-		
-		btnEnie.setBounds(489, 137, 44, 44);
+		btnEnie.addKeyListener(ka);
+		btnEnie.setBounds(549, 181, 44, 44);
 		panel.add(btnEnie);
 		botones.add(btnEnie);
 		
 		btnZ = new JButton("Z");
-		btnZ.setBounds(63, 192, 44, 44);
-		
+		btnZ.setBounds(88, 236, 44, 44);
+		btnZ.addKeyListener(ka);
 		panel.add(btnZ);
 		botones.add(btnZ);
 		
 		btnX = new JButton("X");
-		btnX.setBounds(117, 192, 44, 44);
-		
+		btnX.setBounds(136, 236, 44, 44);
+		btnX.addKeyListener(ka);
 		panel.add(btnX);
 		botones.add(btnX);
 		
 		btnC = new JButton("C");
-		btnC.setBounds(171, 192, 44, 44);
-		
+		btnC.setBounds(190, 236, 44, 44);
+		btnC.addKeyListener(ka);
 		panel.add(btnC);
 		botones.add(btnC);
 		
 		btnV = new JButton("V");
-		btnV.setBounds(225, 192, 44, 44);
-		
+		btnV.setBounds(244, 236, 44, 44);
+		btnV.addKeyListener(ka);
 		panel.add(btnV);
 		botones.add(btnV);
 		
 		btnB = new JButton("B");
-		btnB.setBounds(279, 192, 44, 44);
-		
+		btnB.setBounds(298, 236, 44, 44);
+		btnB.addKeyListener(ka);
 		panel.add(btnB);
 		botones.add(btnB);
 		
 		btnN = new JButton("N");
-		btnN.setBounds(335, 192, 44, 44);
-		
+		btnN.setBounds(349, 236, 44, 44);
+		btnN.addKeyListener(ka);
 		panel.add(btnN);
 		botones.add(btnN);
 		
 		btnM = new JButton("M");
-		btnM.setBounds(389, 192, 44, 44);
-		
+		btnM.setBounds(397, 236, 44, 44);
+		btnM.addKeyListener(ka);
 		panel.add(btnM);
 		botones.add(btnM);
 		
 		JButton button = new JButton("BORRAR");
 		
-		button.setBounds(441, 192, 89, 44);
+		button.setBounds(461, 236, 119, 44);
+		button.addKeyListener(ka);
 		panel.add(button);
 		botones.add(button);
-		System.out.println(botones.size());
 		
 		btnEspacio = new JButton("ESPACIO");
-		btnEspacio.setBounds(148, 248, 257, 44);
-		
+		btnEspacio.setBounds(158, 292, 316, 44);
+		btnEspacio.addKeyListener(ka);
 		panel.add(btnEspacio);
 		this.setVisible(true);
 		botones.add(btnEspacio);
-		System.out.println(botones.size());
 	
-		
-		
 		timer = new Timer (frecuencia, new ActionListener () 
 		{ int act =0;
 		    public void actionPerformed(ActionEvent e) 
 		    { 
-		    	//bBotones.set(act, true);
-		    
-		    	
+
 		    	for(int i=0; i<botones.size();i++){		    		
 		    		if(bBotones.get(i) == true){
 		    			botones.get(i).setBackground(Color.GREEN);		    			
-		    			bBotones.set(act, false);
-		    			act=i+1;
-		    			bBotones.set(act, false);
-		    			
-		    			
+		    			act=i;	    			
 		    		}
 		    		else if(bBotones.get(i) == false){
-		    			botones.get(i).setBackground(null);
-		    			bBotones.set(i, false);
-		    			
-		    		}
-		    		
+		    			botones.get(i).setBackground(null);	    			
+		    		}    		
 		    	}
-		    	
-//		    	bBotones.set(act-1, false);
-//		    	if ((act+1)>=29)act=0;
-//		    	bBotones.set((act), true);
-		    	//bBotones.set(act+1, true);
+		    	bBotones.set(act, false);		    	
+		    	if (act==28)act=-1;		    	
+		    	bBotones.set((act+1), true);
+
 		    } 
 		}); 
 		timer.start();
-		//this.btnA.requestFocus();
-		this.c.addObserver(this);			
+		this.setLocationRelativeTo(null);
+		//this.c.addObserver(this);			
+	}
+
+	public void onCambioModo(boolean modo) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public void onCambioOpcion(boolean opc) {

@@ -31,10 +31,10 @@ public class Opcion3 extends JFrame implements Observer{
 	private JButton b1;
 	private ImageIcon tv;
 	private JLabel l1;
-	private JButton btn1;
 	private JButton btn2;
-	private JButton btn3;
+	private JButton btn1;
 	private JButton btn4;
+	private JButton btn3;
 	private boolean vs1;
 	private boolean vs2;
 	private boolean vs3;
@@ -60,30 +60,36 @@ public class Opcion3 extends JFrame implements Observer{
 		getContentPane().add(aux, BorderLayout.CENTER);
 		aux.setLayout(new GridLayout(2, 2, 0, 0));
 		
-		btn2 = new JButton("TV");
-		btn2.setBackground(Color.GREEN);
-		aux.add(btn2);
+		btn1 = new JButton("TV");
+		btn1.setBackground(Color.GREEN);
+		aux.add(btn1);
 		vs1 = true;
 		
-		btn1 = new JButton("Musica");
-		btn1.setBackground(Color.RED);
-		aux.add(btn1);
+		btn2 = new JButton("Musica");
+		btn2.setBackground(Color.RED);
+		aux.add(btn2);
 		vs2 = false;
-		
-		btn3 = new JButton("Tareas");
-		btn3.setBackground(Color.RED);
-		aux.add(btn3);
-		vs3 = false;
 		
 		btn4 = new JButton("Baño");
 		btn4.setBackground(Color.RED);
 		aux.add(btn4);
 		vs4 = false;
 		
+		btn3 = new JButton("Tareas");
+		btn3.setBackground(Color.RED);
+		aux.add(btn3);
+		vs3 = false;
+		
+		
+		
 		timer = new Timer (frecuencia, new ActionListener () 
 		{ 
 		    public void actionPerformed(ActionEvent e) 
 		    { 
+		    	/*
+		    	 * 1-1 4-2 3-3
+		    	 * TV-MUSICA-TAREAS-BAÑO
+		    	 */
 		    	if(vs1 == true){
 		    		btn2.requestFocus();
 		    		btn1.setBackground(Color.RED);
@@ -116,7 +122,7 @@ public class Opcion3 extends JFrame implements Observer{
 		     } 
 		}); 
 		
-		btn1.addKeyListener(new KeyAdapter() {
+		btn2.addKeyListener(new KeyAdapter() {
 			
 			public void keyPressed(KeyEvent e) { //al pulsar cualquier tecla
 				if(vs1 == true){
@@ -126,7 +132,7 @@ public class Opcion3 extends JFrame implements Observer{
 				}
 			}
 			});
-		btn1.requestFocus();
+		btn2.requestFocus();
 		timer.start();
 		this.setVisible(true);
 		this.c.addObserver(this);
