@@ -7,7 +7,7 @@ import swComunicacion.Observer;
 public class Data {
 
 	private Vector<Observer> observadores;
-	//PROOF
+	
 	public Data(){
 		this.observadores = new Vector<Observer>();
 	}

@@ -66,7 +66,7 @@ public class Bd1 extends JFrame implements Observer{
 		
 		panel = new JPanel();
 		splitPane.setLeftComponent(panel);
-		panel.setLayout(new GridLayout(0, 1, 10, 80));
+		panel.setLayout(new GridLayout(2, 1, 10, 200));
 		
 		btnVerBd = new JButton("Ver galer\u00EDa");
 		btnVerBd.addMouseListener(new MouseAdapter() {
@@ -78,9 +78,8 @@ public class Bd1 extends JFrame implements Observer{
 			}
 		});
 		panel.add(btnVerBd);
-		panel.add(btnVerBd, 5);
 		
-		btnVerMas = new JButton("Ver m\u00E1s");
+		btnVerMas = new JButton("Ver más");
 		panel.add(btnVerMas);
 		
 		panel_1 = new JPanel();
@@ -141,6 +140,7 @@ public class Bd1 extends JFrame implements Observer{
 		timer.stop();
 		this.setVisible(true);
 		this.c.addObserver(this);
+		this.setExtendedState(MAXIMIZED_BOTH);
 	}
 
 

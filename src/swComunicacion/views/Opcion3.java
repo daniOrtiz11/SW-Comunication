@@ -21,6 +21,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.Font;
 
 @SuppressWarnings("serial")
 public class Opcion3 extends JFrame implements Observer{
@@ -40,7 +41,8 @@ public class Opcion3 extends JFrame implements Observer{
 	private boolean vs3;
 	private boolean vs4;
 	private Timer timer;
-	private int frecuencia = 2000;
+	private int frecuencia = 1000;
+	private ToolbarSup t;
 	//private Image tv;
 	//private Graphics g;
 	//TV, MUSICA, BAÑO, TAREAS
@@ -55,27 +57,34 @@ public class Opcion3 extends JFrame implements Observer{
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
+		t = new ToolbarSup(c);
+		contentPane.add(t, BorderLayout.NORTH);
 		aux = new JPanel();
+		aux.setBorder(new EmptyBorder(10, 10, 10, 10));
 		
 		getContentPane().add(aux, BorderLayout.CENTER);
-		aux.setLayout(new GridLayout(2, 2, 0, 0));
+		aux.setLayout(new GridLayout(2, 2, 10, 10));
 		
 		btn1 = new JButton("TV");
+		btn1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btn1.setBackground(Color.GREEN);
 		aux.add(btn1);
 		vs1 = true;
 		
 		btn2 = new JButton("Musica");
+		btn2.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btn2.setBackground(Color.RED);
 		aux.add(btn2);
 		vs2 = false;
 		
 		btn4 = new JButton("Baño");
+		btn4.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btn4.setBackground(Color.RED);
 		aux.add(btn4);
 		vs4 = false;
 		
 		btn3 = new JButton("Tareas");
+		btn3.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btn3.setBackground(Color.RED);
 		aux.add(btn3);
 		vs3 = false;
@@ -122,7 +131,7 @@ public class Opcion3 extends JFrame implements Observer{
 		     } 
 		}); 
 		
-		btn2.addKeyListener(new KeyAdapter() {
+		btn1.addKeyListener(new KeyAdapter() {
 			
 			public void keyPressed(KeyEvent e) { //al pulsar cualquier tecla
 				if(vs1 == true){
@@ -132,10 +141,11 @@ public class Opcion3 extends JFrame implements Observer{
 				}
 			}
 			});
-		btn2.requestFocus();
+		btn1.requestFocus();
 		timer.start();
 		this.setVisible(true);
 		this.c.addObserver(this);
+		this.setExtendedState(MAXIMIZED_BOTH);
 	}
 
 

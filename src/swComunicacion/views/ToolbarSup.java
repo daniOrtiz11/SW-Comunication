@@ -39,7 +39,7 @@ public class ToolbarSup extends JPanel implements Observer{
 		 );
 		this.add(btnHelp);
 		
-		atras = new JButton();
+		atras = new JButton("Atrás");
 		this.atrasIc = new ImageIcon("imagenes/atras.png");
 		atras.setIcon(atrasIc);
 		atras.setEnabled(false);

@@ -2,12 +2,8 @@ package swComunicacion.views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.Timer;
-
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -15,10 +11,13 @@ import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.Timer;
+import javax.swing.border.EmptyBorder;
 
 import swComunicacion.Controller;
-import swComunicacion.Observer;
 
 public class Opcion2 extends JFrame {
 	
@@ -28,6 +27,7 @@ public class Opcion2 extends JFrame {
 	private LinkedList<JButton> botones;
 	private JPanel contentPane;
 	private Timer timer;
+	private JButton btnQ;
 	private JButton btnW;
 	private JButton btnE;
 	private JButton btnR;
@@ -71,21 +71,23 @@ public class Opcion2 extends JFrame {
 		botones = new LinkedList<JButton>();
 		bBotones = new LinkedList<Boolean>();
 		JPanel panel = new JPanel();
-//		t = new Toolbar(c);
-//		contentPane.add(t, BorderLayout.NORTH);
+		panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		t = new ToolbarSup(c);
+		contentPane.add(t, BorderLayout.NORTH);
 		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
 		
 		bBotones.add(true);
 		for(int i=1; i<29;i++){		
 			bBotones.add(false);
 		}
+		panel.setLayout(new BorderLayout(0, 0));
 		
 		textArea = new JTextArea();
+		textArea.setRows(2);
+		textArea.setFont(new Font("Monospaced", Font.PLAIN, 24));
 		textArea.setEditable(true);
 		textArea.setFocusable(false);
-		textArea.setBounds(10, 11, 624, 100);
-		panel.add(textArea);
+		panel.add(textArea, BorderLayout.NORTH);
 		
 		KeyAdapter ka = new KeyAdapter() {
 			public void keyPressed(KeyEvent e) { 
@@ -154,182 +156,157 @@ public class Opcion2 extends JFrame {
 			}			
 		};
 		
-		JButton btnQ = new JButton("Q");
-		btnQ.setBounds(34, 126, 44, 44);
+		JPanel Letras = new JPanel();
+		Letras.setBorder(new EmptyBorder(10, 10, 10, 10));
+		panel.add(Letras, BorderLayout.CENTER);
+		Letras.setLayout(new GridLayout(3, 10, 30, 100));
+		btnQ = new JButton("Q");
+		Letras.add(btnQ);
 		btnQ.addKeyListener(ka);
-		panel.add(btnQ);
 		botones.add(btnQ);
 		
 		btnW = new JButton("W");
-		btnW.setBounds(88, 126, 50, 44);
-		btnW.addKeyListener(ka);		
-		panel.add(btnW);
+		Letras.add(btnW);
+		btnW.addKeyListener(ka);
 		botones.add(btnW);
 		
 		btnE = new JButton("E");
-		btnE.setBounds(148, 126, 44, 44);
+		Letras.add(btnE);
 		btnE.addKeyListener(ka);
-		panel.add(btnE);
 		botones.add(btnE);
 		
 		btnR = new JButton("R");
-		btnR.setBounds(202, 126, 44, 44);
+		Letras.add(btnR);
 		btnR.addKeyListener(ka);
-		panel.add(btnR);
 		botones.add(btnR);
 		
 		btnT = new JButton("T");
-		btnT.setBounds(256, 126, 44, 44);
+		Letras.add(btnT);
 		btnT.addKeyListener(ka);
-		panel.add(btnT);
 		botones.add(btnT);
 		
 		btnY = new JButton("Y");
-		btnY.setBounds(317, 126, 44, 44);
+		Letras.add(btnY);
 		btnY.addKeyListener(ka);
-		panel.add(btnY);
 		botones.add(btnY);
 		
 		btnU = new JButton("U");
-		btnU.setBounds(371, 126, 44, 44);
+		Letras.add(btnU);
 		btnU.addKeyListener(ka);
-	
-		panel.add(btnU);
 		botones.add(btnU);
 		
 		btnI = new JButton("I");
-		btnI.setBounds(425, 126, 44, 44);
+		Letras.add(btnI);
 		btnI.addKeyListener(ka);
-		panel.add(btnI);
 		botones.add(btnI);
 		
 		btnO = new JButton("O");
-		btnO.setBounds(482, 126, 44, 44);
+		Letras.add(btnO);
 		btnO.addKeyListener(ka);
-		panel.add(btnO);
 		botones.add(btnO);
 		
 		btnP = new JButton("P");
-		btnP.setBounds(536, 126, 44, 44);
+		Letras.add(btnP);
 		btnP.addKeyListener(ka);
-		panel.add(btnP);
 		botones.add(btnP);
 		
 		btnA = new JButton("A");
-		btnA.setBounds(44, 181, 44, 44);
+		Letras.add(btnA);
 		btnA.addKeyListener(ka);
-		panel.add(btnA);
 		botones.add(btnA);
 		
 		btnS = new JButton("S");
-		btnS.setBounds(98, 181, 44, 44);
+		Letras.add(btnS);
 		btnS.addKeyListener(ka);
-		panel.add(btnS);
 		botones.add(btnS);
 		
 		btnD = new JButton("D");
-		btnD.setBounds(158, 181, 44, 44);
+		Letras.add(btnD);
 		btnD.addKeyListener(ka);
-		panel.add(btnD);
 		botones.add(btnD);
 		
 		btnF = new JButton("F");
-		btnF.setBounds(212, 181, 44, 44);
+		Letras.add(btnF);
 		btnF.addKeyListener(ka);
-		panel.add(btnF);
 		botones.add(btnF);
 		
 		btnG = new JButton("G");
-		btnG.setBounds(266, 181, 44, 44);
+		Letras.add(btnG);
 		btnG.addKeyListener(ka);
-		panel.add(btnG);
 		botones.add(btnG);
 		
 		btnH = new JButton("H");
-		btnH.setBounds(324, 181, 43, 44);
+		Letras.add(btnH);
 		btnH.addKeyListener(ka);
-		panel.add(btnH);
 		botones.add(btnH);
 		
 		btnJ = new JButton("J");
-		btnJ.setBounds(381, 181, 44, 44);
+		Letras.add(btnJ);
 		btnJ.addKeyListener(ka);
-		panel.add(btnJ);
 		botones.add(btnJ);
 		
 		btnK = new JButton("K");
-		btnK.setBounds(435, 181, 44, 44);
+		Letras.add(btnK);
 		btnK.addKeyListener(ka);
-		panel.add(btnK);
 		botones.add(btnK);
 		
 		btnL = new JButton("L");
-		btnL.setBounds(492, 181, 44, 44);
+		Letras.add(btnL);
 		btnL.addKeyListener(ka);
-		panel.add(btnL);
 		botones.add(btnL);
 		
 		btnEnie = new JButton("\u00D1");
+		Letras.add(btnEnie);
 		btnEnie.addKeyListener(ka);
-		btnEnie.setBounds(549, 181, 44, 44);
-		panel.add(btnEnie);
 		botones.add(btnEnie);
 		
 		btnZ = new JButton("Z");
-		btnZ.setBounds(88, 236, 44, 44);
+		Letras.add(btnZ);
 		btnZ.addKeyListener(ka);
-		panel.add(btnZ);
 		botones.add(btnZ);
 		
 		btnX = new JButton("X");
-		btnX.setBounds(136, 236, 44, 44);
+		Letras.add(btnX);
 		btnX.addKeyListener(ka);
-		panel.add(btnX);
 		botones.add(btnX);
 		
 		btnC = new JButton("C");
-		btnC.setBounds(190, 236, 44, 44);
+		Letras.add(btnC);
 		btnC.addKeyListener(ka);
-		panel.add(btnC);
 		botones.add(btnC);
 		
 		btnV = new JButton("V");
-		btnV.setBounds(244, 236, 44, 44);
+		Letras.add(btnV);
 		btnV.addKeyListener(ka);
-		panel.add(btnV);
 		botones.add(btnV);
 		
 		btnB = new JButton("B");
-		btnB.setBounds(298, 236, 44, 44);
+		Letras.add(btnB);
 		btnB.addKeyListener(ka);
-		panel.add(btnB);
 		botones.add(btnB);
 		
 		btnN = new JButton("N");
-		btnN.setBounds(349, 236, 44, 44);
+		Letras.add(btnN);
 		btnN.addKeyListener(ka);
-		panel.add(btnN);
 		botones.add(btnN);
 		
 		btnM = new JButton("M");
-		btnM.setBounds(397, 236, 44, 44);
+		Letras.add(btnM);
 		btnM.addKeyListener(ka);
-		panel.add(btnM);
 		botones.add(btnM);
 		
 		JButton button = new JButton("BORRAR");
-		
-		button.setBounds(461, 236, 119, 44);
+		Letras.add(button);
 		button.addKeyListener(ka);
-		panel.add(button);
 		botones.add(button);
+		this.setVisible(true);
 		
 		btnEspacio = new JButton("ESPACIO");
-		btnEspacio.setBounds(158, 292, 316, 44);
+		Letras.add(btnEspacio);
 		btnEspacio.addKeyListener(ka);
-		panel.add(btnEspacio);
-		this.setVisible(true);
 		botones.add(btnEspacio);
+		
+		
 	
 		timer = new Timer (frecuencia, new ActionListener () 
 		{ int act =0;
@@ -352,7 +329,9 @@ public class Opcion2 extends JFrame {
 		    } 
 		}); 
 		timer.start();
+		btnQ.requestFocus();
 		this.setLocationRelativeTo(null);
+		this.setExtendedState(MAXIMIZED_BOTH);
 		//this.c.addObserver(this);			
 	}
 
