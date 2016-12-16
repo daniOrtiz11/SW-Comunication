@@ -2,76 +2,144 @@ package swComunicacion.views;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Observable;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.JToolBar;
 
 import swComunicacion.Controller;
 import swComunicacion.Observer;
 
+import javax.swing.SwingConstants;
+
+import java.awt.Font;
+
 @SuppressWarnings("serial")
-public class ToolbarSup extends JPanel implements Observer{
+public class ToolbarSup extends JToolBar implements Observer{
 
 	private ImageIcon atrasIc;
 	private JButton atras;
 	private JButton btnHelp;
+	private JButton modo;
+	public JTextField frec;
+	private JButton btnMasfrec;
+	private JButton btnMenosfrec;
 	private Controller c;
-	private boolean opcActual = false; //Ventana principal
-	
-	public ToolbarSup(Controller controlador){
+	public ToolbarSup(Controller controlador, final int op){
 		this.c = controlador;
-		this.setBackground(Color.LIGHT_GRAY);
+		this.setBackground(new Color(211, 211, 211));
 		this.setLayout(new GridLayout(1,4));
+		frec = new JTextField("Velocidad transición: ");
+		frec.setForeground(new Color(0, 0, 0));
+		frec.setEditable(false);
+		frec.setEnabled(false);
+		frec.setFont(new Font("Roboto", Font.PLAIN, 11));
+		frec.setDisabledTextColor(Color.BLACK);
+		frec.setHorizontalAlignment(SwingConstants.CENTER);
+		modo = new JButton("Cambiar de modo");
+		modo.setFont(new Font("Roboto", Font.PLAIN, 11));
+		if(c.getModo() == true){
+			//modo = new JButton("Cambiar a Modo Niño");
+			frec.setEnabled(true);
+		}
+		else {
+			//modo.setText("Cambiar a Modo Niño");
+			frec.setEnabled(true);
+		}
 		
+		modo.addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				if(c.getModo() == true) c.setModo(false);
+				else c.setModo(true);
+				c.onCambioModo(c.getModo());
+			}
+		});
+		this.add(modo);
+		this.add(frec);
 		btnHelp = new JButton("Help");
+		btnHelp.setFont(new Font("Roboto", Font.PLAIN, 11));
 		btnHelp.addMouseListener(new MouseAdapter() {
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showMessageDialog(null, "Para seleccionar una opción debemos pulsar cualquier tecla cuando "
-						+ "la opción que queramos esté en verde", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Modo Niño: Para seleccionar una opción debemos pulsar cualquier tecla cuando "
+						+ "la opción que queramos esté en verde" + "\nModo Madre: Para seleccionar una opción se selecciona con el ratón en cualquier momento.", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
 				btnHelp.transferFocus();
 			}
-		}
-		 );
+		});
+		this.btnMasfrec = new JButton("+");
+		btnMasfrec.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub				
+				c.disminuirFrecuencia();
+				c.onCambioFrecuencia(c.getFrecuencia());
+				JOptionPane.showMessageDialog(null, "Acaba de aumentar la velocidad de transición", "Velocidad", JOptionPane.INFORMATION_MESSAGE);
+				btnMasfrec.transferFocus();
+			}
+		});
+		this.btnMenosfrec = new JButton("-");
+		btnMenosfrec.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub				
+				c.aumentarFrecuencia();
+				c.onCambioFrecuencia(c.getFrecuencia());
+				JOptionPane.showMessageDialog(null, "Acaba de disminuir la velocidad de transición", "Velocidad", JOptionPane.INFORMATION_MESSAGE);
+				btnMenosfrec.transferFocus();
+			}
+		});
+		this.add(btnMasfrec);
+		this.add(btnMenosfrec);
 		this.add(btnHelp);
 		
 		atras = new JButton("Atrás");
+		atras.setFont(new Font("Roboto", Font.PLAIN, 11));
 		this.atrasIc = new ImageIcon("imagenes/atras.png");
 		atras.setIcon(atrasIc);
-		atras.setEnabled(false);
+		if(op != 0) atras.setEnabled(true);
+		else atras.setEnabled(false);
 		atras.addMouseListener(new MouseAdapter(){ 
 			
 			public void mouseClicked(MouseEvent e){
-				if(opcActual){
-					c.onCambioOpcion(false);
-					new PrincipalView(c);
-				} 
+				c.onCambioOpcion(op);
 			}
 		});
 		this.add(atras);
-		this.c.addObserver(this);
+	//	this.c.addObserver(this);
 	}
-
 	public void setAtras(JButton atras) {
 		this.atras = atras;
 	}
-
+	
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	public void onCambioOpcion(boolean op) {
-		if(!opcActual){
-			opcActual = true;
-			this.atras.setEnabled(true);
-			this.add(atras);
+	public void onCambioOpcion(int op) {
+		c.removeObserver(this);
+	}
+	public void onCambioModo(boolean m) {
+		// TODO Auto-generated method stub
+		if(m == false){
+			modo.setText("Cambiar a Modo Niño");
+			this.frec.setEnabled(true);
+		} else {
+			modo.setText("Cambiar a Modo Madre");
+			this.frec.setEnabled(false);
 		}
 	}
-
-
+	public void onCambioFrecuencia(int f) {
+		// TODO Auto-generated method stub
+		
+	}
 }

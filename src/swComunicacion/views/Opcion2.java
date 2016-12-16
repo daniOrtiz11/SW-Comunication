@@ -18,11 +18,12 @@ import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
 import swComunicacion.Controller;
+import swComunicacion.Observer;
 
-public class Opcion2 extends JFrame {
+public class Opcion2 extends JFrame implements Observer{
 	
 	private static final long serialVersionUID = 1L;
-	private  JTextArea textArea;
+	private JTextArea textArea;
 	private LinkedList<Boolean> bBotones;
 	private LinkedList<JButton> botones;
 	private JPanel contentPane;
@@ -55,10 +56,10 @@ public class Opcion2 extends JFrame {
 	private JButton btnN;
 	private JButton btnM;
 	private JButton btnEspacio;
-	private int frecuencia = 500;
 	private ToolbarSup t;
 	private Controller c;
-
+	private int it;
+	
 	public Opcion2(Controller controlador) {
 		this.c = controlador;
 		setTitle("Opcion 2");
@@ -72,7 +73,7 @@ public class Opcion2 extends JFrame {
 		bBotones = new LinkedList<Boolean>();
 		JPanel panel = new JPanel();
 		panel.setBorder(new EmptyBorder(10, 10, 10, 10));
-		t = new ToolbarSup(c);
+		t = new ToolbarSup(c, 2);
 		contentPane.add(t, BorderLayout.NORTH);
 		contentPane.add(panel, BorderLayout.CENTER);
 		
@@ -306,9 +307,23 @@ public class Opcion2 extends JFrame {
 		btnEspacio.addKeyListener(ka);
 		botones.add(btnEspacio);
 		
+		temporizador();
 		
-	
-		timer = new Timer (frecuencia, new ActionListener () 
+		if(c.getModo() == true) {
+			timer.start();
+			btnQ.requestFocus();
+		}
+		else {
+			textArea.setFocusable(true);
+			textArea.requestFocus();
+		}
+		this.c.addObserver(this);
+		this.setLocationRelativeTo(null);
+		this.setExtendedState(MAXIMIZED_BOTH);	
+	}
+
+	private void temporizador(){
+		timer = new Timer (c.getFrecuencia(), new ActionListener () 
 		{ int act =0;
 		    public void actionPerformed(ActionEvent e) 
 		    { 
@@ -316,11 +331,13 @@ public class Opcion2 extends JFrame {
 		    	for(int i=0; i<botones.size();i++){		    		
 		    		if(bBotones.get(i) == true){
 		    			botones.get(i).setBackground(Color.GREEN);		    			
-		    			act=i;	    			
+		    			act=i;
+		    			it = act;
 		    		}
 		    		else if(bBotones.get(i) == false){
 		    			botones.get(i).setBackground(null);	    			
-		    		}    		
+		    		}
+		    		
 		    	}
 		    	bBotones.set(act, false);		    	
 		    	if (act==28)act=-1;		    	
@@ -328,21 +345,36 @@ public class Opcion2 extends JFrame {
 
 		    } 
 		}); 
-		timer.start();
-		btnQ.requestFocus();
-		this.setLocationRelativeTo(null);
-		this.setExtendedState(MAXIMIZED_BOTH);
-		//this.c.addObserver(this);			
+	}
+	
+	public void onCambioModo(boolean mod) {
+		// TODO Auto-generated method stub
+		c.setModo(mod);
+		if(mod == false){
+			timer.stop();
+			botones.get(it).setBackground(null);	 
+			textArea.setFocusable(true);
+			textArea.requestFocus();
+		} else{
+			timer.start();
+			botones.get(it).requestFocus();
+			textArea.setFocusable(false);
+		}
+		//DESHABILITAR TECLADO Y QUE ESCRIBA LA PALABRA EN EL JTEXTAREA
 	}
 
-	public void onCambioModo(boolean modo) {
+	public void onCambioOpcion(int op) {
 		// TODO Auto-generated method stub
-		
+		if(op ==2){
+			this.c.removeObserver(this);
+			this.setVisible(false);
+			new PrincipalView(c);
+		}
 	}
 
-	public void onCambioOpcion(boolean opc) {
+	public void onCambioFrecuencia(int f) {
 		// TODO Auto-generated method stub
-		if(!opc)
-		this.setVisible(false);
+		c.setFrecuencia(f);
+		temporizador();
 	}
 }

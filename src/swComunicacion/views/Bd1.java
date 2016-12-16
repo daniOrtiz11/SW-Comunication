@@ -33,7 +33,6 @@ public class Bd1 extends JFrame implements Observer{
 	private boolean vs3;
 	private boolean vs4;
 	private Timer timer;
-	private int frecuencia = 2000;
 	private JSplitPane splitPane;
 	private JPanel panel;
 	private JPanel panel_1;
@@ -73,7 +72,7 @@ public class Bd1 extends JFrame implements Observer{
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				timer.stop();
-				onCambioOpcion(false);
+				onCambioOpcion(4);
 				GaleriaBd1 v = new GaleriaBd1(c);
 			}
 		});
@@ -102,7 +101,7 @@ public class Bd1 extends JFrame implements Observer{
 		vs3 = false;
 		vs4 = false;
 		
-		timer = new Timer (frecuencia, new ActionListener () 
+		timer = new Timer (c.getFrecuencia(), new ActionListener () 
 		{ 
 		    public void actionPerformed(ActionEvent e) 
 		    { 
@@ -144,10 +143,23 @@ public class Bd1 extends JFrame implements Observer{
 	}
 
 
-	public void onCambioOpcion(boolean op) {
+	public void onCambioOpcion(int op) {
 		// TODO Auto-generated method stub
-		if(!op)
-		this.setVisible(false);
+		if(op ==4){
+			this.c.removeObserver(this);
+			this.setVisible(false);
+		}
+	}
+
+	public void onCambioModo(boolean m) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void onCambioFrecuencia(int f) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

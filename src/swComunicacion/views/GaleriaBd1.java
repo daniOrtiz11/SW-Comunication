@@ -5,13 +5,8 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
@@ -33,7 +28,6 @@ public class GaleriaBd1 extends JFrame implements Observer{
 	private boolean vs3;
 	private boolean vs4;
 	private Timer timer;
-	private int frecuencia = 2000;
 	private JSplitPane splitPane;
 	private JPanel panel;
 	private JPanel panel_1;
@@ -105,7 +99,7 @@ public class GaleriaBd1 extends JFrame implements Observer{
 		vs3 = false;
 		vs4 = false;
 		
-		timer = new Timer (frecuencia, new ActionListener () 
+		timer = new Timer (c.getFrecuencia(), new ActionListener () 
 		{ 
 		    public void actionPerformed(ActionEvent e) 
 		    { 
@@ -146,10 +140,22 @@ public class GaleriaBd1 extends JFrame implements Observer{
 	}
 
 
-	public void onCambioOpcion(boolean op) {
+	public void onCambioOpcion(int op) {
 		// TODO Auto-generated method stub
-		if(!op)
+		this.c.removeObserver(this);
 		this.setVisible(false);
+	}
+
+
+	public void onCambioModo(boolean m) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void onCambioFrecuencia(int f) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

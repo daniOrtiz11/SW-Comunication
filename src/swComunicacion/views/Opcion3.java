@@ -41,7 +41,6 @@ public class Opcion3 extends JFrame implements Observer{
 	private boolean vs3;
 	private boolean vs4;
 	private Timer timer;
-	private int frecuencia = 1000;
 	private ToolbarSup t;
 	//private Image tv;
 	//private Graphics g;
@@ -57,7 +56,7 @@ public class Opcion3 extends JFrame implements Observer{
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		t = new ToolbarSup(c);
+		t = new ToolbarSup(c, 3);
 		contentPane.add(t, BorderLayout.NORTH);
 		aux = new JPanel();
 		aux.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -91,7 +90,7 @@ public class Opcion3 extends JFrame implements Observer{
 		
 		
 		
-		timer = new Timer (frecuencia, new ActionListener () 
+		timer = new Timer (c.getFrecuencia(), new ActionListener () 
 		{ 
 		    public void actionPerformed(ActionEvent e) 
 		    { 
@@ -136,7 +135,7 @@ public class Opcion3 extends JFrame implements Observer{
 			public void keyPressed(KeyEvent e) { //al pulsar cualquier tecla
 				if(vs1 == true){
 					timer.stop();
-					onCambioOpcion(false);
+					onCambioOpcion(3);
 					Bd1 v = new Bd1(c);
 				}
 			}
@@ -149,10 +148,25 @@ public class Opcion3 extends JFrame implements Observer{
 	}
 
 
-	public void onCambioOpcion(boolean op) {
+	public void onCambioOpcion(int op) {
 		// TODO Auto-generated method stub
-		if(!op)
-		this.setVisible(false);
+		if(op == 3){
+			this.c.removeObserver(this);
+			this.setVisible(false);
+			new PrincipalView(c);
+		}
+	}
+
+
+	public void onCambioModo(boolean m) {
+		// TODO Auto-generated method stub
+		c.setModo(m);
+	}
+
+
+	public void onCambioFrecuencia(int f) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
