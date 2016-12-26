@@ -355,10 +355,12 @@ public class Opcion2 extends JFrame implements Observer{
 			botones.get(it).setBackground(null);	 
 			textArea.setFocusable(true);
 			textArea.requestFocus();
+			t.enabledModo();
 		} else{
 			timer.start();
 			botones.get(it).requestFocus();
 			textArea.setFocusable(false);
+			t.disabledModo();
 		}
 		//DESHABILITAR TECLADO Y QUE ESCRIBA LA PALABRA EN EL JTEXTAREA
 	}

@@ -36,7 +36,7 @@ public class ToolbarSup extends JToolBar implements Observer{
 		this.c = controlador;
 		this.setBackground(new Color(211, 211, 211));
 		this.setLayout(new GridLayout(1,4));
-		frec = new JTextField("Velocidad transición: ");
+		frec = new JTextField("Velocidad transición: "+c.getVelocidad()+"x");
 		frec.setForeground(new Color(0, 0, 0));
 		frec.setEditable(false);
 		frec.setEnabled(false);
@@ -45,14 +45,7 @@ public class ToolbarSup extends JToolBar implements Observer{
 		frec.setHorizontalAlignment(SwingConstants.CENTER);
 		modo = new JButton("Cambiar de modo");
 		modo.setFont(new Font("Roboto", Font.PLAIN, 11));
-		if(c.getModo() == true){
-			//modo = new JButton("Cambiar a Modo Niño");
-			frec.setEnabled(true);
-		}
-		else {
-			//modo.setText("Cambiar a Modo Niño");
-			frec.setEnabled(true);
-		}
+		
 		
 		modo.addActionListener(new ActionListener(){
 			
@@ -71,31 +64,48 @@ public class ToolbarSup extends JToolBar implements Observer{
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(btnHelp.isEnabled()){
 				JOptionPane.showMessageDialog(null, "Modo Niño: Para seleccionar una opción debemos pulsar cualquier tecla cuando "
 						+ "la opción que queramos esté en verde" + "\nModo Madre: Para seleccionar una opción se selecciona con el ratón en cualquier momento.", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
 				btnHelp.transferFocus();
+			}
 			}
 		});
 		this.btnMasfrec = new JButton("+");
 		btnMasfrec.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub				
+				// TODO Auto-generated method stub		
+				if(btnMasfrec.isEnabled()){
+				c.setVelocidad(1);
+				if(c.velocidadOk()){
 				c.disminuirFrecuencia();
 				c.onCambioFrecuencia(c.getFrecuencia());
-				JOptionPane.showMessageDialog(null, "Acaba de aumentar la velocidad de transición", "Velocidad", JOptionPane.INFORMATION_MESSAGE);
+				frec.setText("Velocidad transición: "+c.getVelocidad()+"x");
+				}
+				else
+				c.setVelocidad(-1);
+				//JOptionPane.showMessageDialog(null, "Acaba de aumentar la velocidad de transición", "Velocidad", JOptionPane.INFORMATION_MESSAGE);
 				btnMasfrec.transferFocus();
+			}
 			}
 		});
 		this.btnMenosfrec = new JButton("-");
 		btnMenosfrec.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub				
+				// TODO Auto-generated method stub		
+				if(btnMenosfrec.isEnabled()){
+				c.setVelocidad(-1);
+				if(c.velocidadOk()){
 				c.aumentarFrecuencia();
 				c.onCambioFrecuencia(c.getFrecuencia());
-				JOptionPane.showMessageDialog(null, "Acaba de disminuir la velocidad de transición", "Velocidad", JOptionPane.INFORMATION_MESSAGE);
+				frec.setText("Velocidad transición: "+c.getVelocidad()+"x");
+				}
+				else
+				c.setVelocidad(1);
 				btnMenosfrec.transferFocus();
+			}
 			}
 		});
 		this.add(btnMasfrec);
@@ -109,12 +119,24 @@ public class ToolbarSup extends JToolBar implements Observer{
 		if(op != 0) atras.setEnabled(true);
 		else atras.setEnabled(false);
 		atras.addMouseListener(new MouseAdapter(){ 
-			
 			public void mouseClicked(MouseEvent e){
+				if(atras.isEnabled()){
 				c.onCambioOpcion(op);
+				}
 			}
-		});
+			}
+		);
 		this.add(atras);
+		if(c.getModo() == true){
+			//modo = new JButton("Cambiar a Modo Niño");
+			frec.setEnabled(true);
+			this.disabledModo();
+		}
+		else {
+			//modo.setText("Cambiar a Modo Niño");
+			frec.setEnabled(true);
+			this.enabledModo();
+		}
 	//	this.c.addObserver(this);
 	}
 	public void setAtras(JButton atras) {
@@ -140,6 +162,23 @@ public class ToolbarSup extends JToolBar implements Observer{
 	}
 	public void onCambioFrecuencia(int f) {
 		// TODO Auto-generated method stub
+		
+	}
+	public void enabledModo() {
+		// TODO Auto-generated method stub
+		this.atras.setEnabled(true);
+		this.btnHelp.setEnabled(true);
+		this.btnMasfrec.setEnabled(true);
+		this.btnMenosfrec.setEnabled(true);
+		this.atras.setEnabled(true);
+	}
+	public void disabledModo() {
+		// TODO Auto-generated method stub
+		this.atras.setEnabled(false);
+		this.btnHelp.setEnabled(false);
+		this.btnMasfrec.setEnabled(false);
+		this.btnMenosfrec.setEnabled(false);
+		this.atras.setEnabled(false);
 		
 	}
 }

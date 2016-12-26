@@ -3,6 +3,7 @@ package swComunicacion;
 public class Controller {
 
 	private Data d;
+	private int velocidad = 1;
 	public Controller(Data d2) {
 		// TODO Auto-generated constructor stub
 		d = d2;
@@ -63,6 +64,24 @@ public class Controller {
 	public void setFrecuencia(int f) {
 		// TODO Auto-generated method stub
 		d.setFrecuencia(f);
+	}
+
+	public void setVelocidad(int i) {
+		// TODO Auto-generated method stub
+		this.velocidad = velocidad + i;
+	}
+
+	public boolean velocidadOk() {
+		// TODO Auto-generated method stub
+		boolean ok = false;
+		if(velocidad < 4 && velocidad > 0)
+			ok = true;
+		return ok;
+	}
+
+	public int getVelocidad() {
+		// TODO Auto-generated method stub
+		return this.velocidad;
 	}
 
 }

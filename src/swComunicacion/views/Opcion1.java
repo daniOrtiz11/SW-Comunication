@@ -133,7 +133,6 @@ public class Opcion1 extends JFrame implements Observer{
 		Med.add(btnOpcion_2);
 		btnOpcion_2.setFont(new Font("Roboto", Font.BOLD, 18));
 		btnOpcion_2.setIcon(no);
-		//text2.setText(btnOpcion_2.getText());
 		
 		text1 = new JTextField();
 		text1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -239,7 +238,6 @@ public class Opcion1 extends JFrame implements Observer{
 							editando = false;
 							btnAdd.setVisible(true);
 							btnDel.setVisible(true);
-						//	timer.restart();
 							btnOpcion_1.requestFocus();
 						}
 					}
@@ -247,8 +245,6 @@ public class Opcion1 extends JFrame implements Observer{
 				btnAdd.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
-						//btnOpcion_1.setBounds(15, 75, 117, 79);
-						//btnOpcion_2.setBounds(325, 75, 117, 79);
 						if (iAdd == 0){
 						btnOpcion_3.setVisible(true);
 						iAdd++;
@@ -265,8 +261,6 @@ public class Opcion1 extends JFrame implements Observer{
 				btnDel.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
-						//btnOpcion_1.setBounds(15, 75, 117, 79);
-						//btnOpcion_2.setBounds(325, 75, 117, 79);
 						if (iAdd == 1){
 						btnOpcion_3.setVisible(false);
 						btnDel.setEnabled(false);
@@ -526,6 +520,7 @@ public class Opcion1 extends JFrame implements Observer{
 			btnOpcion_3.setBackground(Color.GREEN);
 			btnOpcion_4.setBackground(Color.GREEN);
 			listModMadre();
+			t.enabledModo();
 			timer.stop();
 		} else{
 			btnEditarOpciones.setEnabled(false);
@@ -535,6 +530,7 @@ public class Opcion1 extends JFrame implements Observer{
 			btnOpcion_3.setBackground(Color.RED);
 			btnOpcion_4.setBackground(Color.RED);
 			listModNiño();
+			t.disabledModo();
 			timer.start();
 		}
 	}

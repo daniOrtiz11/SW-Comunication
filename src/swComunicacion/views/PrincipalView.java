@@ -15,12 +15,14 @@ import javax.swing.border.EmptyBorder;
 
 import swComunicacion.Controller;
 import swComunicacion.Observer;
+import swComunicacion.Voz;
 
 import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JLabel;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -42,9 +44,7 @@ public class PrincipalView extends JFrame implements Observer {
 	private JButton btnOpcion_2;
 	private JButton btnOpcion_3;
 	private Timer timer;
-	//private static int frecuencia = 1000;
 	private ToolbarSup t;
-	//private ToolbarAux t;
 	private JPanel panel;
 	private JPanel panelOp;
 	private KeyListener kl1;
@@ -53,11 +53,10 @@ public class PrincipalView extends JFrame implements Observer {
 	private MouseListener ml1;
 	private MouseListener ml2;
 	private MouseListener ml3;
-	//private boolean modo;
+	private Voz voz;
 	
 	public PrincipalView(Controller c2) {
 		c = c2;
-		//modo = m;
 		setTitle("SW Comunicacion");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 469, 353);
@@ -66,14 +65,10 @@ public class PrincipalView extends JFrame implements Observer {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-
-		
-		
 		panel = new JPanel();
 		panel.setBackground(Color.WHITE);
 		panel.setForeground(Color.WHITE);
 		panel.setBorder(new EmptyBorder(10, 10, 10, 10));
-		
 		JLabel text = new JLabel("Bienvenido a SWComunicacion");
 		text.setBackground(Color.WHITE);
 		text.setHorizontalAlignment(SwingConstants.CENTER);
@@ -81,9 +76,6 @@ public class PrincipalView extends JFrame implements Observer {
 		contentPane.add(text, BorderLayout.NORTH);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new BorderLayout(10, 10));
-		
-
-		//t = new ToolbarSup(c, modo, 0);
 		t = new ToolbarSup(c,0);
 		panel.add(t, BorderLayout.NORTH);
 		panelOp = new JPanel();
@@ -115,9 +107,15 @@ public class PrincipalView extends JFrame implements Observer {
 		panel.add(panelOp, BorderLayout.CENTER);
 		setVisible(true);
 		this.c.addObserver(this);
-		// la frecuencia hace referencia al intervalo con que se realizará la función (en milisegundos)
 		btnOpcion_1.requestFocus();
 		this.setExtendedState(MAXIMIZED_BOTH);
+		/*
+		 * VOZ:
+		 * actualmente solo disponible voz en inglés
+		 * pasar texto a decir como parámetro en el constructor
+		 */
+		voz = new Voz("Welcome to software communication app");
+		voz.Reproducir();
 		
 	}
 private void cerrarVentana() {
@@ -166,10 +164,12 @@ public void onCambioModo(boolean m) {
     		btnOpcion_2.setBackground(Color.GREEN);
     		btnOpcion_3.setBackground(Color.GREEN);
 			timer.stop();
+			t.enabledModo();
 		} else{
 			listModNiño();
 			inicializarBotones();
 			timer.start();
+			t.disabledModo();
 		}
 		this.repaint();
 	}
