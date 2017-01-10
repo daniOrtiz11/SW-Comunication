@@ -34,7 +34,7 @@ public class PrincipalView extends JFrame implements Observer {
 	/*public static int getFrecuencia() {
 		return frecuencia;
 	}*/
-
+	
 	private JPanel contentPane;
 	private Controller c;
 	private boolean vs1;
@@ -81,14 +81,13 @@ public class PrincipalView extends JFrame implements Observer {
 		panelOp = new JPanel();
 		panelOp.setBackground(Color.WHITE);
 		panelOp.setLayout(new GridLayout(1, 3, 10, 20));
-		
-		btnOpcion_1 = new JButton("Opcion 1");
+		btnOpcion_1 = new JButton("Respuestas rápidas");
 		btnOpcion_1.setFont(new Font("Roboto", Font.BOLD, 20));
 		
-		btnOpcion_2 = new JButton("Opcion 2");
+		btnOpcion_2 = new JButton("Teclado interactivo");
 		btnOpcion_2.setFont(new Font("Roboto", Font.BOLD, 20));
 		
-		btnOpcion_3 = new JButton("Opcion 3");
+		btnOpcion_3 = new JButton("Ocio/Películas");
 		btnOpcion_3.setFont(new Font("Roboto", Font.BOLD, 20));
 		
 		if(c.getModo() == true) {
@@ -222,7 +221,7 @@ private void listModNiño(){
 				cerrarVentana();
 				c.onCambioOpcion(0);
 				@SuppressWarnings("unused")
-				Opcion3 v = new Opcion3(c);
+				Pelis v = new Pelis(c);
 			}
 		}
 	};
@@ -269,7 +268,7 @@ private void listModMadre(){
 				cerrarVentana();
 				c.onCambioOpcion(0);
 				@SuppressWarnings("unused")
-				Opcion3 v = new Opcion3(c);
+				Pelis v = new Pelis(c);
 		}
 		};
 	btnOpcion_3.addMouseListener(ml3);

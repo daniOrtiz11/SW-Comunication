@@ -1,8 +1,18 @@
 package swComunicacion;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class Controller {
 
 	private Data d;
+	private TratarXML xml;
 	private int velocidad = 1;
 	public Controller(Data d2) {
 		// TODO Auto-generated constructor stub
@@ -82,6 +92,42 @@ public class Controller {
 	public int getVelocidad() {
 		// TODO Auto-generated method stub
 		return this.velocidad;
+	}
+
+	public HashMap<Integer, ArrayList<String>> cargarDatos() {
+		// TODO Auto-generated method stub
+		return xml.cargarXml();
+	}
+
+	public void mvImagen(File logo) throws IOException {
+		// TODO Auto-generated method stub
+		File dest = new File("src/imagenes/" + logo.getName());
+        copyFileUsingFileStreams(logo, dest);
+	}
+
+	private void copyFileUsingFileStreams(File source, File dest)
+	        throws IOException {
+	
+	    InputStream input = null;
+	    OutputStream output = null;
+	    try {
+	        input = new FileInputStream(source);
+	        output = new FileOutputStream(dest);
+	        byte[] buf = new byte[1024];
+	        int bytesRead;
+	
+	        while ((bytesRead = input.read(buf)) > 0) 
+	        	output.write(buf, 0, bytesRead);
+	        
+	    } finally {
+	        input.close();
+	        output.close();
+	    }
+	}
+
+	public boolean escribirDatos(String[] args) {
+		// TODO Auto-generated method stub
+		return this.xml.escribirXML(args);
 	}
 
 }

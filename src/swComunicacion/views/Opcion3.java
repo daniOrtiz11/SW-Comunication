@@ -88,8 +88,6 @@ public class Opcion3 extends JFrame implements Observer{
 		aux.add(btn3);
 		vs3 = false;
 		
-		
-		
 		timer = new Timer (c.getFrecuencia(), new ActionListener () 
 		{ 
 		    public void actionPerformed(ActionEvent e) 
@@ -136,7 +134,7 @@ public class Opcion3 extends JFrame implements Observer{
 				if(vs1 == true){
 					timer.stop();
 					onCambioOpcion(3);
-					Bd1 v = new Bd1(c);
+					new Pelis(c);
 				}
 			}
 			});
