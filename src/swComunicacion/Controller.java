@@ -94,6 +94,7 @@ public class Controller {
 		return this.velocidad;
 	}
 
+	@SuppressWarnings("static-access")
 	public HashMap<Integer, ArrayList<String>> cargarDatos() {
 		// TODO Auto-generated method stub
 		return xml.cargarXml();
@@ -125,6 +126,7 @@ public class Controller {
 	    }
 	}
 
+	@SuppressWarnings("static-access")
 	public boolean escribirDatos(String[] args) {
 		// TODO Auto-generated method stub
 		return this.xml.escribirXML(args);

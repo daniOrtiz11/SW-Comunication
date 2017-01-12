@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.RoundRectangle2D;
 
+@SuppressWarnings("serial")
 public class botonPersonalizado extends JButton{ 
 private boolean round; 
 private Color colorFondo, colorPresionado; 

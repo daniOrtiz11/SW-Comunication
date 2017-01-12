@@ -17,7 +17,6 @@ public class TratarXML {
 	private static HashMap<Integer,ArrayList<String>> results;
 	private static ArrayList<String> lista;
 	
-	@SuppressWarnings("null")
 	public static HashMap<Integer,ArrayList<String>> cargarXml()
 	{
 	    //Se crea un SAXBuilder para poder parsear el archivo

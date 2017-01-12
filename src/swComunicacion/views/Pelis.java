@@ -313,6 +313,7 @@ public class Pelis extends JFrame implements Observer{
 			timer.start();
 			t.disabledModo();
 			listModNiño();
+			this.anyadir.setEnabled(false);
 		} else {
 			for(int i = 0; i < pelicula.length; i++){
 				pelicula[i].activa();

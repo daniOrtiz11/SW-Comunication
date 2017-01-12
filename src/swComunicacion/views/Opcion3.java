@@ -1,21 +1,15 @@
 package swComunicacion.views;
 
 import java.awt.BorderLayout;
-import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
 import swComunicacion.Controller;
 import swComunicacion.Observer;
-import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -29,9 +23,6 @@ public class Opcion3 extends JFrame implements Observer{
 	private JPanel contentPane;
 	private Controller c;
 	private JPanel aux;
-	private JButton b1;
-	private ImageIcon tv;
-	private JLabel l1;
 	private JButton btn2;
 	private JButton btn1;
 	private JButton btn4;
