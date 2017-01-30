@@ -64,13 +64,19 @@ public class Opcion1 extends JFrame implements Observer{
 	private MouseListener ml2;
 	private MouseListener ml3;
 	private MouseListener ml4;
+	private MouseListener mgeneral;
+	private JPanel panel;
+	private JPanel contenido;
+	private JPanel Sup;
+	private JPanel Inf;
+	private JPanel Med;
 	
 	public Opcion1(Controller controlador) {
 		this.c = controlador;
 		setTitle("Opcion 1");
 		this.si = new ImageIcon("src/imagenes/si.png");
 		this.no = new ImageIcon("src/imagenes/no.png");
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBorder(new EmptyBorder(10, 10, 10, 10));
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(100, 100, 450, 300);
@@ -88,14 +94,14 @@ public class Opcion1 extends JFrame implements Observer{
 		editando = false;
 		panel.setLayout(new BorderLayout(0, 0));
 		
-		JPanel contenido = new JPanel();
+		contenido = new JPanel();
 		contenido.setBackground(Color.WHITE);
 		t = new ToolbarSup(c, 1);
 		panel.add(t, BorderLayout.NORTH);
 		panel.add(contenido, BorderLayout.CENTER);
 		contenido.setLayout(new GridLayout(3, 1, 0, 50));
 		
-		JPanel Sup = new JPanel();
+		Sup = new JPanel();
 		contenido.add(Sup);
 		Sup.setBackground(Color.WHITE);
 		Sup.setLayout(new GridLayout(2, 1, 0, 0));
@@ -112,7 +118,7 @@ public class Opcion1 extends JFrame implements Observer{
 		textSup.setColumns(10);
 		textSup.setVisible(false);
 		
-		JPanel Med = new JPanel();
+		Med = new JPanel();
 		contenido.add(Med);
 		Med.setBackground(Color.WHITE);
 		Med.setLayout(new GridLayout(2, 3, 20, 0));
@@ -163,7 +169,7 @@ public class Opcion1 extends JFrame implements Observer{
 		text2.setColumns(10);
 		text2.setVisible(false);
 		
-		JPanel Inf = new JPanel();
+		Inf = new JPanel();
 		contenido.add(Inf);
 		Inf.setBackground(Color.WHITE);
 		Inf.setLayout(new GridLayout(0, 3, 400, 100));
@@ -412,6 +418,25 @@ public class Opcion1 extends JFrame implements Observer{
 		btnOpcion_3.removeMouseListener(ml3);
 		btnOpcion_4.removeMouseListener(ml4);
 		
+		mgeneral = new MouseAdapter(){
+			public void mouseClicked (MouseEvent e){
+					mouseNiño();
+			}
+		};
+		//text.addMouseListener(mgeneral);
+		panel.addMouseListener(mgeneral);
+		contenido.addMouseListener(mgeneral);
+		Sup.addMouseListener(mgeneral);
+		Med.addMouseListener(mgeneral);
+		Inf.addMouseListener(mgeneral);
+		pregunta.addMouseListener(mgeneral);
+		this.btnOpcion_1.addMouseListener(mgeneral);
+		this.btnOpcion_2.addMouseListener(mgeneral);
+		this.btnOpcion_3.addMouseListener(mgeneral);
+		this.btnOpcion_4.addMouseListener(mgeneral);
+		this.btnAdd.addMouseListener(mgeneral);
+		this.btnDel.addMouseListener(mgeneral);
+		this.btnEditarOpciones.addMouseListener(mgeneral);
 		kl1 = new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) { //al pulsar cualquier tecla
@@ -463,6 +488,19 @@ public class Opcion1 extends JFrame implements Observer{
 		btnOpcion_2.removeKeyListener(kl2);
 		btnOpcion_3.removeKeyListener(kl3);
 		btnOpcion_4.removeKeyListener(kl4);
+		panel.removeMouseListener(mgeneral);
+		contenido.removeMouseListener(mgeneral);
+		Sup.removeMouseListener(mgeneral);
+		Med.removeMouseListener(mgeneral);
+		Inf.removeMouseListener(mgeneral);
+		pregunta.removeMouseListener(mgeneral);
+		this.btnOpcion_1.removeMouseListener(mgeneral);
+		this.btnOpcion_2.removeMouseListener(mgeneral);
+		this.btnOpcion_3.removeMouseListener(mgeneral);
+		this.btnOpcion_4.removeMouseListener(mgeneral);
+		this.btnAdd.removeMouseListener(mgeneral);
+		this.btnDel.removeMouseListener(mgeneral);
+		this.btnEditarOpciones.removeMouseListener(mgeneral);
 		
 		ml1 = new MouseAdapter() {
 			@Override
@@ -539,5 +577,24 @@ public class Opcion1 extends JFrame implements Observer{
 		// TODO Auto-generated method stub
 		c.setFrecuencia(f);
 		temporizador();
+	}
+
+	@Override
+	public void mouseNiño() {
+		// TODO Auto-generated method stub
+		timer.stop();
+		if(vs1 == true){
+			JOptionPane.showMessageDialog(null,btnOpcion_1.getText(), "Seleccion", 0, si);
+		}
+		else if(vs2 == true){
+			JOptionPane.showMessageDialog(null,btnOpcion_2.getText(), "Seleccion", 0, si);
+		}
+		else if(vs3 == true){
+			JOptionPane.showMessageDialog(null,btnOpcion_3.getText(), "Seleccion", 0, si);
+		}
+		else if(vs4 == true){
+			JOptionPane.showMessageDialog(null,btnOpcion_4.getText(), "Seleccion", 0, si);
+		}
+		timer.restart();
 	}
 }

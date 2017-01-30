@@ -7,4 +7,6 @@ public interface Observer {
 	void onCambioModo(boolean m);
 
 	void onCambioFrecuencia(int f);
+	
+	void mouseNiño();
 }

@@ -53,7 +53,9 @@ public class PrincipalView extends JFrame implements Observer {
 	private MouseListener ml1;
 	private MouseListener ml2;
 	private MouseListener ml3;
+	private MouseListener mgeneral;
 	private Voz voz;
+	private JLabel text;
 	
 	public PrincipalView(Controller c2) {
 		c = c2;
@@ -69,7 +71,7 @@ public class PrincipalView extends JFrame implements Observer {
 		panel.setBackground(Color.WHITE);
 		panel.setForeground(Color.WHITE);
 		panel.setBorder(new EmptyBorder(10, 10, 10, 10));
-		JLabel text = new JLabel("Bienvenido a SWComunicacion");
+		text = new JLabel("Bienvenido a SWComunicacion");
 		text.setBackground(Color.WHITE);
 		text.setHorizontalAlignment(SwingConstants.CENTER);
 		text.setFont(new Font("Roboto", Font.PLAIN, 20));
@@ -178,6 +180,19 @@ private void listModNiño(){
 	btnOpcion_2.removeMouseListener(ml2);
 	btnOpcion_3.removeMouseListener(ml3);
 	
+	mgeneral = new MouseAdapter(){
+		public void mouseClicked (MouseEvent e){
+				mouseNiño();
+		}
+	};
+	text.addMouseListener(mgeneral);
+	contentPane.addMouseListener(mgeneral);
+	panel.addMouseListener(mgeneral);
+	panelOp.addMouseListener(mgeneral);
+	btnOpcion_1.addMouseListener(mgeneral);
+	btnOpcion_2.addMouseListener(mgeneral);
+	btnOpcion_3.addMouseListener(mgeneral);
+	
 	kl1 = new KeyAdapter() {
 	
 		public void keyPressed(KeyEvent e) { //al pulsar cualquier tecla
@@ -232,6 +247,13 @@ private void listModMadre(){
 	btnOpcion_1.removeKeyListener(kl1);
 	btnOpcion_2.removeKeyListener(kl2);
 	btnOpcion_3.removeKeyListener(kl3);
+	text.removeMouseListener(mgeneral);
+	contentPane.removeMouseListener(mgeneral);
+	panel.removeMouseListener(mgeneral);
+	panelOp.removeMouseListener(mgeneral);
+	btnOpcion_1.removeMouseListener(mgeneral);
+	btnOpcion_2.removeMouseListener(mgeneral);
+	btnOpcion_3.removeMouseListener(mgeneral);
 	
 	ml1 = new MouseAdapter(){
 		public void mouseClicked (MouseEvent e){
@@ -292,5 +314,19 @@ public void onCambioFrecuencia(int f) {
 	c.setFrecuencia(f);
 	temporizador();
 }
-
+public void mouseNiño(){
+	timer.stop();
+	cerrarVentana();
+	c.onCambioOpcion(0);
+	Opcion1 v;
+	Opcion2 v2;
+	Pelis v3;
+	if(vs1 == true)
+	v = new Opcion1(c);
+	else if(vs2 == true)
+	v2 = new Opcion2(c);
+	else
+	v3 = new Pelis(c);	
 }
+}
+

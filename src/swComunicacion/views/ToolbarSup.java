@@ -181,4 +181,9 @@ public class ToolbarSup extends JToolBar implements Observer{
 		this.atras.setEnabled(false);
 		
 	}
+	@Override
+	public void mouseNiño() {
+		// TODO Auto-generated method stub
+		
+	}
 }

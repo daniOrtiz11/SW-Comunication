@@ -62,6 +62,7 @@ public class Pelis extends JFrame implements Observer{
 	private KeyListener[] keyListener = new KeyListener[8];
 	private MouseListener[] mouseListener = new MouseListener[8];
 	private ImageIcon si;
+	private MouseListener mgeneral;
 	
 	public Pelis(Controller controlador) {
 		this.c = controlador;
@@ -226,6 +227,12 @@ public class Pelis extends JFrame implements Observer{
 		for(int i = 0; i < pelicula.length; i++){
 			pelicula[i].removeMouseListener(mouseListener[i]);
 		}
+		mgeneral = new MouseAdapter(){
+			public void mouseClicked (MouseEvent e){
+					mouseNiño();
+			}
+		};
+		contentPane.addMouseListener(mgeneral);
 		for(indp = 0; indp < pelicula.length; indp++){
 			keyListener[indp] = new KeyAdapter(){
 				public void keyPressed(KeyEvent e) { //al pulsar cualquier tecla
@@ -238,6 +245,7 @@ public class Pelis extends JFrame implements Observer{
 				}
 			};
 			pelicula[indp].addKeyListener(keyListener[indp]);
+			pelicula[indp].addMouseListener(mgeneral);
 		}
 	}
 
@@ -329,6 +337,17 @@ public class Pelis extends JFrame implements Observer{
 		// TODO Auto-generated method stub
 		c.setFrecuencia(f);
 		temporizador();
+	}
+
+	@Override
+	public void mouseNiño() {
+		// TODO Auto-generated method stub
+		timer.stop();
+		for(indp = 0; indp < pelicula.length; indp++){
+			if(pelicula[indp].isActiva())
+				JOptionPane.showMessageDialog(null,pelicula[indp].getInfo(), "Seleccion", 0, si); 
+		}
+		timer.restart();
 	}
 }
 

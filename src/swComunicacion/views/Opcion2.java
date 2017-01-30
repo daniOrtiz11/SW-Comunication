@@ -420,4 +420,10 @@ public class Opcion2 extends JFrame implements Observer{
 		c.setFrecuencia(f);
 		temporizador();
 	}
+
+	@Override
+	public void mouseNiño() {
+		// TODO Auto-generated method stub
+		
+	}
 }

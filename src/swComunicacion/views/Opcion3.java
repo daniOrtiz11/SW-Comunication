@@ -158,4 +158,11 @@ public class Opcion3 extends JFrame implements Observer{
 		
 	}
 
+
+	@Override
+	public void mouseNiño() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -81,4 +81,9 @@ public class Pelicula extends JPanel implements Observer {
 		// TODO Auto-generated method stub
 		return this.info;
 	}
+	@Override
+	public void mouseNiño() {
+		// TODO Auto-generated method stub
+		
+	}
 }

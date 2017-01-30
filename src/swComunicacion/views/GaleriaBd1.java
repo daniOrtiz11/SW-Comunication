@@ -158,4 +158,11 @@ public class GaleriaBd1 extends JFrame implements Observer{
 		
 	}
 
+
+	@Override
+	public void mouseNiño() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
