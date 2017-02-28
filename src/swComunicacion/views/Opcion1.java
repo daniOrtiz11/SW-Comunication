@@ -71,7 +71,7 @@ public class Opcion1 extends JFrame implements Observer{
 	private JPanel Inf;
 	private JPanel Med;
 	
-	public Opcion1(Controller controlador) {
+	public Opcion1(Controller controlador, JFrame padre) {
 		this.c = controlador;
 		setTitle("Opcion 1");
 		this.si = new ImageIcon("src/imagenes/si.png");
@@ -96,7 +96,7 @@ public class Opcion1 extends JFrame implements Observer{
 		
 		contenido = new JPanel();
 		contenido.setBackground(Color.WHITE);
-		t = new ToolbarSup(c, 1);
+		t = new ToolbarSup(c, 1, padre);
 		panel.add(t, BorderLayout.NORTH);
 		panel.add(contenido, BorderLayout.CENTER);
 		contenido.setLayout(new GridLayout(3, 1, 0, 50));
@@ -575,8 +575,8 @@ public class Opcion1 extends JFrame implements Observer{
 
 	public void onCambioFrecuencia(int f) {
 		// TODO Auto-generated method stub
-		c.setFrecuencia(f);
-		temporizador();
+		/*c.setFrecuencia(f);
+		temporizador();*/
 	}
 
 	@Override
@@ -596,5 +596,13 @@ public class Opcion1 extends JFrame implements Observer{
 			JOptionPane.showMessageDialog(null,btnOpcion_4.getText(), "Seleccion", 0, si);
 		}
 		timer.restart();
+	}
+
+	@Override
+	public void atras() {
+		// TODO Auto-generated method stub
+		this.c.removeObserver(this);
+		this.setVisible(false);
+		
 	}
 }

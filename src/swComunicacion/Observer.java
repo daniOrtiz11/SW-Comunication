@@ -9,4 +9,6 @@ public interface Observer {
 	void onCambioFrecuencia(int f);
 	
 	void mouseNiño();
+	
+	void atras();
 }

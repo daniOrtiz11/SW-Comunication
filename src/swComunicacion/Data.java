@@ -2,6 +2,8 @@ package swComunicacion;
 
 import java.util.Vector;
 
+import javax.swing.JFrame;
+
 import swComunicacion.Observer;
 
 public class Data {
@@ -9,6 +11,7 @@ public class Data {
 	private Vector<Observer> observadores;
 	private boolean modo; //true-->niño false-->madre
 	private int frecuencia;
+	//private JFrame padre = null;
 	public Data(){
 		this.observadores = new Vector<Observer>();
 	}
@@ -69,5 +72,19 @@ public class Data {
 	public void setFrecuencia(int f) {
 		// TODO Auto-generated method stub
 		this.frecuencia = f;
+	}
+	/*public void addPadre(JFrame e) {
+		// TODO Auto-generated method stub
+		this.padre = e;
+	}
+	public JFrame getPadre() {
+		// TODO Auto-generated method stub
+		return this.padre;
+	}*/
+	public void notifyCambioVentanaAtras() {
+		// TODO Auto-generated method stub
+		for (Observer o : observadores){
+			o.atras();
+		}
 	}
 }

@@ -9,6 +9,8 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.JFrame;
+
 public class Controller {
 
 	private Data d;
@@ -42,6 +44,10 @@ public class Controller {
 		d.notifyCambioFrecuencia(f);
 	}
 
+	public void onCambioVentanaAtras() {
+		// TODO Auto-generated method stub
+		d.notifyCambioVentanaAtras();
+	}
 	public void aumentarFrecuencia() {
 		// TODO Auto-generated method stub
 		int f = d.getFrecuencia();
@@ -131,5 +137,15 @@ public class Controller {
 		// TODO Auto-generated method stub
 		return this.xml.escribirXML(args);
 	}
+
+	/*public void addPadre(JFrame e) {
+		// TODO Auto-generated method stub
+		d.addPadre(e);
+	}
+
+	public JFrame getPadre() {
+		// TODO Auto-generated method stub
+		return d.getPadre();
+	}*/
 
 }

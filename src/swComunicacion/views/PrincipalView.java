@@ -78,7 +78,7 @@ public class PrincipalView extends JFrame implements Observer {
 		contentPane.add(text, BorderLayout.NORTH);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new BorderLayout(10, 10));
-		t = new ToolbarSup(c,0);
+		t = new ToolbarSup(c,0,null);
 		panel.add(t, BorderLayout.NORTH);
 		panelOp = new JPanel();
 		panelOp.setBackground(Color.WHITE);
@@ -108,6 +108,7 @@ public class PrincipalView extends JFrame implements Observer {
 		panel.add(panelOp, BorderLayout.CENTER);
 		setVisible(true);
 		this.c.addObserver(this);
+		//PrincipalView padre = this;
 		btnOpcion_1.requestFocus();
 		this.setExtendedState(MAXIMIZED_BOTH);
 		/*
@@ -121,7 +122,7 @@ public class PrincipalView extends JFrame implements Observer {
 	}
 private void cerrarVentana() {
 		// TODO Auto-generated method stub
-		this.c.removeObserver(this);
+		//this.c.removeObserver(this);
 		this.setVisible(false);
 }
 private void temporizador(){
@@ -201,7 +202,7 @@ private void listModNiño(){
 				cerrarVentana();
 				c.onCambioOpcion(0);
 				@SuppressWarnings("unused")
-				Opcion1 v = new Opcion1(c);
+				Opcion1 v = new Opcion1(c,null);
 			}
 		}
 	};
@@ -257,11 +258,7 @@ private void listModMadre(){
 	
 	ml1 = new MouseAdapter(){
 		public void mouseClicked (MouseEvent e){
-				timer.stop();
-				cerrarVentana();
-				c.onCambioOpcion(0);
-				@SuppressWarnings("unused")
-				Opcion1 v = new Opcion1(c);
+				mouseMadre(1);
 		}
 	};
 	
@@ -315,18 +312,34 @@ public void onCambioFrecuencia(int f) {
 	temporizador();
 }
 public void mouseNiño(){
-	timer.stop();
+	//timer.stop();
 	cerrarVentana();
 	c.onCambioOpcion(0);
 	Opcion1 v;
 	Opcion2 v2;
 	Pelis v3;
 	if(vs1 == true)
-	v = new Opcion1(c);
+	v = new Opcion1(c,this);
 	else if(vs2 == true)
 	v2 = new Opcion2(c);
 	else
 	v3 = new Pelis(c);	
 }
+@SuppressWarnings("unused")
+public void mouseMadre(int n){
+	//timer.stop();
+	cerrarVentana();
+	c.onCambioOpcion(0);
+	Opcion1 v1;
+	if(n == 1)
+	v1 = new Opcion1(c,this);
 }
+@Override
+public void atras() {
+	// TODO Auto-generated method stub
+	this.c.addObserver(this);
+	this.setVisible(true);
+}
+}
+
 

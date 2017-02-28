@@ -56,20 +56,20 @@ public class Pelicula extends JPanel implements Observer {
 		// TODO Auto-generated method stub
 		return this.activa;
 	}
-	public void cambiaBorde(Color c) {
+	public void cambiaBorde(Color c,int grosor) {
 		// TODO Auto-generated method stub
-		Border thickBorder = new LineBorder(c, 8);
+		Border thickBorder = new LineBorder(c, grosor);
 		btn.setBorder(thickBorder);
 	}
 	public void desactiva() {
 		// TODO Auto-generated method stub
 		this.activa=false;
-		cambiaBorde(Color.RED);
+		cambiaBorde(Color.RED,5);
 	}
 	public void activa() {
 		// TODO Auto-generated method stub
 		this.activa=true;
-		cambiaBorde(Color.GREEN);
+		cambiaBorde(Color.GREEN,20);
 	}
 	public String getInfo(){
 		return this.info.getText();
@@ -85,5 +85,9 @@ public class Pelicula extends JPanel implements Observer {
 	public void mouseNiño() {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public void atras() {
+		// TODO Auto-generated method stub
 	}
 }

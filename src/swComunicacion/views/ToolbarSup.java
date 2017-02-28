@@ -10,6 +10,7 @@ import java.util.Observable;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
@@ -32,8 +33,9 @@ public class ToolbarSup extends JToolBar implements Observer{
 	private JButton btnMasfrec;
 	private JButton btnMenosfrec;
 	private Controller c;
-	public ToolbarSup(Controller controlador, final int op){
+	public ToolbarSup(Controller controlador, final int op, JFrame padre){
 		this.c = controlador;
+		//this.c.addPadre(padre);
 		this.setBackground(new Color(211, 211, 211));
 		this.setLayout(new GridLayout(1,4));
 		frec = new JTextField("Velocidad transición: "+c.getVelocidad()+"x");
@@ -121,7 +123,8 @@ public class ToolbarSup extends JToolBar implements Observer{
 		atras.addMouseListener(new MouseAdapter(){ 
 			public void mouseClicked(MouseEvent e){
 				if(atras.isEnabled()){
-				c.onCambioOpcion(op);
+				//c.onCambioOpcion(op);
+				c.onCambioVentanaAtras();
 				}
 			}
 			}
@@ -183,6 +186,11 @@ public class ToolbarSup extends JToolBar implements Observer{
 	}
 	@Override
 	public void mouseNiño() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void atras() {
 		// TODO Auto-generated method stub
 		
 	}

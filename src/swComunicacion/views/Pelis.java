@@ -75,7 +75,7 @@ public class Pelis extends JFrame implements Observer{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0,0));
 		setContentPane(contentPane);
-		t = new ToolbarSup(c, 3);
+		t = new ToolbarSup(c, 3,null);
 		contentPane.add(t, BorderLayout.NORTH);
 		aux = new JPanel();
 		aux.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -348,6 +348,13 @@ public class Pelis extends JFrame implements Observer{
 				JOptionPane.showMessageDialog(null,pelicula[indp].getInfo(), "Seleccion", 0, si); 
 		}
 		timer.restart();
+	}
+
+	@Override
+	public void atras() {
+		// TODO Auto-generated method stub
+		this.c.removeObserver(this);
+		this.setVisible(false);
 	}
 }
 

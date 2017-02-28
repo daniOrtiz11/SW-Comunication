@@ -47,7 +47,7 @@ public class Opcion3 extends JFrame implements Observer{
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		t = new ToolbarSup(c, 3);
+		t = new ToolbarSup(c, 3,null);
 		contentPane.add(t, BorderLayout.NORTH);
 		aux = new JPanel();
 		aux.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -161,6 +161,13 @@ public class Opcion3 extends JFrame implements Observer{
 
 	@Override
 	public void mouseNiño() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void atras() {
 		// TODO Auto-generated method stub
 		
 	}
