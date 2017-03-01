@@ -48,10 +48,6 @@ public class Pelis extends JFrame implements Observer{
 	private JPanel pelis;
 	private JLabel tit = new JLabel ("Título");
 	private JTextField titF = new JTextField();
-	private JLabel dir = new JLabel("Director");
-	private JTextField dirF = new JTextField(15);
-	private JLabel gen = new JLabel("Género");
-	private JTextField genF = new JTextField(15);
 	private JLabel img = new JLabel("Imagen");
 	private String[] args;
 	private JPanel bots;
@@ -65,6 +61,7 @@ public class Pelis extends JFrame implements Observer{
 	private MouseListener mgeneral;
 	
 	public Pelis(Controller controlador) {
+		this.setExtendedState(MAXIMIZED_BOTH); //Para que se inicie siempre al tamaño máximo.
 		this.c = controlador;
 		setTitle("Películas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,26 +80,23 @@ public class Pelis extends JFrame implements Observer{
 		aux.setLayout(new GridLayout(2, 2, 10, 10));
 		pelis = new JPanel();
 		pelis.setLayout(new GridLayout(2,4,10,10));
-		results = c.cargarDatos(); //Consigo las peliculas que hay en el xml, solo 8.
-		for(int i = results.size()-1;i >= (results.size() - 8); i--){
-			lista = results.get(i);// Cojo la primera película
-			informacion = new String();
-			for(int j = 0; j < lista.size(); j++){ //Título, director, genero, imagen.
-				if(j == 3){
-					this.pelicula[indp] = new Pelicula(informacion, lista.get(j)); //Peliculas actualmente visibles
+
+			results = c.cargarDatos(); //Consigo las peliculas que hay en el xml, solo 8.
+			if(results.size() > 0){
+				for(int i = results.size()-1;i>=0 && i >= (results.size() - 8); i--){
+					lista = results.get(i);// Cojo la primera película
+					//Solo hay titulo e imagen
+					this.pelicula[indp] = new Pelicula(lista.get(0), lista.get(1)); //Peliculas actualmente visibles
 					pelis.add(pelicula[indp]);
 					indp++;
-				} else{
-					informacion += "\n - " +lista.get(j);
 				}
 			}
-		}
 		contentPane.add(pelis, BorderLayout.CENTER);
 	//AÑADIR NUEVAS PELICULAS (SI NO SE INTRODUCE UNA IMÁGEN, HABRÍA QUE TENER UNA POR DEFECTO).
 	
 		bots = new JPanel();
 		bots.setLayout(new GridLayout(1,2));
-		dialog = new JPanel(new GridLayout(4,2));
+		dialog = new JPanel(new GridLayout(2,2));
 		args = new String[4]; // IMPORTANTE INICIALIZAR ESTE ARRAY DE STRINGS. 
 		cargarIm.addActionListener(new ActionListener() { 
 			
@@ -114,7 +108,7 @@ public class Pelis extends JFrame implements Observer{
 		        //Comprobar si se ha pulsado Aceptar
 		        if (respuesta == JFileChooser.APPROVE_OPTION) {
 		            File logo = fc.getSelectedFile();   
-		            args[3] = logo.getName();
+		            args[1] = logo.getName();
 		            
 		            // Ahora guardamos la imagen en la carpeta de imagenes
 		            try {
@@ -128,12 +122,6 @@ public class Pelis extends JFrame implements Observer{
         });
 		dialog.add(tit);
 		dialog.add(titF);
-		dialog.add(Box.createHorizontalStrut(15));
-		dialog.add(dir);
-		dialog.add(dirF);
-		dialog.add(Box.createHorizontalStrut(15));
-		dialog.add(gen);
-		dialog.add(genF);
 		dialog.add(Box.createHorizontalStrut(15));
 		dialog.add(img);
 		dialog.add(cargarIm);
@@ -149,12 +137,10 @@ public class Pelis extends JFrame implements Observer{
 				               "Añadir película ", JOptionPane.OK_CANCEL_OPTION,0,iconPel);
 					// Si es 2 o -1 esque ha pulsado a cancelar o cerrar.
 					try{
-						if(titF.getText().length() != 0 && dirF.getText().length() != 0 && genF.getText().length() != 0){
+						if(titF.getText().length() != 0){
 							ok = true;
 							args[0] = titF.getText();
-							args[1] = dirF.getText();
-							args[2] = genF.getText();
-							if(args[3] == null) args[3] = "defecto.jpg";
+							if(args[1] == null) args[1] = "defecto.jpg";
 						} else{
 							//Hay que forzar un error para que salte el catch.
 							 @SuppressWarnings("unused")

@@ -5,12 +5,28 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerFactoryConfigurationError;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
 import org.jdom2.Document;         // |
 import org.jdom2.Element;          // |\ Librerías
 import org.jdom2.JDOMException;    // |/ JDOM
 import org.jdom2.input.SAXBuilder; // |
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
+import org.w3c.dom.DOMImplementation;
+import org.w3c.dom.Node;
 
 public class TratarXML {
 	
@@ -20,10 +36,13 @@ public class TratarXML {
 	public static HashMap<Integer,ArrayList<String>> cargarXml()
 	{
 	    //Se crea un SAXBuilder para poder parsear el archivo
+	    results = new HashMap<Integer,ArrayList<String>>();
 	    SAXBuilder builder = new SAXBuilder();
 	    File xmlFile = new File( "tv.xml" );
 	    try
 	    {
+	    	if(xmlFile.exists()){
+	    		
 	        //Se crea el documento a traves del archivo
 	        Document document = (Document) builder.build( xmlFile );
 	 
@@ -32,8 +51,7 @@ public class TratarXML {
 	 
 	        //Se obtiene la lista de hijos de la raiz 'peliculas'
 	        List<Element> list = rootNode.getChildren( "peli" );
-	        
-	        results = new HashMap<Integer,ArrayList<String>>();
+	
 	        //Se recorre la lista de hijos de 'tables'
 	        for ( int i = 0; i < list.size(); i++ )
 	        {
@@ -46,18 +64,21 @@ public class TratarXML {
 	            lista = new ArrayList<String>();
 	            
 	            lista.add(peli.getChildTextTrim("titulo"));
-	       	 
-                //Se obtiene el valor que esta entre los tags '<director></director>'
-                lista.add(peli.getChildTextTrim("director"));
- 
-                //Se obtiene el valor que esta entre los tags '<genero></genero>'
-                lista.add(peli.getChildTextTrim("genero"));
                 
                 lista.add(peli.getChildTextTrim("imagen"));
  
                 results.put(i, lista);
                 //System.out.println( "\t"+titulo+"\t\t"+director+"\t\t"+genero);
 	        }
+	    	} else {
+	    		XMLOutputter xmlOutput = new XMLOutputter();
+	    		Document doc = new Document();
+				// display nice nice
+	    		Element rootNode = new Element("peliculas");
+	    		doc.setRootElement(rootNode);
+				xmlOutput.setFormat(Format.getPrettyFormat());
+				xmlOutput.output(doc, new FileWriter("tv.xml"));
+	    	}
 	    }catch ( IOException io ) {
 	        System.out.println( io.getMessage() );
 	    }catch ( JDOMException jdomex ) {
@@ -72,6 +93,7 @@ public class TratarXML {
 			  try {
 				  SAXBuilder builder = new SAXBuilder();
 				    File xmlFile = new File( "tv.xml" );
+				
 				    try
 				    {
 				        Document document = (Document) builder.build( xmlFile );
@@ -83,9 +105,7 @@ public class TratarXML {
 		 
 				Element peli = new Element("peli");
 				peli.addContent(new Element("titulo").setText(args[0]));
-				peli.addContent(new Element("director").setText(args[1]));
-				peli.addContent(new Element("genero").setText(args[2]));
-				peli.addContent(new Element("imagen").setText(args[3]));
+				peli.addContent(new Element("imagen").setText(args[1]));
 				doc.getRootElement().addContent(peli);
 		 
 				// new XMLOutputter().output(doc, System.out);
