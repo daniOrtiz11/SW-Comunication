@@ -82,7 +82,7 @@ public class Pelis extends JFrame implements Observer{
 		pelis.setLayout(new GridLayout(2,4,10,10));
 
 			results = c.cargarDatos(); //Consigo las peliculas que hay en el xml, solo 8.
-			if(results.size() > 0){
+			if(results != null){
 				for(int i = results.size()-1;i>=0 && i >= (results.size() - 8); i--){
 					lista = results.get(i);// Cojo la primera película
 					//Solo hay titulo e imagen
@@ -182,6 +182,7 @@ public class Pelis extends JFrame implements Observer{
 			this.anyadir.setEnabled(false);
 		} else {
 			for(int i = 0; i < pelicula.length; i++){
+				if(pelicula[i] != null)
 				pelicula[i].activa();
 			}
 			listModMadre();
@@ -192,6 +193,7 @@ public class Pelis extends JFrame implements Observer{
 	private void listModMadre() {
 		// TODO Auto-generated method stub
 		for(int i = 0; i < pelicula.length; i++){
+			if(pelicula[i] != null)
 			pelicula[i].removeKeyListener(keyListener[i]);
 		}
 		for(indp = 0; indp < pelicula.length; indp++){
@@ -204,6 +206,7 @@ public class Pelis extends JFrame implements Observer{
 					}
 				}
 			};
+			if(pelicula[indp] != null)
 			pelicula[indp].addMouseListener(mouseListener[indp]);
 		}
 	}
@@ -211,6 +214,7 @@ public class Pelis extends JFrame implements Observer{
 	private void listModNiño() {
 		// TODO Auto-generated method stub
 		for(int i = 0; i < pelicula.length; i++){
+			if(pelicula[i] != null)
 			pelicula[i].removeMouseListener(mouseListener[i]);
 		}
 		mgeneral = new MouseAdapter(){
@@ -230,8 +234,10 @@ public class Pelis extends JFrame implements Observer{
 					timer.restart();
 				}
 			};
+			if(pelicula[indp] != null){
 			pelicula[indp].addKeyListener(keyListener[indp]);
 			pelicula[indp].addMouseListener(mgeneral);
+			}
 		}
 	}
 
@@ -243,38 +249,80 @@ public class Pelis extends JFrame implements Observer{
 		    { 
 		    	if(pelicula[0].isActiva() == true){
 		    		pelicula[0].desactiva();
+		    		if(pelicula[1] != null){
 		    		pelicula[1].activa();
 		    		pelicula[1].requestFocus();
+		    		}
+		    		else{
+		    		pelicula[0].activa();
+		    		pelicula[0].requestFocus();	
+		    		}
 		    	}
 		    	else if(pelicula[1].isActiva() == true){
 		    		pelicula[1].desactiva();
+		    		if(pelicula[2] != null){
 		    		pelicula[2].activa();
 		    		pelicula[2].requestFocus();
+		    		}
+		    		else{
+		    			pelicula[0].activa();
+			    		pelicula[0].requestFocus();	
+		    		}
 		    	}
 		    	else if(pelicula[2].isActiva() == true){
 		    		pelicula[2].desactiva();
+		    		if(pelicula[3] != null){
 		    		pelicula[3].activa();
 		    		pelicula[3].requestFocus();
+		    		}
+		    		else{
+		    			pelicula[0].activa();
+			    		pelicula[0].requestFocus();
+		    		}
 		    	}
 		    	else if(pelicula[3].isActiva() == true){
 		    		pelicula[3].desactiva();
+		    		if(pelicula[4] != null){
 		    		pelicula[4].activa();
 		    		pelicula[4].requestFocus();
+		    		}
+		    		else{
+		    			pelicula[0].activa();
+			    		pelicula[0].requestFocus();
+		    		}
 		    	}
 		    	else if(pelicula[4].isActiva() == true){
 		    		pelicula[4].desactiva();
+		    		if(pelicula[5] != null){
 		    		pelicula[5].activa();
 		    		pelicula[5].requestFocus();
+		    		}
+		    		else{
+		    			pelicula[0].activa();
+			    		pelicula[0].requestFocus();
+		    		}
 		    	}
 		    	else if(pelicula[5].isActiva() == true){
 		    		pelicula[5].desactiva();
+		    		if(pelicula[6] != null){
 		    		pelicula[6].activa();
 		    		pelicula[6].requestFocus();
+		    		}
+		    		else{
+		    			pelicula[0].activa();
+			    		pelicula[0].requestFocus();
+		    		}
 		    	}
 		    	else if(pelicula[6].isActiva() == true){
 		    		pelicula[6].desactiva();
+		    		if(pelicula[7] != null){
 		    		pelicula[7].activa();
 		    		pelicula[7].requestFocus();
+		    		}
+		    		else{
+		    			pelicula[0].activa();
+			    		pelicula[0].requestFocus();
+		    		}
 		    	}
 		    	else if(pelicula[7].isActiva() == true){
 		    		pelicula[7].desactiva();
@@ -301,8 +349,10 @@ public class Pelis extends JFrame implements Observer{
 		// TODO Auto-generated method stub
 		if(c.getModo() == true){
 			pelicula[0].activa();
-			for(int i = 1; i < pelicula.length; i++)
+			for(int i = 1; i < pelicula.length; i++){
+				if(pelicula[i] != null)
 				pelicula[i].desactiva();
+			}
 			//temporizador();
 			timer.start();
 			t.disabledModo();
@@ -310,6 +360,7 @@ public class Pelis extends JFrame implements Observer{
 			this.anyadir.setEnabled(false);
 		} else {
 			for(int i = 0; i < pelicula.length; i++){
+				if(pelicula[i] != null)
 				pelicula[i].activa();
 			}
 			listModMadre();
@@ -330,8 +381,10 @@ public class Pelis extends JFrame implements Observer{
 		// TODO Auto-generated method stub
 		timer.stop();
 		for(indp = 0; indp < pelicula.length; indp++){
+			if(pelicula[indp] != null){
 			if(pelicula[indp].isActiva())
 				JOptionPane.showMessageDialog(null,pelicula[indp].getInfo(), "Seleccion", 0, si); 
+		}
 		}
 		timer.restart();
 	}
