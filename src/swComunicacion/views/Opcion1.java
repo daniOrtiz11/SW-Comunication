@@ -34,6 +34,7 @@ public class Opcion1 extends JFrame implements Observer{
 
 	private Timer timer;
 	private JLabel pregunta;
+	private JButton btnAtras = new JButton("Atrás");
 	private JButton btnOpcion_1;
 	private JButton btnOpcion_2;
 	private JButton btnOpcion_3 = new JButton("Otra");
@@ -42,6 +43,7 @@ public class Opcion1 extends JFrame implements Observer{
 	private boolean vs2;
 	private boolean vs3;
 	private boolean vs4;
+	private boolean vsatras;
 	private Controller c;
 	private ImageIcon si;
 	private ImageIcon no;
@@ -60,17 +62,18 @@ public class Opcion1 extends JFrame implements Observer{
 	private KeyListener kl2;
 	private KeyListener kl3;
 	private KeyListener kl4;
+	private KeyListener katras;
 	private MouseListener ml1;
 	private MouseListener ml2;
 	private MouseListener ml3;
 	private MouseListener ml4;
+	private MouseListener matras;
 	private MouseListener mgeneral;
 	private JPanel panel;
 	private JPanel contenido;
 	private JPanel Sup;
 	private JPanel Inf;
 	private JPanel Med;
-	
 	public Opcion1(Controller controlador, JFrame padre) {
 		this.c = controlador;
 		setTitle("Opcion 1");
@@ -84,7 +87,7 @@ public class Opcion1 extends JFrame implements Observer{
 		vs2 = false;
 		vs3 = false;
 		vs4 = false;
-	
+		vsatras = false;
 		temporizador();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -112,7 +115,7 @@ public class Opcion1 extends JFrame implements Observer{
 		pregunta.setFont(new Font("Roboto", Font.PLAIN, 40));
 		textSup = new JTextField();
 		textSup.setHorizontalAlignment(SwingConstants.CENTER);
-		textSup.setFont(new Font("Roboto", Font.PLAIN, 18));
+		textSup.setFont(new Font("Roboto", Font.PLAIN, 40));
 		Sup.add(textSup);
 		textSup.setText(pregunta.getText());
 		textSup.setColumns(10);
@@ -121,50 +124,52 @@ public class Opcion1 extends JFrame implements Observer{
 		Med = new JPanel();
 		contenido.add(Med);
 		Med.setBackground(Color.WHITE);
-		Med.setLayout(new GridLayout(2, 3, 20, 0));
+		Med.setLayout(new GridLayout(1, 3, 20, 0));
 		btnOpcion_1 = new JButton("SI");
+		btnAtras.setFont(new Font("Roboto", Font.BOLD, 40));
+		Med.add(btnAtras);
 		Med.add(btnOpcion_1);
-		btnOpcion_1.setFont(new Font("Roboto", Font.BOLD, 18));
+		btnOpcion_1.setFont(new Font("Roboto", Font.BOLD, 40));
 		btnOpcion_1.setIcon(si);
 		
-		Med.add(btnOpcion_3);
-		btnOpcion_3.setFont(new Font("Roboto", Font.BOLD, 18));
+		//Med.add(btnOpcion_3);
+		btnOpcion_3.setFont(new Font("Roboto", Font.BOLD, 40));
 		btnOpcion_3.setVisible(false);
 		
-		Med.add(btnOpcion_4);
-		btnOpcion_4.setFont(new Font("Roboto", Font.BOLD, 18));
+		//Med.add(btnOpcion_4);
+		btnOpcion_4.setFont(new Font("Roboto", Font.BOLD, 40));
 		btnOpcion_4.setVisible(false);
 		
 		btnOpcion_2 = new JButton("NO");
 		Med.add(btnOpcion_2);
-		btnOpcion_2.setFont(new Font("Roboto", Font.BOLD, 18));
+		btnOpcion_2.setFont(new Font("Roboto", Font.BOLD, 40));
 		btnOpcion_2.setIcon(no);
 		
 		text1 = new JTextField();
 		text1.setHorizontalAlignment(SwingConstants.CENTER);
-		text1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Med.add(text1);
+		text1.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		//Med.add(text1);
 		text1.setText(btnOpcion_1.getText());
 		text1.setColumns(10);
 		text1.setVisible(false);
 		text3 = new JTextField();
 		text3.setHorizontalAlignment(SwingConstants.CENTER);
-		text3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Med.add(text3);
+		text3.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		//Med.add(text3);
 		text3.setText(btnOpcion_3.getText());
 		text3.setColumns(10);
 		text3.setVisible(false);
 		text4 = new JTextField();
 		text4.setHorizontalAlignment(SwingConstants.CENTER);
-		text4.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Med.add(text4);
+		text4.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		//Med.add(text4);
 		text4.setText(btnOpcion_4.getText());
 		text4.setColumns(10);
 		text4.setVisible(false);
 		text2 = new JTextField();
 		text2.setHorizontalAlignment(SwingConstants.CENTER);
-		text2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Med.add(text2);
+		text2.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		//Med.add(text2);
 		text2.setText(btnOpcion_2.getText());
 		text2.setColumns(10);
 		text2.setVisible(false);
@@ -203,17 +208,50 @@ public class Opcion1 extends JFrame implements Observer{
 						timer.stop();
 						textSup.setVisible(true);
 						pregunta.setVisible(false);
-						text1.setVisible(true);
-						btnOpcion_1.setVisible(false);
-						text2.setVisible(true);
-						btnOpcion_2.setVisible(false);
-						if(iAdd > 0){
-						text3.setVisible(true);
-						btnOpcion_3.setVisible(false);
-							if(iAdd > 1){
-								text4.setVisible(true);
-								btnOpcion_4.setVisible(false);
-							}
+						if(iAdd == 0){
+							Med.remove(btnOpcion_1);
+							Med.remove(btnOpcion_2);
+							btnOpcion_1.setVisible(false);
+							btnOpcion_2.setVisible(false);
+							text1.setText(btnOpcion_1.getText());
+							text2.setText(btnOpcion_2.getText());
+							text1.setVisible(true);
+							text2.setVisible(true);
+							Med.add(text1); Med.add(text2);
+						}
+						else if(iAdd == 1){
+							Med.remove(btnOpcion_1);
+							Med.remove(btnOpcion_2);
+							Med.remove(btnOpcion_3);
+							btnOpcion_1.setVisible(false);
+							btnOpcion_2.setVisible(false);
+							btnOpcion_3.setVisible(false);
+							text1.setText(btnOpcion_1.getText());
+							text2.setText(btnOpcion_2.getText());
+							text3.setText(btnOpcion_3.getText());
+							text1.setVisible(true);
+							text2.setVisible(true);
+							text3.setVisible(true);
+							Med.add(text1);  Med.add(text3); Med.add(text2);
+						}
+						else if(iAdd == 2){
+							Med.remove(btnOpcion_1);
+							Med.remove(btnOpcion_2);
+							Med.remove(btnOpcion_3);
+							Med.remove(btnOpcion_4);
+							btnOpcion_1.setVisible(false);
+							btnOpcion_2.setVisible(false);
+							btnOpcion_3.setVisible(false);
+							btnOpcion_4.setVisible(false);
+							text1.setText(btnOpcion_1.getText());
+							text2.setText(btnOpcion_2.getText());
+							text3.setText(btnOpcion_3.getText());
+							text4.setText(btnOpcion_4.getText());
+							text1.setVisible(true);
+							text2.setVisible(true);
+							text3.setVisible(true);
+							text4.setVisible(true);
+							Med.add(text1);  Med.add(text3); Med.add(text4); Med.add(text2);
 						}
 						editando = true;
 						btnAdd.setVisible(false);
@@ -225,21 +263,50 @@ public class Opcion1 extends JFrame implements Observer{
 							pregunta.setText(textSup.getText());
 							textSup.setVisible(false);
 							pregunta.setVisible(true);
-							btnOpcion_1.setText(text1.getText());
-							text1.setVisible(false);
-							btnOpcion_1.setVisible(true);
-							btnOpcion_2.setText(text2.getText());
-							text2.setVisible(false);
-							btnOpcion_2.setVisible(true);
-							if(iAdd > 0){
-							btnOpcion_3.setText(text3.getText());
-							text3.setVisible(false);
-							btnOpcion_3.setVisible(true);
-								if(iAdd > 1){
-									btnOpcion_4.setText(text4.getText());
-									text4.setVisible(false);
-									btnOpcion_4.setVisible(true);
-								}
+							if(iAdd == 0){
+								Med.remove(text1);
+								Med.remove(text2);
+								text1.setVisible(false);
+								text2.setVisible(false);
+								btnOpcion_1.setText(text1.getText());
+								btnOpcion_2.setText(text2.getText());
+								btnOpcion_1.setVisible(true);
+								btnOpcion_2.setVisible(true);
+								Med.add(btnOpcion_1); Med.add(btnOpcion_2);
+							}
+							else if(iAdd == 1){
+								Med.remove(text1);
+								Med.remove(text2);
+								Med.remove(text3);
+								text1.setVisible(false);
+								text2.setVisible(false);
+								text3.setVisible(false);
+								btnOpcion_1.setText(text1.getText());
+								btnOpcion_2.setText(text2.getText());
+								btnOpcion_3.setText(text3.getText());
+								btnOpcion_1.setVisible(true);
+								btnOpcion_2.setVisible(true);
+								btnOpcion_3.setVisible(true);
+								Med.add(btnOpcion_1); Med.add(btnOpcion_3); Med.add(btnOpcion_2);
+							}
+							else if(iAdd == 2){
+								Med.remove(text1);
+								Med.remove(text2);
+								Med.remove(text3);
+								Med.remove(text4);
+								text1.setVisible(false);
+								text2.setVisible(false);
+								text3.setVisible(false);
+								text4.setVisible(false);
+								btnOpcion_1.setText(text1.getText());
+								btnOpcion_2.setText(text2.getText());
+								btnOpcion_3.setText(text3.getText());
+								btnOpcion_4.setText(text4.getText());
+								btnOpcion_1.setVisible(true);
+								btnOpcion_2.setVisible(true);
+								btnOpcion_3.setVisible(true);
+								btnOpcion_4.setVisible(true);
+								Med.add(btnOpcion_1); Med.add(btnOpcion_3); Med.add(btnOpcion_4); Med.add(btnOpcion_2);
 							}
 							editando = false;
 							btnAdd.setVisible(true);
@@ -252,14 +319,33 @@ public class Opcion1 extends JFrame implements Observer{
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
 						if (iAdd == 0){
-						btnOpcion_3.setVisible(true);
-						iAdd++;
-						btnDel.setEnabled(true);
+							btnOpcion_1.setIcon(null);
+							btnOpcion_2.setIcon(null);
+							Med.setLayout(new GridLayout(1, 4, 20, 0));
+							Med.remove(btnOpcion_1);
+							Med.remove(btnOpcion_2);
+							Med.add(btnOpcion_1);
+							Med.add(btnOpcion_3);
+							Med.add(btnOpcion_2);
+							btnOpcion_1.setText("Opcion 1");
+							btnOpcion_3.setText("Opcion 2");
+							btnOpcion_2.setText("Opcion 3");
+							btnOpcion_3.setVisible(true);
+							iAdd++;
+							btnDel.setEnabled(true);
 						}
 						else if(iAdd == 1){
-						btnAdd.setEnabled(false);
-						btnOpcion_4.setVisible(true);
-						iAdd++;
+							Med.setLayout(new GridLayout(1, 5, 20, 0));
+							btnAdd.setEnabled(false);
+							Med.remove(btnOpcion_2);
+							Med.add(btnOpcion_4);
+							Med.add(btnOpcion_2);
+							btnOpcion_1.setText("Opcion 1");
+							btnOpcion_3.setText("Opcion 2");
+							btnOpcion_4.setText("Opcion 3");
+							btnOpcion_2.setText("Opcion 4");
+							btnOpcion_4.setVisible(true);
+							iAdd++;
 						}
 						btnOpcion_1.requestFocus();
 					}
@@ -268,15 +354,22 @@ public class Opcion1 extends JFrame implements Observer{
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
 						if (iAdd == 1){
-						btnOpcion_3.setVisible(false);
-						btnDel.setEnabled(false);
-						btnAdd.setEnabled(true);
-						iAdd--;
+							btnOpcion_3.setVisible(false);
+							btnOpcion_2.setText("Opcion 2");
+							Med.setLayout(new GridLayout(1, 2, 20, 0));
+							Med.remove(btnOpcion_3);
+							btnDel.setEnabled(false);
+							btnAdd.setEnabled(true);
+							iAdd--;
 						}
 						else if(iAdd == 2){
-						btnOpcion_4.setVisible(false);
-						btnAdd.setEnabled(true);
-						iAdd--;
+							btnOpcion_4.setVisible(false);
+							btnOpcion_2.setText("Opcion 3");
+							btnOpcion_3.setText("Opcion 2");
+							Med.setLayout(new GridLayout(1, 3, 20, 0));
+							Med.remove(btnOpcion_4);
+							btnAdd.setEnabled(true);
+							iAdd--;
 						}
 						btnOpcion_1.requestFocus();
 					}
@@ -286,10 +379,12 @@ public class Opcion1 extends JFrame implements Observer{
 			btnEditarOpciones.setEnabled(false);
 			btnAdd.setEnabled(false);
 			btnDel.setEnabled(false);
+			btnAtras.setBackground(Color.RED);
 			btnOpcion_1.setBackground(Color.GREEN);
 			btnOpcion_2.setBackground(Color.RED);
 			btnOpcion_3.setBackground(Color.RED);
 			btnOpcion_4.setBackground(Color.RED);
+			btnAtras.setEnabled(true);
 			listModNiño();
 			temporizador();
 			timer.start();
@@ -297,6 +392,9 @@ public class Opcion1 extends JFrame implements Observer{
 			btnEditarOpciones.setEnabled(true);
 			btnAdd.setEnabled(true);
 			btnDel.setEnabled(false);
+			btnAtras.setVisible(true);
+			btnAtras.setEnabled(false);
+			Med.setLayout(new GridLayout(1, 2, 20, 0));
 			btnOpcion_1.setBackground(Color.GREEN);
 			btnOpcion_2.setBackground(Color.GREEN);
 			btnOpcion_3.setBackground(Color.GREEN);
@@ -316,17 +414,30 @@ public class Opcion1 extends JFrame implements Observer{
 		    { 
 		    	if(iAdd == 0){
 		    	if(vs1 == true){
+		    		btnAtras.setBackground(Color.RED);
 		    		btnOpcion_1.setBackground(Color.RED);
 		    		btnOpcion_2.setBackground(Color.GREEN);
 		    		vs1 = false;
 		    		vs2 = true;
+		    		vsatras = false;
 		    		btnOpcion_2.requestFocus();
 		    	}
 		    	else if(vs2 == true){
 		    		btnOpcion_2.setBackground(Color.RED);
+		    		btnAtras.setBackground(Color.GREEN);
+		    		btnOpcion_1.setBackground(Color.RED);
+		    		vs2 = false;
+		    		vs1 = false;
+		    		vsatras = true;
+		    		btnAtras.requestFocus();
+		    	}
+		    	else if(vsatras == true){
+		    		btnOpcion_2.setBackground(Color.RED);
+		    		btnAtras.setBackground(Color.RED);
 		    		btnOpcion_1.setBackground(Color.GREEN);
 		    		vs2 = false;
 		    		vs1 = true;
+		    		vsatras = false;
 		    		btnOpcion_1.requestFocus();
 		    	}
 		     }
@@ -336,27 +447,44 @@ public class Opcion1 extends JFrame implements Observer{
 			    		btnOpcion_1.setBackground(Color.RED);
 			    		btnOpcion_3.setBackground(Color.GREEN);
 			    		btnOpcion_2.setBackground(Color.RED);
+			    		btnAtras.setBackground(Color.RED);
 			    		vs1 = false;
 			    		vs3 = true;
 			    		vs2 = false;
+			    		vsatras = false;
 			    		btnOpcion_3.requestFocus();
 			    	}
 			    	else if(vs3 == true){
 			    		btnOpcion_1.setBackground(Color.RED);
 			    		btnOpcion_3.setBackground(Color.RED);
 			    		btnOpcion_2.setBackground(Color.GREEN);
+			    		btnAtras.setBackground(Color.RED);
 			    		vs1 = false;
 			    		vs3 = false;
 			    		vs2 = true;
+			    		vsatras = false;
 			    		btnOpcion_2.requestFocus();
 			    	}
 			    	else if(vs2 == true){
+			    		btnOpcion_1.setBackground(Color.RED);
+			    		btnOpcion_3.setBackground(Color.RED);
+			    		btnOpcion_2.setBackground(Color.RED);
+			    		btnAtras.setBackground(Color.GREEN);
+			    		vs1 = false;
+			    		vs3 = false;
+			    		vs2 = false;
+			    		vsatras = true;
+			    		btnAtras.requestFocus();
+			    	}
+			    	else if(vsatras == true){
 			    		btnOpcion_1.setBackground(Color.GREEN);
 			    		btnOpcion_3.setBackground(Color.RED);
 			    		btnOpcion_2.setBackground(Color.RED);
+			    		btnAtras.setBackground(Color.RED);
 			    		vs1 = true;
 			    		vs3 = false;
 			    		vs2 = false;
+			    		vsatras = false;
 			    		btnOpcion_1.requestFocus();
 			    	}
 		    		}
@@ -366,6 +494,8 @@ public class Opcion1 extends JFrame implements Observer{
 				    		btnOpcion_3.setBackground(Color.GREEN);
 				    		btnOpcion_4.setBackground(Color.RED);
 				    		btnOpcion_2.setBackground(Color.RED);
+				    		btnAtras.setBackground(Color.RED);
+				    		vsatras = false;
 				    		vs1 = false;
 				    		vs3 = true;
 				    		vs4 = false;
@@ -377,6 +507,8 @@ public class Opcion1 extends JFrame implements Observer{
 				    		btnOpcion_3.setBackground(Color.RED);
 				    		btnOpcion_4.setBackground(Color.GREEN);
 				    		btnOpcion_2.setBackground(Color.RED);
+				    		btnAtras.setBackground(Color.RED);
+				    		vsatras = false;
 				    		vs1 = false;
 				    		vs3 = false;
 				    		vs4 = true;
@@ -388,6 +520,8 @@ public class Opcion1 extends JFrame implements Observer{
 				    		btnOpcion_3.setBackground(Color.RED);
 				    		btnOpcion_4.setBackground(Color.RED);
 				    		btnOpcion_2.setBackground(Color.GREEN);
+				    		btnAtras.setBackground(Color.RED);
+				    		vsatras = false;
 				    		vs1 = false;
 				    		vs3 = false;
 				    		vs4 = false;
@@ -395,10 +529,25 @@ public class Opcion1 extends JFrame implements Observer{
 				    		btnOpcion_2.requestFocus();
 				    	}
 				    	else if(vs2 == true){
+				    		btnOpcion_1.setBackground(Color.RED);
+				    		btnOpcion_3.setBackground(Color.RED);
+				    		btnOpcion_4.setBackground(Color.RED);
+				    		btnOpcion_2.setBackground(Color.RED);
+				    		btnAtras.setBackground(Color.GREEN);
+				    		vsatras = true;
+				    		vs1 = false;
+				    		vs3 = false;
+				    		vs4 = false;
+				    		vs2 = false;
+				    		btnAtras.requestFocus();
+				    	}
+				    	else if(vsatras == true){
 				    		btnOpcion_1.setBackground(Color.GREEN);
 				    		btnOpcion_3.setBackground(Color.RED);
 				    		btnOpcion_4.setBackground(Color.RED);
 				    		btnOpcion_2.setBackground(Color.RED);
+				    		btnAtras.setBackground(Color.RED);
+				    		vsatras = false;
 				    		vs1 = true;
 				    		vs3 = false;
 				    		vs4 = false;
@@ -417,7 +566,7 @@ public class Opcion1 extends JFrame implements Observer{
 		btnOpcion_2.removeMouseListener(ml2);
 		btnOpcion_3.removeMouseListener(ml3);
 		btnOpcion_4.removeMouseListener(ml4);
-		
+		btnAtras.removeMouseListener(matras);
 		mgeneral = new MouseAdapter(){
 			public void mouseClicked (MouseEvent e){
 					mouseNiño();
@@ -434,6 +583,7 @@ public class Opcion1 extends JFrame implements Observer{
 		this.btnOpcion_2.addMouseListener(mgeneral);
 		this.btnOpcion_3.addMouseListener(mgeneral);
 		this.btnOpcion_4.addMouseListener(mgeneral);
+		this.btnAtras.addMouseListener(mgeneral);
 		this.btnAdd.addMouseListener(mgeneral);
 		this.btnDel.addMouseListener(mgeneral);
 		this.btnEditarOpciones.addMouseListener(mgeneral);
@@ -481,6 +631,19 @@ public class Opcion1 extends JFrame implements Observer{
 			}
 		};
 		btnOpcion_4.addKeyListener(kl4);
+		katras = new KeyAdapter(){
+			public void keyPressed(KeyEvent e) {
+				timer.stop();
+				if(vsatras == true){
+					if(btnAtras.isEnabled()){
+						//c.onCambioOpcion(op);
+						c.onCambioVentanaAtras();
+						}
+				}
+				timer.restart();
+			}
+		};
+		btnAtras.addKeyListener(katras);
 	}
 	
 	private void listModMadre(){
@@ -488,6 +651,7 @@ public class Opcion1 extends JFrame implements Observer{
 		btnOpcion_2.removeKeyListener(kl2);
 		btnOpcion_3.removeKeyListener(kl3);
 		btnOpcion_4.removeKeyListener(kl4);
+		btnAtras.removeKeyListener(katras);
 		panel.removeMouseListener(mgeneral);
 		contenido.removeMouseListener(mgeneral);
 		Sup.removeMouseListener(mgeneral);
@@ -498,6 +662,7 @@ public class Opcion1 extends JFrame implements Observer{
 		this.btnOpcion_2.removeMouseListener(mgeneral);
 		this.btnOpcion_3.removeMouseListener(mgeneral);
 		this.btnOpcion_4.removeMouseListener(mgeneral);
+		this.btnAtras.removeMouseListener(mgeneral);
 		this.btnAdd.removeMouseListener(mgeneral);
 		this.btnDel.removeMouseListener(mgeneral);
 		this.btnEditarOpciones.removeMouseListener(mgeneral);
@@ -551,6 +716,7 @@ public class Opcion1 extends JFrame implements Observer{
 	public void onCambioModo(boolean m) {
 	// TODO Auto-generated method stub
 		if(c.getModo() == false){
+			btnAtras.setEnabled(false);
 			btnEditarOpciones.setEnabled(true);
 			btnAdd.setEnabled(true);
 			btnOpcion_1.setBackground(Color.GREEN);
@@ -561,12 +727,15 @@ public class Opcion1 extends JFrame implements Observer{
 			t.enabledModo();
 			timer.stop();
 		} else{
+			btnAtras.setVisible(true);
+			btnAtras.setEnabled(true);
 			btnEditarOpciones.setEnabled(false);
 			btnAdd.setEnabled(false);
 			btnOpcion_1.setBackground(Color.GREEN);
 			btnOpcion_2.setBackground(Color.RED);
 			btnOpcion_3.setBackground(Color.RED);
 			btnOpcion_4.setBackground(Color.RED);
+			btnAtras.setBackground(Color.RED);
 			listModNiño();
 			t.disabledModo();
 			timer.start();
@@ -594,6 +763,12 @@ public class Opcion1 extends JFrame implements Observer{
 		}
 		else if(vs4 == true){
 			JOptionPane.showMessageDialog(null,btnOpcion_4.getText(), "Seleccion", 0, si);
+		}
+		else if(vsatras == true){
+			if(btnAtras.isEnabled()){
+				//c.onCambioOpcion(op);
+				c.onCambioVentanaAtras();
+				}
 		}
 		timer.restart();
 	}
