@@ -187,13 +187,13 @@ public class Opcion1 extends JFrame implements Observer{
 				Inf.add(aux123);
 			
 				btnAdd = new JButton("Añadir Opción");
-				btnAdd.setFont(new Font("Roboto", Font.PLAIN, 18));
+				btnAdd.setFont(new Font("Roboto", Font.PLAIN, 20));
 				Inf.add(btnAdd);
 				btnEditarOpciones = new JButton("Editar opciones");
-				btnEditarOpciones.setFont(new Font("Roboto", Font.PLAIN, 18));
+				btnEditarOpciones.setFont(new Font("Roboto", Font.PLAIN, 20));
 				Inf.add(btnEditarOpciones);
 				btnDel = new JButton("Eliminar Opción");
-				btnDel.setFont(new Font("Roboto", Font.PLAIN, 18));
+				btnDel.setFont(new Font("Roboto", Font.PLAIN, 20));
 				Inf.add(btnDel);
 				
 				// this.btnAdd.putClientProperty( SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
@@ -206,6 +206,9 @@ public class Opcion1 extends JFrame implements Observer{
 					public void mouseClicked(MouseEvent e) {
 						if(editando == false){
 						timer.stop();
+						btnOpcion_2.setIcon(null);
+						btnOpcion_1.setIcon(null);
+						btnAtras.setBackground(Color.WHITE);
 						textSup.setVisible(true);
 						pregunta.setVisible(false);
 						if(iAdd == 0){
@@ -394,6 +397,7 @@ public class Opcion1 extends JFrame implements Observer{
 			btnDel.setEnabled(false);
 			btnAtras.setVisible(true);
 			btnAtras.setEnabled(false);
+			btnAtras.setBackground(Color.WHITE);
 			Med.setLayout(new GridLayout(1, 2, 20, 0));
 			btnOpcion_1.setBackground(Color.GREEN);
 			btnOpcion_2.setBackground(Color.GREEN);
@@ -723,6 +727,7 @@ public class Opcion1 extends JFrame implements Observer{
 			btnOpcion_2.setBackground(Color.GREEN);
 			btnOpcion_3.setBackground(Color.GREEN);
 			btnOpcion_4.setBackground(Color.GREEN);
+			btnAtras.setBackground(Color.WHITE);
 			listModMadre();
 			t.enabledModo();
 			timer.stop();

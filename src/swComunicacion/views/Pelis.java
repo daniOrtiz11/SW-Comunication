@@ -2,6 +2,7 @@ package swComunicacion.views;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -72,6 +73,7 @@ public class Pelis extends JFrame implements Observer{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0,0));
 		setContentPane(contentPane);
+		anyadir.setFont(new Font("Roboto", Font.BOLD, 20));
 		t = new ToolbarSup(c, 3,null);
 		contentPane.add(t, BorderLayout.NORTH);
 		aux = new JPanel();

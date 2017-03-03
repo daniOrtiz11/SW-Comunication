@@ -74,7 +74,7 @@ public class PrincipalView extends JFrame implements Observer {
 		text = new JLabel("Bienvenido a SWComunicacion");
 		text.setBackground(Color.WHITE);
 		text.setHorizontalAlignment(SwingConstants.CENTER);
-		text.setFont(new Font("Roboto", Font.PLAIN, 20));
+		text.setFont(new Font("Roboto", Font.PLAIN, 30));
 		contentPane.add(text, BorderLayout.NORTH);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new BorderLayout(10, 10));
@@ -84,13 +84,13 @@ public class PrincipalView extends JFrame implements Observer {
 		panelOp.setBackground(Color.WHITE);
 		panelOp.setLayout(new GridLayout(1, 3, 10, 20));
 		btnOpcion_1 = new JButton("Respuestas rápidas");
-		btnOpcion_1.setFont(new Font("Roboto", Font.BOLD, 20));
+		btnOpcion_1.setFont(new Font("Roboto", Font.BOLD, 40));
 		
 		btnOpcion_2 = new JButton("Teclado interactivo");
-		btnOpcion_2.setFont(new Font("Roboto", Font.BOLD, 20));
+		btnOpcion_2.setFont(new Font("Roboto", Font.BOLD, 40));
 		
 		btnOpcion_3 = new JButton("Ocio/Películas");
-		btnOpcion_3.setFont(new Font("Roboto", Font.BOLD, 20));
+		btnOpcion_3.setFont(new Font("Roboto", Font.BOLD, 40));
 		
 		if(c.getModo() == true) {
 			inicializarBotones();

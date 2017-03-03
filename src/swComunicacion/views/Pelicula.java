@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,6 +26,7 @@ public class Pelicula extends JPanel implements Observer {
 		// TODO Auto-generated constructor stub
 		setLayout(new BorderLayout());
 		info = new JLabel(informacion);
+		info.setFont(new Font("Roboto", Font.BOLD, 18));
 		info.setSize(10, 10);
 		ImageIcon icono = new ImageIcon("src/imagenes/" + imagen);
 		Dimension size = new Dimension(icono.getIconWidth(),icono.getIconHeight());

@@ -38,15 +38,15 @@ public class ToolbarSup extends JToolBar implements Observer{
 		//this.c.addPadre(padre);
 		this.setBackground(new Color(211, 211, 211));
 		this.setLayout(new GridLayout(1,4));
-		frec = new JTextField("Velocidad transición: "+c.getVelocidad()+"x");
+		frec = new JTextField("Velocidad: "+c.getVelocidad()+"x");
 		frec.setForeground(new Color(0, 0, 0));
 		frec.setEditable(false);
 		frec.setEnabled(false);
-		frec.setFont(new Font("Roboto", Font.PLAIN, 11));
+		frec.setFont(new Font("Roboto", Font.PLAIN, 20));
 		frec.setDisabledTextColor(Color.BLACK);
 		frec.setHorizontalAlignment(SwingConstants.CENTER);
 		modo = new JButton("Cambiar de modo");
-		modo.setFont(new Font("Roboto", Font.PLAIN, 11));
+		modo.setFont(new Font("Roboto", Font.PLAIN, 20));
 		
 		
 		modo.addActionListener(new ActionListener(){
@@ -61,7 +61,7 @@ public class ToolbarSup extends JToolBar implements Observer{
 		this.add(modo);
 		this.add(frec);
 		btnHelp = new JButton("Help");
-		btnHelp.setFont(new Font("Roboto", Font.PLAIN, 11));
+		btnHelp.setFont(new Font("Roboto", Font.PLAIN, 20));
 		btnHelp.addMouseListener(new MouseAdapter() {
 			
 			@Override
@@ -74,6 +74,7 @@ public class ToolbarSup extends JToolBar implements Observer{
 			}
 		});
 		this.btnMasfrec = new JButton("+");
+		btnMasfrec.setFont(new Font("Roboto", Font.PLAIN, 20));
 		btnMasfrec.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -93,6 +94,7 @@ public class ToolbarSup extends JToolBar implements Observer{
 			}
 		});
 		this.btnMenosfrec = new JButton("-");
+		btnMenosfrec.setFont(new Font("Roboto", Font.PLAIN, 20));
 		btnMenosfrec.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -115,7 +117,7 @@ public class ToolbarSup extends JToolBar implements Observer{
 		this.add(btnHelp);
 		
 		atras = new JButton("Atrás");
-		atras.setFont(new Font("Roboto", Font.PLAIN, 11));
+		atras.setFont(new Font("Roboto", Font.PLAIN, 20));
 		this.atrasIc = new ImageIcon("imagenes/atras.png");
 		atras.setIcon(atrasIc);
 		if(op != 0) atras.setEnabled(true);
