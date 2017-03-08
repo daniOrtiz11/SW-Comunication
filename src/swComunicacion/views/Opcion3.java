@@ -35,7 +35,7 @@ public class Opcion3 extends JFrame implements Observer{
 	private ToolbarSup t;
 	//private Image tv;
 	//private Graphics g;
-	//TV, MUSICA, BAÑO, TAREAS
+	//TV, MUSICA, BAï¿½O, TAREAS
 	
 	public Opcion3(Controller controlador) {
 		this.c = controlador;
@@ -67,7 +67,7 @@ public class Opcion3 extends JFrame implements Observer{
 		aux.add(btn2);
 		vs2 = false;
 		
-		btn4 = new JButton("Baño");
+		btn4 = new JButton("Baï¿½o");
 		btn4.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btn4.setBackground(Color.RED);
 		aux.add(btn4);
@@ -85,7 +85,7 @@ public class Opcion3 extends JFrame implements Observer{
 		    { 
 		    	/*
 		    	 * 1-1 4-2 3-3
-		    	 * TV-MUSICA-TAREAS-BAÑO
+		    	 * TV-MUSICA-TAREAS-BAï¿½O
 		    	 */
 		    	if(vs1 == true){
 		    		btn2.requestFocus();

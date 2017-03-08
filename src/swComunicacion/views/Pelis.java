@@ -47,12 +47,12 @@ public class Pelis extends JFrame implements Observer{
 	private String informacion;
 	private static ArrayList<String> lista;
 	private JPanel pelis;
-	private JLabel tit = new JLabel ("Título");
+	private JLabel tit = new JLabel ("Tï¿½tulo");
 	private JTextField titF = new JTextField();
 	private JLabel img = new JLabel("Imagen");
 	private String[] args;
 	private JPanel bots;
-	private JButton anyadir = new JButton("Añadir películas");
+	private JButton anyadir = new JButton("Aï¿½adir pelï¿½culas");
 	private JPanel dialog;
 	private JButton cargarIm = new JButton("Cargar imagen");
 	private ImageIcon iconPel;
@@ -62,9 +62,9 @@ public class Pelis extends JFrame implements Observer{
 	private MouseListener mgeneral;
 	
 	public Pelis(Controller controlador) {
-		this.setExtendedState(MAXIMIZED_BOTH); //Para que se inicie siempre al tamaño máximo.
+		this.setExtendedState(MAXIMIZED_BOTH); //Para que se inicie siempre al tamaï¿½o mï¿½ximo.
 		this.c = controlador;
-		setTitle("Películas");
+		setTitle("PelÃ­culas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		this.si = new ImageIcon("src/imagenes/si.png");
@@ -86,7 +86,7 @@ public class Pelis extends JFrame implements Observer{
 			results = c.cargarDatos(); //Consigo las peliculas que hay en el xml, solo 8.
 			if(results != null){
 				for(int i = results.size()-1;i>=0 && i >= (results.size() - 8); i--){
-					lista = results.get(i);// Cojo la primera película
+					lista = results.get(i);// Cojo la primera pelï¿½cula
 					//Solo hay titulo e imagen
 					this.pelicula[indp] = new Pelicula(lista.get(0), lista.get(1)); //Peliculas actualmente visibles
 					pelis.add(pelicula[indp]);
@@ -94,7 +94,7 @@ public class Pelis extends JFrame implements Observer{
 				}
 			}
 		contentPane.add(pelis, BorderLayout.CENTER);
-	//AÑADIR NUEVAS PELICULAS (SI NO SE INTRODUCE UNA IMÁGEN, HABRÍA QUE TENER UNA POR DEFECTO).
+	//Aï¿½ADIR NUEVAS PELICULAS (SI NO SE INTRODUCE UNA IMï¿½GEN, HABRï¿½A QUE TENER UNA POR DEFECTO).
 	
 		bots = new JPanel();
 		bots.setLayout(new GridLayout(1,2));
@@ -136,7 +136,7 @@ public class Pelis extends JFrame implements Observer{
 				do{
 					UIManager.put("OptionPane.minimumSize",new Dimension(200,200)); 
 					s = JOptionPane.showConfirmDialog(null, dialog, 
-				               "Añadir película ", JOptionPane.OK_CANCEL_OPTION,0,iconPel);
+				               "Aï¿½adir pelï¿½cula ", JOptionPane.OK_CANCEL_OPTION,0,iconPel);
 					// Si es 2 o -1 esque ha pulsado a cancelar o cerrar.
 					try{
 						if(titF.getText().length() != 0){
@@ -152,7 +152,7 @@ public class Pelis extends JFrame implements Observer{
 					}catch(Exception e1){
 						UIManager.put("OptionPane.minimumSize",new Dimension(100,100)); 
 						if(s != -1 && s != 2){
-							JOptionPane.showMessageDialog(dialog, "Algún campo está incompleto.", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(dialog, "Algï¿½n campo estï¿½ incompleto.", "Error", JOptionPane.ERROR_MESSAGE);
 							ok = false;
 						}
 					}
@@ -162,12 +162,12 @@ public class Pelis extends JFrame implements Observer{
 					//if(TratarXML.escribirXML(args)){
 					if(c.escribirDatos(args)){
 						UIManager.put("OptionPane.minimumSize",new Dimension(100,100));
-						JOptionPane.showMessageDialog(dialog, "La película ha sido añadida con éxito.", "Success", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(dialog, "La pelï¿½cula ha sido aï¿½adida con ï¿½xito.", "Success", JOptionPane.INFORMATION_MESSAGE);
 						cerrarVentana();
 						new Pelis(c);
 					}else{
 						UIManager.put("OptionPane.minimumSize",new Dimension(100,100));
-						JOptionPane.showMessageDialog(dialog, "La película no se ha añadido con éxito.", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(dialog, "La pelï¿½cula no se ha aï¿½adido con ï¿½xito.", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}

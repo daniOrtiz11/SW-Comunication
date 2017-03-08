@@ -68,7 +68,7 @@ public class ToolbarSup extends JToolBar implements Observer{
 			public void mouseClicked(MouseEvent e) {
 				if(btnHelp.isEnabled()){
 				JOptionPane.showMessageDialog(null, "Modo Niño: Para seleccionar una opción debemos pulsar cualquier tecla cuando "
-						+ "la opción que queramos esté en verde" + "\nModo Madre: Para seleccionar una opción se selecciona con el ratón en cualquier momento.", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
+						+ "la opción que queramos está en verde" + "\nModo Madre: Para seleccionar una opción se selecciona con el ratón en cualquier momento.", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
 				btnHelp.transferFocus();
 			}
 			}
@@ -84,11 +84,11 @@ public class ToolbarSup extends JToolBar implements Observer{
 				if(c.velocidadOk()){
 				c.disminuirFrecuencia();
 				c.onCambioFrecuencia(c.getFrecuencia());
-				frec.setText("Velocidad transición: "+c.getVelocidad()+"x");
+				frec.setText("Velocidad transiciï¿½n: "+c.getVelocidad()+"x");
 				}
 				else
 				c.setVelocidad(-1);
-				//JOptionPane.showMessageDialog(null, "Acaba de aumentar la velocidad de transición", "Velocidad", JOptionPane.INFORMATION_MESSAGE);
+				//JOptionPane.showMessageDialog(null, "Acaba de aumentar la velocidad de transiciï¿½n", "Velocidad", JOptionPane.INFORMATION_MESSAGE);
 				btnMasfrec.transferFocus();
 			}
 			}
@@ -104,7 +104,7 @@ public class ToolbarSup extends JToolBar implements Observer{
 				if(c.velocidadOk()){
 				c.aumentarFrecuencia();
 				c.onCambioFrecuencia(c.getFrecuencia());
-				frec.setText("Velocidad transición: "+c.getVelocidad()+"x");
+				frec.setText("Velocidad transiciï¿½n: "+c.getVelocidad()+"x");
 				}
 				else
 				c.setVelocidad(1);
@@ -133,12 +133,12 @@ public class ToolbarSup extends JToolBar implements Observer{
 		);
 		this.add(atras);
 		if(c.getModo() == true){
-			//modo = new JButton("Cambiar a Modo Niño");
+			//modo = new JButton("Cambiar a Modo Niï¿½o");
 			frec.setEnabled(true);
 			this.disabledModo();
 		}
 		else {
-			//modo.setText("Cambiar a Modo Niño");
+			//modo.setText("Cambiar a Modo Niï¿½o");
 			frec.setEnabled(true);
 			this.enabledModo();
 		}
@@ -158,7 +158,7 @@ public class ToolbarSup extends JToolBar implements Observer{
 	public void onCambioModo(boolean m) {
 		// TODO Auto-generated method stub
 		if(m == false){
-			modo.setText("Cambiar a Modo Niño");
+			modo.setText("Cambiar a Modo Niï¿½o");
 			this.frec.setEnabled(true);
 		} else {
 			modo.setText("Cambiar a Modo Madre");

@@ -84,13 +84,13 @@ public class PrincipalView extends JFrame implements Observer {
 		panelOp.setBackground(Color.WHITE);
 		panelOp.setLayout(new GridLayout(1, 3, 10, 20));
 		btnOpcion_1 = new JButton("Respuestas rápidas");
-		btnOpcion_1.setFont(new Font("Roboto", Font.BOLD, 40));
+		btnOpcion_1.setFont(new Font("Roboto", Font.BOLD, 50));
 		
 		btnOpcion_2 = new JButton("Teclado interactivo");
-		btnOpcion_2.setFont(new Font("Roboto", Font.BOLD, 40));
+		btnOpcion_2.setFont(new Font("Roboto", Font.BOLD, 50));
 		
 		btnOpcion_3 = new JButton("Ocio/Películas");
-		btnOpcion_3.setFont(new Font("Roboto", Font.BOLD, 40));
+		btnOpcion_3.setFont(new Font("Roboto", Font.BOLD, 50));
 		
 		if(c.getModo() == true) {
 			inicializarBotones();
@@ -113,8 +113,8 @@ public class PrincipalView extends JFrame implements Observer {
 		this.setExtendedState(MAXIMIZED_BOTH);
 		/*
 		 * VOZ:
-		 * actualmente solo disponible voz en inglés
-		 * pasar texto a decir como parámetro en el constructor
+		 * actualmente solo disponible voz en inglï¿½s
+		 * pasar texto a decir como parï¿½metro en el constructor
 		 */
 		voz = new Voz("Welcome to software communication app");
 		voz.Reproducir();
