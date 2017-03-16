@@ -126,4 +126,50 @@ public class TratarXML {
 					return false;
 			  }
 	}
+
+	public static HashMap<Integer, ArrayList<String>> busquedaMult(
+			List selectedValuesList) {
+
+		//Se crea un SAXBuilder para poder parsear el archivo
+	    results = new HashMap<Integer,ArrayList<String>>();
+	    SAXBuilder builder = new SAXBuilder();
+	    File xmlFile = new File( "tv.xml" );
+	    try
+	    {
+	    		
+	        //Se crea el documento a traves del archivo
+	        Document document = (Document) builder.build( xmlFile );
+	 
+	        //Se obtiene la raiz 'peliculas'
+	        Element rootNode = document.getRootElement();
+	 
+	        //Se obtiene la lista de hijos de la raiz 'peliculas'
+	        List<Element> list = rootNode.getChildren( "peli" );
+	
+	        //Se recorre la lista de hijos de 'tables'
+	        
+	        for(int i = 0; i < selectedValuesList.size(); i++){
+	        	int j = 0;
+	        	boolean ok = false;
+		        while(j < list.size() || !ok){
+		            //Se obtiene el elemento 'tabla'
+		            Element peli = (Element) list.get(j);
+		            
+		            if(selectedValuesList.get(i).equals(peli.getChildTextTrim("titulo"))){
+		            	 lista = new ArrayList<String>();
+				         lista.add(peli.getChildTextTrim("titulo"));
+			             lista.add(peli.getChildTextTrim("imagen"));
+			             results.put(i, lista);
+			             ok = true;
+		            }
+		            j++;
+		        }
+	        }
+	    }catch ( IOException io ) {
+	        System.out.println( io.getMessage() );
+	    }catch ( JDOMException jdomex ) {
+	        System.out.println( jdomex.getMessage() );
+	    }
+	    return results;
+	}
 }

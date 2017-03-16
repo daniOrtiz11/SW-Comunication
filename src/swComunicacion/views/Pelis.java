@@ -18,13 +18,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.Box;
+import javax.swing.DefaultListSelectionModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.UIManager;
@@ -47,12 +50,13 @@ public class Pelis extends JFrame implements Observer{
 	private String informacion;
 	private static ArrayList<String> lista;
 	private JPanel pelis;
-	private JLabel tit = new JLabel ("Tï¿½tulo");
+	private JLabel tit = new JLabel ("Titulo");
 	private JTextField titF = new JTextField();
 	private JLabel img = new JLabel("Imagen");
 	private String[] args;
 	private JPanel bots;
-	private JButton anyadir = new JButton("Aï¿½adir pelï¿½culas");
+	private JButton anyadir = new JButton("Añadir películas");
+	private JButton listar = new JButton("Listar películas");
 	private JPanel dialog;
 	private JButton cargarIm = new JButton("Cargar imagen");
 	private ImageIcon iconPel;
@@ -60,11 +64,16 @@ public class Pelis extends JFrame implements Observer{
 	private MouseListener[] mouseListener = new MouseListener[8];
 	private ImageIcon si;
 	private MouseListener mgeneral;
+	private JScrollPane scrollpane;
+	private JList list;
+	private JPanel listado;
+	private String[] categories;
+	private ImageIcon iconList;
 	
-	public Pelis(Controller controlador) {
+	public Pelis(Controller controlador, HashMap<Integer, ArrayList<String>> busqueda) {
 		this.setExtendedState(MAXIMIZED_BOTH); //Para que se inicie siempre al tamaï¿½o mï¿½ximo.
 		this.c = controlador;
-		setTitle("PelÃ­culas");
+		setTitle("Peliculas");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		this.si = new ImageIcon("src/imagenes/si.png");
@@ -74,6 +83,7 @@ public class Pelis extends JFrame implements Observer{
 		contentPane.setLayout(new BorderLayout(0,0));
 		setContentPane(contentPane);
 		anyadir.setFont(new Font("Roboto", Font.BOLD, 20));
+		listar.setFont(new Font("Roboto", Font.BOLD, 20));
 		t = new ToolbarSup(c, 3,null);
 		contentPane.add(t, BorderLayout.NORTH);
 		aux = new JPanel();
@@ -82,19 +92,31 @@ public class Pelis extends JFrame implements Observer{
 		aux.setLayout(new GridLayout(2, 2, 10, 10));
 		pelis = new JPanel();
 		pelis.setLayout(new GridLayout(2,4,10,10));
-
-			results = c.cargarDatos(); //Consigo las peliculas que hay en el xml, solo 8.
-			if(results != null){
+		
+		results = c.cargarDatos();
+		
+		if(busqueda == null){ //Se cargan las 8 más actuales
+			if(results != null){//Consigo las peliculas que hay en el xml, solo 8.
 				for(int i = results.size()-1;i>=0 && i >= (results.size() - 8); i--){
-					lista = results.get(i);// Cojo la primera pelï¿½cula
+					lista = results.get(i);// Cojo la primera pelicula
 					//Solo hay titulo e imagen
 					this.pelicula[indp] = new Pelicula(lista.get(0), lista.get(1)); //Peliculas actualmente visibles
 					pelis.add(pelicula[indp]);
 					indp++;
 				}
+				
 			}
+		} else { //Se carga el listado de películas que se pasa.
+			for(int j = 0;j <= busqueda.size()-1; j++){
+				lista = busqueda.get(j);// Cojo la primera pelicula
+				//Solo hay titulo e imagen
+				this.pelicula[indp] = new Pelicula(lista.get(0), lista.get(1)); //Peliculas actualmente visibles
+				pelis.add(pelicula[indp]);
+				indp++;
+			}
+		}
 		contentPane.add(pelis, BorderLayout.CENTER);
-	//Aï¿½ADIR NUEVAS PELICULAS (SI NO SE INTRODUCE UNA IMï¿½GEN, HABRï¿½A QUE TENER UNA POR DEFECTO).
+	//AÑADIR NUEVAS PELICULAS (SI NO SE INTRODUCE UNA IMAGEN, HABRIA QUE TENER UNA POR DEFECTO).
 	
 		bots = new JPanel();
 		bots.setLayout(new GridLayout(1,2));
@@ -136,7 +158,7 @@ public class Pelis extends JFrame implements Observer{
 				do{
 					UIManager.put("OptionPane.minimumSize",new Dimension(200,200)); 
 					s = JOptionPane.showConfirmDialog(null, dialog, 
-				               "Aï¿½adir pelï¿½cula ", JOptionPane.OK_CANCEL_OPTION,0,iconPel);
+				               "Añadir pelicula ", JOptionPane.OK_CANCEL_OPTION,0,iconPel);
 					// Si es 2 o -1 esque ha pulsado a cancelar o cerrar.
 					try{
 						if(titF.getText().length() != 0){
@@ -152,7 +174,7 @@ public class Pelis extends JFrame implements Observer{
 					}catch(Exception e1){
 						UIManager.put("OptionPane.minimumSize",new Dimension(100,100)); 
 						if(s != -1 && s != 2){
-							JOptionPane.showMessageDialog(dialog, "Algï¿½n campo estï¿½ incompleto.", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(dialog, "Algun campo esta incompleto.", "Error", JOptionPane.ERROR_MESSAGE);
 							ok = false;
 						}
 					}
@@ -162,16 +184,69 @@ public class Pelis extends JFrame implements Observer{
 					//if(TratarXML.escribirXML(args)){
 					if(c.escribirDatos(args)){
 						UIManager.put("OptionPane.minimumSize",new Dimension(100,100));
-						JOptionPane.showMessageDialog(dialog, "La pelï¿½cula ha sido aï¿½adida con ï¿½xito.", "Success", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(dialog, "La pelicula ha sido añadida con exito.", "Success", JOptionPane.INFORMATION_MESSAGE);
 						cerrarVentana();
-						new Pelis(c);
+						new Pelis(c,null);
 					}else{
 						UIManager.put("OptionPane.minimumSize",new Dimension(100,100));
-						JOptionPane.showMessageDialog(dialog, "La pelï¿½cula no se ha aï¿½adido con ï¿½xito.", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(dialog, "La pelicula no se ha añadido con exito.", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
 		});
+		
+		listar.addActionListener(new ActionListener(){
+			@SuppressWarnings({ "unchecked", "rawtypes"})
+			public void actionPerformed(ActionEvent e){
+				boolean ok = false;
+				int s;
+				do{
+					categories = new String[results.size()];
+					for(int i = 0;i <= (results.size()-1); i++){
+						lista = results.get(i);
+						categories[i] = lista.get(0);
+					}
+				    
+				    list = new JList(categories);
+				    list.setSelectionModel(new DefaultListSelectionModel() {
+				        public void setSelectionInterval(int index0, int index1) {
+				            if(super.isSelectedIndex(index0)) {
+				                super.removeSelectionInterval(index0, index1);
+				            }
+				            else {
+				                super.addSelectionInterval(index0, index1);
+				            }
+				        }
+				    });
+				    scrollpane = new JScrollPane(list);
+				    listado = new JPanel();
+				    listado.add(scrollpane);
+				    iconList = new ImageIcon("src/imagenes/peli.png");
+					//UIManager.put("OptionPane.minimumSize",new Dimension(800,600)); 
+					s = JOptionPane.showConfirmDialog(null, listado, 
+				               "Listar películas ", JOptionPane.OK_CANCEL_OPTION,0, iconList);
+					
+					if(s != -1 && s != 2){
+						
+						if(list.getSelectedValuesList().size() < 1){
+							UIManager.put("OptionPane.minimumSize",new Dimension(100,100));
+							JOptionPane.showMessageDialog(dialog, "Tienes que elegir al menos una película.", "Error", JOptionPane.ERROR_MESSAGE);
+						} else if(list.getSelectedValuesList().size() > 8) {
+							UIManager.put("OptionPane.minimumSize",new Dimension(100,100));
+							JOptionPane.showMessageDialog(dialog, "Se puede elegir un máximo de 8 películas.", "Error", JOptionPane.ERROR_MESSAGE);
+						} else {
+							ok = true;
+							HashMap<Integer, ArrayList<String>> listBusqueda = c.busquedaDatos(list.getSelectedValuesList());
+							cerrarVentana();
+							new Pelis(c,listBusqueda);
+						}
+					}
+					// Si es 2 o -1 esque ha pulsado a cancelar o cerrar.
+				}while(s!= -1 && s!= 2 && !ok);
+			}
+		});
+		
+		bots.add(listar);
 		bots.add(anyadir);
 		contentPane.add(bots, BorderLayout.SOUTH);
 		this.setVisible(true);
@@ -182,6 +257,7 @@ public class Pelis extends JFrame implements Observer{
 			timer.start();
 			listModNiño();
 			this.anyadir.setEnabled(false);
+			this.listar.setEnabled(false);
 		} else {
 			for(int i = 0; i < pelicula.length; i++){
 				if(pelicula[i] != null)
@@ -360,6 +436,7 @@ public class Pelis extends JFrame implements Observer{
 			t.disabledModo();
 			listModNiño();
 			this.anyadir.setEnabled(false);
+			this.listar.setEnabled(false);
 		} else {
 			for(int i = 0; i < pelicula.length; i++){
 				if(pelicula[i] != null)
@@ -369,6 +446,7 @@ public class Pelis extends JFrame implements Observer{
 			t.enabledModo();
 			timer.stop();
 			this.anyadir.setEnabled(true);
+			this.listar.setEnabled(true);
 		}
 	}
 
@@ -378,20 +456,20 @@ public class Pelis extends JFrame implements Observer{
 		temporizador();
 	}
 
-	@Override
 	public void mouseNiño() {
 		// TODO Auto-generated method stub
 		timer.stop();
 		for(indp = 0; indp < pelicula.length; indp++){
 			if(pelicula[indp] != null){
-			if(pelicula[indp].isActiva())
+			if(pelicula[indp].isActiva()){
+				UIManager.put("OptionPane.minimumSize",new Dimension(100,100));
 				JOptionPane.showMessageDialog(null,pelicula[indp].getInfo(), "Seleccion", 0, si); 
+			}
 		}
 		}
 		timer.restart();
 	}
 
-	@Override
 	public void atras() {
 		// TODO Auto-generated method stub
 		this.c.removeObserver(this);

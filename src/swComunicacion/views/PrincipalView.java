@@ -116,8 +116,8 @@ public class PrincipalView extends JFrame implements Observer {
 		 * actualmente solo disponible voz en inglï¿½s
 		 * pasar texto a decir como parï¿½metro en el constructor
 		 */
-		voz = new Voz("Welcome to software communication app");
-		voz.Reproducir();
+		//voz = new Voz("Welcome to software communication app");
+		//voz.Reproducir();
 		
 	}
 private void cerrarVentana() {
@@ -237,7 +237,7 @@ private void listModNiño(){
 				cerrarVentana();
 				c.onCambioOpcion(0);
 				@SuppressWarnings("unused")
-				Pelis v = new Pelis(c);
+				Pelis v = new Pelis(c,null);
 			}
 		}
 	};
@@ -287,7 +287,7 @@ private void listModMadre(){
 				cerrarVentana();
 				c.onCambioOpcion(0);
 				@SuppressWarnings("unused")
-				Pelis v = new Pelis(c);
+				Pelis v = new Pelis(c,null);
 		}
 		};
 	btnOpcion_3.addMouseListener(ml3);
@@ -323,7 +323,7 @@ public void mouseNiño(){
 	else if(vs2 == true)
 	v2 = new Opcion2(c);
 	else
-	v3 = new Pelis(c);	
+	v3 = new Pelis(c,null);	
 }
 @SuppressWarnings("unused")
 public void mouseMadre(int n){
@@ -334,7 +334,6 @@ public void mouseMadre(int n){
 	if(n == 1)
 	v1 = new Opcion1(c,this);
 }
-@Override
 public void atras() {
 	// TODO Auto-generated method stub
 	this.c.addObserver(this);

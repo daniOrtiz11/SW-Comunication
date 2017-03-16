@@ -756,7 +756,6 @@ public class Opcion2 extends JFrame implements Observer{
 		temporizador();
 	}
 
-	@Override
 	public void mouseNiño() {
 		// TODO Auto-generated method stub
 		timer.stop();
@@ -900,7 +899,6 @@ public class Opcion2 extends JFrame implements Observer{
 
 	}
 	
-	@Override
 	public void atras() {
 		// TODO Auto-generated method stub
 		this.c.removeObserver(this);

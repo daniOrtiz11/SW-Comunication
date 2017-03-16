@@ -125,7 +125,7 @@ public class Opcion3 extends JFrame implements Observer{
 				if(vs1 == true){
 					timer.stop();
 					onCambioOpcion(3);
-					new Pelis(c);
+					new Pelis(c,null);
 				}
 			}
 			});
@@ -159,14 +159,12 @@ public class Opcion3 extends JFrame implements Observer{
 	}
 
 
-	@Override
 	public void mouseNiño() {
 		// TODO Auto-generated method stub
 		
 	}
 
 
-	@Override
 	public void atras() {
 		// TODO Auto-generated method stub
 		

@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.swing.JFrame;
 
@@ -136,6 +137,13 @@ public class Controller {
 	public boolean escribirDatos(String[] args) {
 		// TODO Auto-generated method stub
 		return this.xml.escribirXML(args);
+	}
+
+	@SuppressWarnings("static-access")
+	public HashMap<Integer, ArrayList<String>> busquedaDatos(
+			List selectedValuesList) {
+		// TODO Auto-generated method stub
+		return this.xml.busquedaMult(selectedValuesList);
 	}
 
 	/*public void addPadre(JFrame e) {

@@ -39,17 +39,14 @@ public class Pelicula extends JPanel implements Observer {
 		add(info, BorderLayout.NORTH);
 		add(btn, BorderLayout.CENTER);
 	}
-	@Override
 	public void onCambioOpcion(int op) {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
 	public void onCambioModo(boolean m) {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
 	public void onCambioFrecuencia(int f) {
 		// TODO Auto-generated method stub
 		
@@ -83,12 +80,10 @@ public class Pelicula extends JPanel implements Observer {
 		// TODO Auto-generated method stub
 		return this.info;
 	}
-	@Override
 	public void mouseNiño() {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
 	public void atras() {
 		// TODO Auto-generated method stub
 	}

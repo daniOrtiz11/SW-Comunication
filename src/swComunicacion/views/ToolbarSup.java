@@ -158,7 +158,7 @@ public class ToolbarSup extends JToolBar implements Observer{
 	public void onCambioModo(boolean m) {
 		// TODO Auto-generated method stub
 		if(m == false){
-			modo.setText("Cambiar a Modo Niï¿½o");
+			modo.setText("Cambiar a Modo Niño");
 			this.frec.setEnabled(true);
 		} else {
 			modo.setText("Cambiar a Modo Madre");
@@ -186,12 +186,10 @@ public class ToolbarSup extends JToolBar implements Observer{
 		this.atras.setEnabled(false);
 		
 	}
-	@Override
 	public void mouseNiño() {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
 	public void atras() {
 		// TODO Auto-generated method stub
 		
