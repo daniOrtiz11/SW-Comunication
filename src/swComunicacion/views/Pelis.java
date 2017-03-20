@@ -31,10 +31,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import swComunicacion.Controller;
 import swComunicacion.Observer;
+
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 public class Pelis extends JFrame implements Observer{
@@ -57,6 +61,8 @@ public class Pelis extends JFrame implements Observer{
 	private JPanel bots;
 	private JButton anyadir = new JButton("Añadir películas");
 	private JButton listar = new JButton("Listar películas");
+	private JButton atras = new JButton("Atrás");
+	private boolean batras = false;
 	private JPanel dialog;
 	private JButton cargarIm = new JButton("Cargar imagen");
 	private ImageIcon iconPel;
@@ -91,13 +97,15 @@ public class Pelis extends JFrame implements Observer{
 		getContentPane().add(aux, BorderLayout.CENTER);
 		aux.setLayout(new GridLayout(2, 2, 10, 10));
 		pelis = new JPanel();
+		pelis.setBackground(Color.WHITE);
 		pelis.setLayout(new GridLayout(2,4,10,10));
-		
+		Border thickBorder = new LineBorder(Color.RED, 5);
+		atras.setBorder(thickBorder);
 		results = c.cargarDatos();
 		
 		if(busqueda == null){ //Se cargan las 8 más actuales
 			if(results != null){//Consigo las peliculas que hay en el xml, solo 8.
-				for(int i = results.size()-1;i>=0 && i >= (results.size() - 7); i--){
+				for(int i = results.size()-1;i>=0 && i >= (results.size() - 8); i--){
 					lista = results.get(i);// Cojo la primera pelicula
 					//Solo hay titulo e imagen
 					this.pelicula[indp] = new Pelicula(lista.get(0), lista.get(1)); //Peliculas actualmente visibles
@@ -115,8 +123,9 @@ public class Pelis extends JFrame implements Observer{
 				indp++;
 			}
 		}
-		this.pelicula[indp] = new Pelicula("Atrás", null);
-		pelis.add(this.pelicula[indp]);
+		atras.setFont(new Font("Roboto", Font.BOLD, 50));
+		atras.setBackground(Color.WHITE);
+		pelis.add(atras);
 		contentPane.add(pelis, BorderLayout.CENTER);
 	//AÑADIR NUEVAS PELICULAS (SI NO SE INTRODUCE UNA IMAGEN, HABRIA QUE TENER UNA POR DEFECTO).
 	
@@ -196,7 +205,15 @@ public class Pelis extends JFrame implements Observer{
 				}
 			}
 		});
-		
+		atras.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				c.onCambioVentanaAtras();
+			}
+			
+		});
 		listar.addActionListener(new ActionListener(){
 			@SuppressWarnings({ "unchecked", "rawtypes"})
 			public void actionPerformed(ActionEvent e){
@@ -260,11 +277,13 @@ public class Pelis extends JFrame implements Observer{
 			listModNiño();
 			this.anyadir.setEnabled(false);
 			this.listar.setEnabled(false);
+			this.atras.setVisible(true);
 		} else {
 			for(int i = 0; i < pelicula.length; i++){
 				if(pelicula[i] != null)
 				pelicula[i].activa();
 			}
+			this.atras.setVisible(false);
 			listModMadre();
 		}
 		this.setExtendedState(MAXIMIZED_BOTH);
@@ -275,8 +294,6 @@ public class Pelis extends JFrame implements Observer{
 		for(int i = 0; i < pelicula.length; i++){
 			if(pelicula[i] != null){
 			pelicula[i].removeKeyListener(keyListener[i]);
-			if(pelicula[i].getInfo() == "Atrás")
-				pelicula[i].setVisible(false);
 			}
 		}
 		for(indp = 0; indp < pelicula.length; indp++){
@@ -300,8 +317,6 @@ public class Pelis extends JFrame implements Observer{
 		for(int i = 0; i < pelicula.length; i++){
 			if(pelicula[i] != null){
 			pelicula[i].removeMouseListener(mouseListener[i]);
-			if(pelicula[i].getInfo() == "Atrás")
-				pelicula[i].setVisible(true);
 			}
 		}
 		mgeneral = new MouseAdapter(){
@@ -334,16 +349,25 @@ public class Pelis extends JFrame implements Observer{
 		timer = new Timer (c.getFrecuencia(), new ActionListener () 
 		{ 
 		    public void actionPerformed(ActionEvent e) 
-		    { 
-		    	if(pelicula[0].isActiva() == true){
+		    {
+		    	if(batras == true){
+		    		batras = false;
+		    		Border thickBorder = new LineBorder(Color.RED, 5);
+		    		atras.setBorder(thickBorder);
+		    		pelicula[0].activa();
+		    		pelicula[0].requestFocus();
+		    	}
+		    	else if(pelicula[0].isActiva() == true){
 		    		pelicula[0].desactiva();
 		    		if(pelicula[1] != null){
 		    		pelicula[1].activa();
 		    		pelicula[1].requestFocus();
 		    		}
 		    		else{
-		    		pelicula[0].activa();
-		    		pelicula[0].requestFocus();	
+		    			batras = true;
+			    		atras.requestFocus();
+			    		Border thickBorder = new LineBorder(Color.GREEN, 20);
+			    		atras.setBorder(thickBorder);
 		    		}
 		    	}
 		    	else if(pelicula[1].isActiva() == true){
@@ -353,8 +377,10 @@ public class Pelis extends JFrame implements Observer{
 		    		pelicula[2].requestFocus();
 		    		}
 		    		else{
-		    			pelicula[0].activa();
-			    		pelicula[0].requestFocus();	
+		    			batras = true;
+			    		atras.requestFocus();
+			    		Border thickBorder = new LineBorder(Color.GREEN, 20);
+			    		atras.setBorder(thickBorder);
 		    		}
 		    	}
 		    	else if(pelicula[2].isActiva() == true){
@@ -364,8 +390,10 @@ public class Pelis extends JFrame implements Observer{
 		    		pelicula[3].requestFocus();
 		    		}
 		    		else{
-		    			pelicula[0].activa();
-			    		pelicula[0].requestFocus();
+		    			batras = true;
+			    		atras.requestFocus();
+			    		Border thickBorder = new LineBorder(Color.GREEN, 20);
+			    		atras.setBorder(thickBorder);
 		    		}
 		    	}
 		    	else if(pelicula[3].isActiva() == true){
@@ -375,8 +403,10 @@ public class Pelis extends JFrame implements Observer{
 		    		pelicula[4].requestFocus();
 		    		}
 		    		else{
-		    			pelicula[0].activa();
-			    		pelicula[0].requestFocus();
+		    			batras = true;
+			    		atras.requestFocus();
+			    		Border thickBorder = new LineBorder(Color.GREEN, 20);
+			    		atras.setBorder(thickBorder);
 		    		}
 		    	}
 		    	else if(pelicula[4].isActiva() == true){
@@ -386,8 +416,10 @@ public class Pelis extends JFrame implements Observer{
 		    		pelicula[5].requestFocus();
 		    		}
 		    		else{
-		    			pelicula[0].activa();
-			    		pelicula[0].requestFocus();
+		    			batras = true;
+			    		atras.requestFocus();
+			    		Border thickBorder = new LineBorder(Color.GREEN, 20);
+			    		atras.setBorder(thickBorder);
 		    		}
 		    	}
 		    	else if(pelicula[5].isActiva() == true){
@@ -397,26 +429,20 @@ public class Pelis extends JFrame implements Observer{
 		    		pelicula[6].requestFocus();
 		    		}
 		    		else{
-		    			pelicula[0].activa();
-			    		pelicula[0].requestFocus();
+		    			batras = true;
+			    		atras.requestFocus();
+			    		Border thickBorder = new LineBorder(Color.GREEN, 20);
+			    		atras.setBorder(thickBorder);
 		    		}
 		    	}
 		    	else if(pelicula[6].isActiva() == true){
 		    		pelicula[6].desactiva();
-		    		if(pelicula[7] != null){
-		    		pelicula[7].activa();
-		    		pelicula[7].requestFocus();
-		    		}
-		    		else{
-		    			pelicula[0].activa();
-			    		pelicula[0].requestFocus();
-		    		}
+		    		batras = true;
+		    		atras.requestFocus();
+		    		Border thickBorder = new LineBorder(Color.GREEN, 20);
+		    		atras.setBorder(thickBorder);
 		    	}
-		    	else if(pelicula[7].isActiva() == true){
-		    		pelicula[7].desactiva();
-		    		pelicula[0].activa();
-		    		pelicula[0].requestFocus();
-		    	}
+		    	
 	}
 		});
 		}
@@ -447,6 +473,7 @@ public class Pelis extends JFrame implements Observer{
 			listModNiño();
 			this.anyadir.setEnabled(false);
 			this.listar.setEnabled(false);
+			this.atras.setVisible(true);
 		} else {
 			for(int i = 0; i < pelicula.length; i++){
 				if(pelicula[i] != null)
@@ -457,6 +484,7 @@ public class Pelis extends JFrame implements Observer{
 			timer.stop();
 			this.anyadir.setEnabled(true);
 			this.listar.setEnabled(true);
+			this.atras.setVisible(false);
 		}
 	}
 
@@ -469,16 +497,14 @@ public class Pelis extends JFrame implements Observer{
 	public void mouseNiño() {
 		// TODO Auto-generated method stub
 		timer.stop();
+		if(batras == true){
+			c.onCambioVentanaAtras();
+		}
 		for(indp = 0; indp < pelicula.length; indp++){
 			if(pelicula[indp] != null){
 			if(pelicula[indp].isActiva()){
-				if(pelicula[indp].getInfo() != "Atrás"){
 				UIManager.put("OptionPane.minimumSize",new Dimension(100,100));
 				JOptionPane.showMessageDialog(null,pelicula[indp].getInfo(), "Seleccion", 0, si); 
-				}
-				else{
-					c.onCambioVentanaAtras();
-				}
 			}
 		}
 		}

@@ -25,6 +25,7 @@ public class Pelicula extends JPanel implements Observer {
 	public Pelicula(String informacion, String imagen) {
 		// TODO Auto-generated constructor stub
 		setLayout(new BorderLayout());
+		this.setBackground(Color.WHITE);
 		info = new JLabel(informacion);
 		info.setFont(new Font("Roboto", Font.BOLD, 18));
 		info.setSize(10, 10);
