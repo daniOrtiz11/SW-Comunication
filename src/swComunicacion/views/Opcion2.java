@@ -66,6 +66,7 @@ public class Opcion2 extends JFrame implements Observer{
 	private int it;
 	private JButton button_2;
 	private JButton button_3;
+	private JButton button_4;
 	private JButton button;
 	private int act;
 	private MouseListener mGeneral;
@@ -78,7 +79,7 @@ public class Opcion2 extends JFrame implements Observer{
 		setTitle("Opcion 2");
 		act = 0;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 670, 413);
+		setBounds(70, 70, 670, 413);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -167,7 +168,7 @@ public class Opcion2 extends JFrame implements Observer{
 				if(bBotones.get(29)==true)
 					escribe(28);
 				if(bBotones.get(30)==true)
-					escribe(29);
+					escribe(70);
 				if(bBotones.get(31)==true)
 					escribe(30);
 				if(bBotones.get(32)==true)
@@ -183,7 +184,7 @@ public class Opcion2 extends JFrame implements Observer{
 		Letras = new JPanel();
 		Letras.setBorder(new EmptyBorder(10, 10, 10, 10));
 		panel.add(Letras, BorderLayout.CENTER);
-		Letras.setLayout(new GridLayout(3, 10, 30, 100));
+		Letras.setLayout(new GridLayout(3, 10, 30, 70));
 		
 		qwertyLetters(ka, Letras);
 		
@@ -234,63 +235,63 @@ public class Opcion2 extends JFrame implements Observer{
 	private void mostUsedLetters(KeyAdapter ka, JPanel Letras) {
 		btnE = new JButton("E");
 		Letras.add(btnE);
-		btnE.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnE.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnE.addKeyListener(ka);
 		btnE.addMouseListener(mGeneral);
 		botones.add(btnE);
 		
 		btnA = new JButton("A");
 		Letras.add(btnA);
-		btnA.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnA.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnA.addKeyListener(ka);
 		btnA.addMouseListener(mGeneral);
 		botones.add(btnA);
 		
 		btnO = new JButton("O");
 		Letras.add(btnO);
-		btnO.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnO.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnO.addKeyListener(ka);
 		btnO.addMouseListener(mGeneral);
 		botones.add(btnO);
 		
 		btnS = new JButton("S");
 		Letras.add(btnS);
-		btnS.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnS.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnS.addKeyListener(ka);
 		btnS.addMouseListener(mGeneral);
 		botones.add(btnS);
 		
 		btnR = new JButton("R");
 		Letras.add(btnR);
-		btnR.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnR.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnR.addKeyListener(ka);
 		btnR.addMouseListener(mGeneral);
 		botones.add(btnR);
 		
 		btnN = new JButton("N");
 		Letras.add(btnN);
-		btnN.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnN.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnN.addKeyListener(ka);
 		btnN.addMouseListener(mGeneral);
 		botones.add(btnN);
 		
 		btnI = new JButton("I");
 		Letras.add(btnI);
-		btnI.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnI.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnI.addKeyListener(ka);
 		btnI.addMouseListener(mGeneral);
 		botones.add(btnI);
 		
 		btnD = new JButton("D");
 		Letras.add(btnD);
-		btnD.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnD.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnD.addKeyListener(ka);
 		btnD.addMouseListener(mGeneral);
 		botones.add(btnD);
 		
 		btnL = new JButton("L");
 		Letras.add(btnL);
-		btnL.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnL.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnL.addKeyListener(ka);
 		btnL.addMouseListener(mGeneral);
 		botones.add(btnL);
@@ -298,7 +299,7 @@ public class Opcion2 extends JFrame implements Observer{
 	
 		btnC = new JButton("C");
 		Letras.add(btnC);
-		btnC.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnC.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnC.addKeyListener(ka);
 		btnC.addMouseListener(mGeneral);
 		botones.add(btnC);
@@ -312,63 +313,63 @@ public class Opcion2 extends JFrame implements Observer{
 		
 		btnT = new JButton("T");
 		Letras.add(btnT);
-		btnT.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnT.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnT.addKeyListener(ka);
 		btnT.addMouseListener(mGeneral);
 		botones.add(btnT);
 		
 		btnU = new JButton("U");
 		Letras.add(btnU);
-		btnU.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnU.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnU.addKeyListener(ka);
 		btnU.addMouseListener(mGeneral);
 		botones.add(btnU);
 		
 		btnM = new JButton("M");
 		Letras.add(btnM);
-		btnM.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnM.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnM.addKeyListener(ka);
 		btnM.addMouseListener(mGeneral);
 		botones.add(btnM);
 		
 		btnP = new JButton("P");
 		Letras.add(btnP);
-		btnP.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnP.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnP.addKeyListener(ka);
 		btnP.addMouseListener(mGeneral);
 		botones.add(btnP);
 		
 		btnB = new JButton("B");
 		Letras.add(btnB);
-		btnB.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnB.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnB.addKeyListener(ka);
 		btnB.addMouseListener(mGeneral);
 		botones.add(btnB);
 		
 		btnG = new JButton("G");
 		Letras.add(btnG);
-		btnG.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnG.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnG.addKeyListener(ka);
 		btnG.addMouseListener(mGeneral);
 		botones.add(btnG);
 		
 		btnV = new JButton("V");
 		Letras.add(btnV);
-		btnV.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnV.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnV.addKeyListener(ka);
 		btnV.addMouseListener(mGeneral);
 		botones.add(btnV);
 		
 		btnY = new JButton("Y");
 		Letras.add(btnY);
-		btnY.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnY.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnY.addKeyListener(ka);
 		btnY.addMouseListener(mGeneral);
 		botones.add(btnY);
 			
 		btnQ = new JButton("Q");
 		Letras.add(btnQ);
-		btnQ.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnQ.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnQ.addKeyListener(ka);
 		btnQ.addMouseListener(mGeneral);
 		botones.add(btnQ);
@@ -376,7 +377,7 @@ public class Opcion2 extends JFrame implements Observer{
 			
 		btnH = new JButton("H");
 		Letras.add(btnH);
-		btnH.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnH.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnH.addKeyListener(ka);
 		btnH.addMouseListener(mGeneral);
 		botones.add(btnH);
@@ -390,49 +391,49 @@ public class Opcion2 extends JFrame implements Observer{
 		
 		btnF = new JButton("F");
 		Letras.add(btnF);
-		btnF.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnF.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnF.addKeyListener(ka);
 		btnF.addMouseListener(mGeneral);
 		botones.add(btnF);
 		
 		btnZ = new JButton("Z");
 		Letras.add(btnZ);
-		btnZ.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnZ.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnZ.addKeyListener(ka);
 		btnZ.addMouseListener(mGeneral);
 		botones.add(btnZ);
 		
 		btnJ = new JButton("J");
 		Letras.add(btnJ);
-		btnJ.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnJ.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnJ.addKeyListener(ka);
 		btnJ.addMouseListener(mGeneral);
 		botones.add(btnJ);
 		
 		btnEnie = new JButton("\u00D1");
 		Letras.add(btnEnie);
-		btnEnie.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnEnie.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnEnie.addKeyListener(ka);
 		btnEnie.addMouseListener(mGeneral);
 		botones.add(btnEnie);
 		
 		btnK = new JButton("K");
 		Letras.add(btnK);
-		btnK.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnK.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnK.addKeyListener(ka);
 		btnK.addMouseListener(mGeneral);
 		botones.add(btnK);
 		
 		btnW = new JButton("W");
 		Letras.add(btnW);
-		btnW.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnW.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnW.addKeyListener(ka);
 		btnW.addMouseListener(mGeneral);
 		botones.add(btnW);
 		
 		btnX = new JButton("X");
 		Letras.add(btnX);
-		btnX.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnX.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnX.addKeyListener(ka);
 		btnX.addMouseListener(mGeneral);
 		botones.add(btnX);
@@ -442,6 +443,9 @@ public class Opcion2 extends JFrame implements Observer{
 		button_3.addKeyListener(ka);
 		button_3.addMouseListener(mGeneral);
 		
+		button_4 = new JButton("Atrás");
+		button_4.addKeyListener(ka);
+		button_4.addMouseListener(mGeneral);
 		
 		button = new JButton("BORRAR");
 		Letras.add(button);
@@ -450,8 +454,11 @@ public class Opcion2 extends JFrame implements Observer{
 		button.addMouseListener(mGeneral);
 		botones.add(button);
 		Letras.add(button_3);
+		Letras.add(button_4);
 		button_3.setFont(new Font("arial",Font.PLAIN,20)); 
+		button_4.setFont(new Font("arial",Font.PLAIN,20)); 
 		botones.add(button_3);
+		botones.add(button_4);
 		
 	}
 
@@ -459,189 +466,189 @@ public class Opcion2 extends JFrame implements Observer{
 		
 		btnQ = new JButton("Q");
 		Letras.add(btnQ);
-		btnQ.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnQ.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnQ.addKeyListener(ka);
 		btnQ.addMouseListener(mGeneral);
 		botones.add(btnQ);
 		
 		btnW = new JButton("W");
 		Letras.add(btnW);
-		btnW.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnW.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnW.addKeyListener(ka);
 		btnW.addMouseListener(mGeneral);
 		botones.add(btnW);
 		
 		btnE = new JButton("E");
 		Letras.add(btnE);
-		btnE.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnE.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnE.addKeyListener(ka);
 		btnE.addMouseListener(mGeneral);
 		botones.add(btnE);
 		
 		btnR = new JButton("R");
 		Letras.add(btnR);
-		btnR.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnR.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnR.addKeyListener(ka);
 		btnR.addMouseListener(mGeneral);
 		botones.add(btnR);
 				
 		btnT = new JButton("T");
 		Letras.add(btnT);
-		btnT.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnT.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnT.addKeyListener(ka);
 		btnT.addMouseListener(mGeneral);
 		botones.add(btnT);
 		
 		btnY = new JButton("Y");
 		Letras.add(btnY);
-		btnY.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnY.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnY.addKeyListener(ka);
 		btnY.addMouseListener(mGeneral);
 		botones.add(btnY);
 		
 		btnU = new JButton("U");
 		Letras.add(btnU);
-		btnU.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnU.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnU.addKeyListener(ka);
 		btnU.addMouseListener(mGeneral);
 		botones.add(btnU);
 		
 		btnI = new JButton("I");
 		Letras.add(btnI);
-		btnI.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnI.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnI.addKeyListener(ka);
 		btnI.addMouseListener(mGeneral);
 		botones.add(btnI);
 	
 		btnO = new JButton("O");
 		Letras.add(btnO);
-		btnO.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnO.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnO.addKeyListener(ka);
 		btnO.addMouseListener(mGeneral);
 		botones.add(btnO);
 		
 		btnP = new JButton("P");
 		Letras.add(btnP);
-		btnP.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnP.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnP.addKeyListener(ka);
 		btnP.addMouseListener(mGeneral);
 		botones.add(btnP);
 		
 		btnA = new JButton("A");
 		Letras.add(btnA);
-		btnA.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnA.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnA.addKeyListener(ka);
 		btnA.addMouseListener(mGeneral);
 		botones.add(btnA);
 		
 		btnS = new JButton("S");
 		Letras.add(btnS);
-		btnS.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnS.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnS.addKeyListener(ka);
 		btnS.addMouseListener(mGeneral);
 		botones.add(btnS);
 		
 		btnD = new JButton("D");
 		Letras.add(btnD);
-		btnD.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnD.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnD.addKeyListener(ka);
 		btnD.addMouseListener(mGeneral);
 		botones.add(btnD);
 		
 		btnF = new JButton("F");
 		Letras.add(btnF);
-		btnF.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnF.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnF.addKeyListener(ka);
 		btnF.addMouseListener(mGeneral);
 		botones.add(btnF);
 		
 		btnG = new JButton("G");
 		Letras.add(btnG);
-		btnG.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnG.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnG.addKeyListener(ka);
 		btnG.addMouseListener(mGeneral);
 		botones.add(btnG);
 		
 		btnH = new JButton("H");
 		Letras.add(btnH);
-		btnH.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnH.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnH.addKeyListener(ka);
 		btnH.addMouseListener(mGeneral);
 		botones.add(btnH);
 		
 		btnJ = new JButton("J");
 		Letras.add(btnJ);
-		btnJ.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnJ.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnJ.addKeyListener(ka);
 		btnJ.addMouseListener(mGeneral);
 		botones.add(btnJ);
 		
 		btnK = new JButton("K");
 		Letras.add(btnK);
-		btnK.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnK.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnK.addKeyListener(ka);
 		btnK.addMouseListener(mGeneral);
 		botones.add(btnK);
 		
 		btnL = new JButton("L");
 		Letras.add(btnL);
-		btnL.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnL.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnL.addKeyListener(ka);
 		btnL.addMouseListener(mGeneral);
 		botones.add(btnL);
 		
 		btnEnie = new JButton("\u00D1");
 		Letras.add(btnEnie);
-		btnEnie.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnEnie.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnEnie.addKeyListener(ka);
 		btnEnie.addMouseListener(mGeneral);
 		botones.add(btnEnie);
 		
 		btnZ = new JButton("Z");
 		Letras.add(btnZ);
-		btnZ.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnZ.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnZ.addKeyListener(ka);
 		btnZ.addMouseListener(mGeneral);
 		botones.add(btnZ);
 		
 		btnX = new JButton("X");
 		Letras.add(btnX);
-		btnX.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnX.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnX.addKeyListener(ka);
 		btnX.addMouseListener(mGeneral);
 		botones.add(btnX);
 		
 		btnC = new JButton("C");
 		Letras.add(btnC);
-		btnC.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnC.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnC.addKeyListener(ka);
 		btnC.addMouseListener(mGeneral);
 		botones.add(btnC);
 		
 		btnV = new JButton("V");
 		Letras.add(btnV);
-		btnV.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnV.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnV.addKeyListener(ka);
 		btnV.addMouseListener(mGeneral);
 		botones.add(btnV);
 		
 		btnB = new JButton("B");
 		Letras.add(btnB);
-		btnB.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnB.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnB.addKeyListener(ka);
 		btnB.addMouseListener(mGeneral);
 		botones.add(btnB);
 		
 		btnN = new JButton("N");
 		Letras.add(btnN);
-		btnN.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnN.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnN.addKeyListener(ka);
 		btnN.addMouseListener(mGeneral);
 		botones.add(btnN);
 		
 		btnM = new JButton("M");
 		Letras.add(btnM);
-		btnM.setFont(new Font("arial",Font.PLAIN,100)); 
+		btnM.setFont(new Font("arial",Font.PLAIN,70)); 
 		btnM.addKeyListener(ka);
 		btnM.addMouseListener(mGeneral);
 		botones.add(btnM);
@@ -649,7 +656,9 @@ public class Opcion2 extends JFrame implements Observer{
 		button_3 = new JButton("ESPACIO");
 		button_3.addKeyListener(ka);
 		button_3.addMouseListener(mGeneral);
-		
+		button_4 = new JButton("Atrás");
+		button_4.addKeyListener(ka);
+		button_4.addMouseListener(mGeneral);
 		
 		button = new JButton("BORRAR");
 		Letras.add(button);
@@ -658,9 +667,11 @@ public class Opcion2 extends JFrame implements Observer{
 		button.addMouseListener(mGeneral);
 		botones.add(button);
 		Letras.add(button_3);
+		Letras.add(button_4);
 		button_3.setFont(new Font("arial",Font.PLAIN,20)); 
 		botones.add(button_3);
-			
+		button_4.setFont(new Font("arial",Font.PLAIN,20)); 
+		botones.add(button_4);	
 		
 		this.setVisible(true);
 	}
@@ -715,7 +726,7 @@ public class Opcion2 extends JFrame implements Observer{
 			Letras = new JPanel();
 			Letras.setBorder(new EmptyBorder(10, 10, 10, 10));
 			panel.add(Letras, BorderLayout.CENTER);
-			Letras.setLayout(new GridLayout(3, 10, 30, 100));
+			Letras.setLayout(new GridLayout(3, 10, 30, 70));
 			botones.removeAll(botones);
 			
 			int n = JOptionPane.showConfirmDialog(

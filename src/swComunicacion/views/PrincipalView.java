@@ -83,13 +83,12 @@ public class PrincipalView extends JFrame implements Observer {
 		panelOp = new JPanel();
 		panelOp.setBackground(Color.WHITE);
 		panelOp.setLayout(new GridLayout(1, 3, 10, 20));
-		btnOpcion_1 = new JButton("Respuestas rápidas");
+		btnOpcion_1 = new JButton("<html><center>Respuestas<br>Rápidas</center></html>");
 		btnOpcion_1.setFont(new Font("Roboto", Font.BOLD, 50));
-		
-		btnOpcion_2 = new JButton("Teclado interactivo");
+		btnOpcion_2 = new JButton("<html><center>Teclado<br>Interactivo</center></html>");
 		btnOpcion_2.setFont(new Font("Roboto", Font.BOLD, 50));
 		
-		btnOpcion_3 = new JButton("Ocio/Películas");
+		btnOpcion_3 = new JButton("<html><center>Ocio<br>Películas</center></html>");
 		btnOpcion_3.setFont(new Font("Roboto", Font.BOLD, 50));
 		
 		if(c.getModo() == true) {

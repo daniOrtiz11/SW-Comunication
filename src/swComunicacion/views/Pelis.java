@@ -97,7 +97,7 @@ public class Pelis extends JFrame implements Observer{
 		
 		if(busqueda == null){ //Se cargan las 8 más actuales
 			if(results != null){//Consigo las peliculas que hay en el xml, solo 8.
-				for(int i = results.size()-1;i>=0 && i >= (results.size() - 8); i--){
+				for(int i = results.size()-1;i>=0 && i >= (results.size() - 7); i--){
 					lista = results.get(i);// Cojo la primera pelicula
 					//Solo hay titulo e imagen
 					this.pelicula[indp] = new Pelicula(lista.get(0), lista.get(1)); //Peliculas actualmente visibles
@@ -115,6 +115,8 @@ public class Pelis extends JFrame implements Observer{
 				indp++;
 			}
 		}
+		this.pelicula[indp] = new Pelicula("Atrás", null);
+		pelis.add(this.pelicula[indp]);
 		contentPane.add(pelis, BorderLayout.CENTER);
 	//AÑADIR NUEVAS PELICULAS (SI NO SE INTRODUCE UNA IMAGEN, HABRIA QUE TENER UNA POR DEFECTO).
 	
@@ -231,9 +233,9 @@ public class Pelis extends JFrame implements Observer{
 						if(list.getSelectedValuesList().size() < 1){
 							UIManager.put("OptionPane.minimumSize",new Dimension(100,100));
 							JOptionPane.showMessageDialog(dialog, "Tienes que elegir al menos una película.", "Error", JOptionPane.ERROR_MESSAGE);
-						} else if(list.getSelectedValuesList().size() > 8) {
+						} else if(list.getSelectedValuesList().size() > 7) {
 							UIManager.put("OptionPane.minimumSize",new Dimension(100,100));
-							JOptionPane.showMessageDialog(dialog, "Se puede elegir un máximo de 8 películas.", "Error", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(dialog, "Se puede elegir un máximo de 7 películas.", "Error", JOptionPane.ERROR_MESSAGE);
 						} else {
 							ok = true;
 							HashMap<Integer, ArrayList<String>> listBusqueda = c.busquedaDatos(list.getSelectedValuesList());
@@ -271,8 +273,11 @@ public class Pelis extends JFrame implements Observer{
 	private void listModMadre() {
 		// TODO Auto-generated method stub
 		for(int i = 0; i < pelicula.length; i++){
-			if(pelicula[i] != null)
+			if(pelicula[i] != null){
 			pelicula[i].removeKeyListener(keyListener[i]);
+			if(pelicula[i].getInfo() == "Atrás")
+				pelicula[i].setVisible(false);
+			}
 		}
 		for(indp = 0; indp < pelicula.length; indp++){
 			mouseListener[indp] = new MouseAdapter(){
@@ -281,6 +286,7 @@ public class Pelis extends JFrame implements Observer{
 					Pelicula o = (Pelicula) e.getSource();
 					if(o.isActiva() == true){
 						JOptionPane.showMessageDialog(null,o.getInfo(), "Seleccion", 0, si); 
+						
 					}
 				}
 			};
@@ -292,8 +298,11 @@ public class Pelis extends JFrame implements Observer{
 	private void listModNiño() {
 		// TODO Auto-generated method stub
 		for(int i = 0; i < pelicula.length; i++){
-			if(pelicula[i] != null)
+			if(pelicula[i] != null){
 			pelicula[i].removeMouseListener(mouseListener[i]);
+			if(pelicula[i].getInfo() == "Atrás")
+				pelicula[i].setVisible(true);
+			}
 		}
 		mgeneral = new MouseAdapter(){
 			public void mouseClicked (MouseEvent e){
@@ -307,6 +316,7 @@ public class Pelis extends JFrame implements Observer{
 					timer.stop();
 					Pelicula o = (Pelicula) e.getSource();
 					if(o.isActiva() == true){
+						if(o.getInfo() != "Atrás")
 						JOptionPane.showMessageDialog(null,o.getInfo(), "Seleccion", 0, si); 
 					}
 					timer.restart();
@@ -462,8 +472,13 @@ public class Pelis extends JFrame implements Observer{
 		for(indp = 0; indp < pelicula.length; indp++){
 			if(pelicula[indp] != null){
 			if(pelicula[indp].isActiva()){
+				if(pelicula[indp].getInfo() != "Atrás"){
 				UIManager.put("OptionPane.minimumSize",new Dimension(100,100));
 				JOptionPane.showMessageDialog(null,pelicula[indp].getInfo(), "Seleccion", 0, si); 
+				}
+				else{
+					c.onCambioVentanaAtras();
+				}
 			}
 		}
 		}

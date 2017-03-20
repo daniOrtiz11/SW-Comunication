@@ -84,11 +84,11 @@ public class ToolbarSup extends JToolBar implements Observer{
 				if(c.velocidadOk()){
 				c.disminuirFrecuencia();
 				c.onCambioFrecuencia(c.getFrecuencia());
-				frec.setText("Velocidad transiciï¿½n: "+c.getVelocidad()+"x");
+				frec.setText("Velocidad: "+c.getVelocidad()+"x");
 				}
 				else
 				c.setVelocidad(-1);
-				//JOptionPane.showMessageDialog(null, "Acaba de aumentar la velocidad de transiciï¿½n", "Velocidad", JOptionPane.INFORMATION_MESSAGE);
+				//JOptionPane.showMessageDialog(null, "Acaba de aumentar la velocidad de transición", "Velocidad", JOptionPane.INFORMATION_MESSAGE);
 				btnMasfrec.transferFocus();
 			}
 			}
@@ -104,7 +104,7 @@ public class ToolbarSup extends JToolBar implements Observer{
 				if(c.velocidadOk()){
 				c.aumentarFrecuencia();
 				c.onCambioFrecuencia(c.getFrecuencia());
-				frec.setText("Velocidad transiciï¿½n: "+c.getVelocidad()+"x");
+				frec.setText("Velocidad: "+c.getVelocidad()+"x");
 				}
 				else
 				c.setVelocidad(1);

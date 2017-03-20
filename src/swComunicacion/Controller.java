@@ -52,14 +52,14 @@ public class Controller {
 	public void aumentarFrecuencia() {
 		// TODO Auto-generated method stub
 		int f = d.getFrecuencia();
-		f = f + 300;
+		f = f + 900;
 		d.setFrecuencia(f);
 	}
 
 	public void disminuirFrecuencia() {
 		// TODO Auto-generated method stub
 		int f = d.getFrecuencia();
-		f = f - 300;
+		f = f - 900;
 		d.setFrecuencia(f);
 	}
 
@@ -91,7 +91,7 @@ public class Controller {
 	public boolean velocidadOk() {
 		// TODO Auto-generated method stub
 		boolean ok = false;
-		if(velocidad < 4 && velocidad > 0)
+		if(velocidad < 5 && velocidad > 0)
 			ok = true;
 		return ok;
 	}
