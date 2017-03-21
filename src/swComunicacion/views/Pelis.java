@@ -105,7 +105,7 @@ public class Pelis extends JFrame implements Observer{
 		
 		if(busqueda == null){ //Se cargan las 8 más actuales
 			if(results != null){//Consigo las peliculas que hay en el xml, solo 8.
-				for(int i = results.size()-1;i>=0 && i >= (results.size() - 8); i--){
+				for(int i = results.size()-1;i>=0 && i >= (results.size() - 7); i--){
 					lista = results.get(i);// Cojo la primera pelicula
 					//Solo hay titulo e imagen
 					this.pelicula[indp] = new Pelicula(lista.get(0), lista.get(1)); //Peliculas actualmente visibles
@@ -207,7 +207,6 @@ public class Pelis extends JFrame implements Observer{
 		});
 		atras.addActionListener(new ActionListener(){
 
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				c.onCambioVentanaAtras();
