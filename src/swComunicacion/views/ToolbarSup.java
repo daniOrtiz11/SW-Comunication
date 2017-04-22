@@ -53,9 +53,16 @@ public class ToolbarSup extends JToolBar implements Observer{
 			
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				if(c.getModo() == true) c.setModo(false);
-				else c.setModo(true);
+				if(c.getModo() == true){
+					modo.setBackground(Color.RED);
+					c.setModo(false);
+				}
+				else{
+					modo.setBackground(null);
+					c.setModo(true);
+				}
 				c.onCambioModo(c.getModo());
+				
 			}
 		});
 		this.add(modo);
@@ -136,11 +143,14 @@ public class ToolbarSup extends JToolBar implements Observer{
 			//modo = new JButton("Cambiar a Modo Ni�o");
 			frec.setEnabled(true);
 			this.disabledModo();
+			
 		}
 		else {
 			//modo.setText("Cambiar a Modo Ni�o");
 			frec.setEnabled(true);
 			this.enabledModo();
+			
+		
 		}
 	//	this.c.addObserver(this);
 	}
