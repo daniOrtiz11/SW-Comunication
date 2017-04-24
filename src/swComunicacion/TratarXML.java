@@ -68,7 +68,6 @@ public class TratarXML {
                 lista.add(peli.getChildTextTrim("imagen"));
  
                 results.put(i, lista);
-                //System.out.println( "\t"+titulo+"\t\t"+director+"\t\t"+genero);
 	        }
 	    	} else {
 	    		XMLOutputter xmlOutput = new XMLOutputter();

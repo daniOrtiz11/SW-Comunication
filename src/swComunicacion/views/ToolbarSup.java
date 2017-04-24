@@ -35,7 +35,6 @@ public class ToolbarSup extends JToolBar implements Observer{
 	private Controller c;
 	public ToolbarSup(Controller controlador, final int op, JFrame padre){
 		this.c = controlador;
-		//this.c.addPadre(padre);
 		this.setBackground(new Color(211, 211, 211));
 		this.setLayout(new GridLayout(1,4));
 		frec = new JTextField("Velocidad: "+c.getVelocidad()+"x");
@@ -95,7 +94,6 @@ public class ToolbarSup extends JToolBar implements Observer{
 				}
 				else
 				c.setVelocidad(-1);
-				//JOptionPane.showMessageDialog(null, "Acaba de aumentar la velocidad de transición", "Velocidad", JOptionPane.INFORMATION_MESSAGE);
 				btnMasfrec.transferFocus();
 			}
 			}
@@ -132,7 +130,6 @@ public class ToolbarSup extends JToolBar implements Observer{
 		atras.addMouseListener(new MouseAdapter(){ 
 			public void mouseClicked(MouseEvent e){
 				if(atras.isEnabled()){
-				//c.onCambioOpcion(op);
 				c.onCambioVentanaAtras();
 				}
 			}
@@ -140,19 +137,16 @@ public class ToolbarSup extends JToolBar implements Observer{
 		);
 		this.add(atras);
 		if(c.getModo() == true){
-			//modo = new JButton("Cambiar a Modo Niï¿½o");
 			frec.setEnabled(true);
 			this.disabledModo();
 			
 		}
 		else {
-			//modo.setText("Cambiar a Modo Niï¿½o");
 			frec.setEnabled(true);
 			this.enabledModo();
 			
 		
 		}
-	//	this.c.addObserver(this);
 	}
 	public void setAtras(JButton atras) {
 		this.atras = atras;

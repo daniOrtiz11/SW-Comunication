@@ -31,10 +31,6 @@ import javax.swing.SwingConstants;
 @SuppressWarnings("serial")
 public class PrincipalView extends JFrame implements Observer {
 
-	/*public static int getFrecuencia() {
-		return frecuencia;
-	}*/
-	
 	private JPanel contentPane;
 	private Controller c;
 	private boolean vs1;
@@ -57,7 +53,7 @@ public class PrincipalView extends JFrame implements Observer {
 	private Voz voz;
 	private JLabel text;
 	
-	public PrincipalView(Controller c2) {
+public PrincipalView(Controller c2) {
 		c = c2;
 		setTitle("SW Comunicacion");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -107,7 +103,6 @@ public class PrincipalView extends JFrame implements Observer {
 		panel.add(panelOp, BorderLayout.CENTER);
 		setVisible(true);
 		this.c.addObserver(this);
-		//PrincipalView padre = this;
 		btnOpcion_1.requestFocus();
 		this.setExtendedState(MAXIMIZED_BOTH);
 		/*
@@ -115,13 +110,12 @@ public class PrincipalView extends JFrame implements Observer {
 		 * actualmente solo disponible voz en inglï¿½s
 		 * pasar texto a decir como parï¿½metro en el constructor
 		 */
-		//voz = new Voz("Welcome to software communication app");
-		//voz.Reproducir();
+		voz = new Voz("Welcome to software communication app");
+		voz.Reproducir();
 		
 	}
 private void cerrarVentana() {
 		// TODO Auto-generated method stub
-		//this.c.removeObserver(this);
 		this.setVisible(false);
 }
 private void temporizador(){
@@ -326,7 +320,6 @@ public void mouseNiño(){
 }
 @SuppressWarnings("unused")
 public void mouseMadre(int n){
-	//timer.stop();
 	cerrarVentana();
 	c.onCambioOpcion(0);
 	Opcion1 v1;

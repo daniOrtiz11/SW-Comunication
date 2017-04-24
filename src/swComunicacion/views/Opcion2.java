@@ -865,7 +865,6 @@ public class Opcion2 extends JFrame implements Observer{
 		botones.add(button);
 			
 		this.setVisible(true);
-		//temporizador();
 		temporizadorVertical();
 		timer.start();
 	}
@@ -1216,7 +1215,6 @@ public class Opcion2 extends JFrame implements Observer{
 
 				}
 
-				//System.out.println(act);
 
 				if (keyBoardType == 0 || keyBoardType == 4){
 					bBotones.set(act, false);	
@@ -1258,8 +1256,6 @@ public class Opcion2 extends JFrame implements Observer{
 			bBotones = new LinkedList<Boolean>();
 			bBotones2 = new LinkedList<Boolean>();
 			Letras.removeAll();
-			//Letras = new JPanel();
-			//Letras.setBorder(new EmptyBorder(0, 0, 0, 0));
 			panel.add(Letras, BorderLayout.CENTER);
 			Letras.setLayout(new GridLayout(3, 6));
 			botones.removeAll(botones);
@@ -1308,9 +1304,6 @@ public class Opcion2 extends JFrame implements Observer{
 	
 	public void onCambioOpcion(int op) {
 		// TODO Auto-generated method stub
-//		if(op ==2){
-//			atras();
-//		}
 	}
 
 	public void onCambioFrecuencia(int f) {
@@ -1488,13 +1481,9 @@ public class Opcion2 extends JFrame implements Observer{
 		}
 	}
 
-	@Override
 	public void atras() {
-		//		this.c.removeObserver(this);
-		//		this.removeAll();
-		//		this.setVisible(false);
-		//		this.c.onCambioVentanaAtras();
-		//		new PrincipalView(c);	
+		this.c.removeObserver(this);
+		this.setVisible(false);
 	}			
 
 	private void temporizadorVertical(){
@@ -1573,9 +1562,7 @@ public class Opcion2 extends JFrame implements Observer{
 						d=0;
 				}
 				else{
-					//System.out.println(b);
 					if (b+6 < 30){
-						//bBotones2.set(b, false);
 						b+=6;
 					}
 					else{

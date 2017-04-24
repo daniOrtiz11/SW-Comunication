@@ -144,7 +144,6 @@ public class Pelis extends JFrame implements Observer{
 		        if (respuesta == JFileChooser.APPROVE_OPTION) {
 		            File logo = fc.getSelectedFile();   
 		            args[1] = logo.getName();
-		            
 		            // Ahora guardamos la imagen en la carpeta de imagenes
 		            try {
 						c.mvImagen(logo);
@@ -192,7 +191,6 @@ public class Pelis extends JFrame implements Observer{
 				}while(s!= -1 && s!= 2 && !ok);
 				 
 				if(s!= -1 && s!= 2){
-					//if(TratarXML.escribirXML(args)){
 					if(c.escribirDatos(args)){
 						UIManager.put("OptionPane.minimumSize",new Dimension(100,100));
 						JOptionPane.showMessageDialog(dialog, "La pelicula ha sido añadida con exito.", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -212,6 +210,15 @@ public class Pelis extends JFrame implements Observer{
 				c.onCambioVentanaAtras();
 			}
 			
+		});
+		atras.addKeyListener(new KeyAdapter(){
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				c.onCambioVentanaAtras();
+			}
+
 		});
 		listar.addActionListener(new ActionListener(){
 			@SuppressWarnings({ "unchecked", "rawtypes"})
@@ -240,7 +247,6 @@ public class Pelis extends JFrame implements Observer{
 				    listado = new JPanel();
 				    listado.add(scrollpane);
 				    iconList = new ImageIcon("src/imagenes/peli.png");
-					//UIManager.put("OptionPane.minimumSize",new Dimension(800,600)); 
 					s = JOptionPane.showConfirmDialog(null, listado, 
 				               "Listar películas ", JOptionPane.OK_CANCEL_OPTION,0, iconList);
 					
@@ -269,7 +275,6 @@ public class Pelis extends JFrame implements Observer{
 		contentPane.add(bots, BorderLayout.SOUTH);
 		this.setVisible(true);
 		this.c.addObserver(this);
-		//Comprobar el modo al entrar
 		if(c.getModo() == true){
 			pelicula[0].activa();
 			timer.start();
@@ -466,7 +471,6 @@ public class Pelis extends JFrame implements Observer{
 				if(pelicula[i] != null)
 				pelicula[i].desactiva();
 			}
-			//temporizador();
 			timer.start();
 			t.disabledModo();
 			listModNiño();

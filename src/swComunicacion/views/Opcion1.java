@@ -74,6 +74,8 @@ public class Opcion1 extends JFrame implements Observer{
 	private JPanel Sup;
 	private JPanel Inf;
 	private JPanel Med;
+	
+	
 	public Opcion1(Controller controlador, JFrame padre) {
 		this.c = controlador;
 		setTitle("Opcion 1");
@@ -132,11 +134,9 @@ public class Opcion1 extends JFrame implements Observer{
 		btnOpcion_1.setFont(new Font("Roboto", Font.BOLD, 40));
 		btnOpcion_1.setIcon(si);
 		
-		//Med.add(btnOpcion_3);
 		btnOpcion_3.setFont(new Font("Roboto", Font.BOLD, 40));
 		btnOpcion_3.setVisible(false);
 		
-		//Med.add(btnOpcion_4);
 		btnOpcion_4.setFont(new Font("Roboto", Font.BOLD, 40));
 		btnOpcion_4.setVisible(false);
 		
@@ -148,28 +148,24 @@ public class Opcion1 extends JFrame implements Observer{
 		text1 = new JTextField();
 		text1.setHorizontalAlignment(SwingConstants.CENTER);
 		text1.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		//Med.add(text1);
 		text1.setText(btnOpcion_1.getText());
 		text1.setColumns(10);
 		text1.setVisible(false);
 		text3 = new JTextField();
 		text3.setHorizontalAlignment(SwingConstants.CENTER);
 		text3.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		//Med.add(text3);
 		text3.setText(btnOpcion_3.getText());
 		text3.setColumns(10);
 		text3.setVisible(false);
 		text4 = new JTextField();
 		text4.setHorizontalAlignment(SwingConstants.CENTER);
 		text4.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		//Med.add(text4);
 		text4.setText(btnOpcion_4.getText());
 		text4.setColumns(10);
 		text4.setVisible(false);
 		text2 = new JTextField();
 		text2.setHorizontalAlignment(SwingConstants.CENTER);
 		text2.setFont(new Font("Tahoma", Font.PLAIN, 40));
-		//Med.add(text2);
 		text2.setText(btnOpcion_2.getText());
 		text2.setColumns(10);
 		text2.setVisible(false);
@@ -196,11 +192,6 @@ public class Opcion1 extends JFrame implements Observer{
 				btnDel.setFont(new Font("Roboto", Font.PLAIN, 20));
 				Inf.add(btnDel);
 				
-				// this.btnAdd.putClientProperty( SubstanceLookAndFeel.BUTTON_SHAPER_PROPERTY, new StandardButtonShaper());
-				/*botonPersonalizado bp = new botonPersonalizado("Rect", Color.darkGray, Color.gray,30,30);  
-			    botonPersonalizado bp2 = new botonPersonalizado("Rect1", Color.MAGENTA, Color.gray,100,30); 
-			    Inf.add(bp);
-			   // Inf.add(bp2);*/
 				btnEditarOpciones.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
@@ -576,7 +567,6 @@ public class Opcion1 extends JFrame implements Observer{
 					mouseNiño();
 			}
 		};
-		//text.addMouseListener(mgeneral);
 		panel.addMouseListener(mgeneral);
 		contenido.addMouseListener(mgeneral);
 		Sup.addMouseListener(mgeneral);
@@ -640,7 +630,6 @@ public class Opcion1 extends JFrame implements Observer{
 				timer.stop();
 				if(vsatras == true){
 					if(btnAtras.isEnabled()){
-						//c.onCambioOpcion(op);
 						c.onCambioVentanaAtras();
 						}
 				}
@@ -749,8 +738,6 @@ public class Opcion1 extends JFrame implements Observer{
 
 	public void onCambioFrecuencia(int f) {
 		// TODO Auto-generated method stub
-		/*c.setFrecuencia(f);
-		temporizador();*/
 	}
 
 	public void mouseNiño() {
@@ -770,9 +757,8 @@ public class Opcion1 extends JFrame implements Observer{
 		}
 		else if(vsatras == true){
 			if(btnAtras.isEnabled()){
-				//c.onCambioOpcion(op);
 				c.onCambioVentanaAtras();
-				}
+			}
 		}
 		timer.restart();
 	}

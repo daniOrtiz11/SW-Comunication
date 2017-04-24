@@ -27,9 +27,6 @@ public class Voz {
 	}
 	
 	public void Reproducir(){
-		/*
-		 voice.speak("merry christmas and happy new year");
-		 */
 		voice.speak(text);
 	}
 	

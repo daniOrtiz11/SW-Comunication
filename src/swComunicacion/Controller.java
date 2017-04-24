@@ -18,7 +18,6 @@ public class Controller {
 	private TratarXML xml;
 	private int velocidad = 1;
 	public Controller(Data d2) {
-		// TODO Auto-generated constructor stub
 		d = d2;
 	}
 	
@@ -145,15 +144,4 @@ public class Controller {
 		// TODO Auto-generated method stub
 		return this.xml.busquedaMult(selectedValuesList);
 	}
-
-	/*public void addPadre(JFrame e) {
-		// TODO Auto-generated method stub
-		d.addPadre(e);
-	}
-
-	public JFrame getPadre() {
-		// TODO Auto-generated method stub
-		return d.getPadre();
-	}*/
-
 }
