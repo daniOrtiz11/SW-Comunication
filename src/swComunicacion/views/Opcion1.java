@@ -764,7 +764,6 @@ public class Opcion1 extends JFrame implements Observer{
 	}
 
 	public void atras() {
-		// TODO Auto-generated method stub
 		this.c.removeObserver(this);
 		this.setVisible(false);
 		

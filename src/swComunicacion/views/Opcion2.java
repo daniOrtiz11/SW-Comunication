@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ConcurrentModificationException;
 import java.util.LinkedList;
 
 import javax.swing.JButton;
@@ -87,7 +88,7 @@ public class Opcion2 extends JFrame implements Observer{
 	private JPanel panel;
 	private int keyBoardType = 0;
 	private Boolean fila = false;
-	private int a = 0;
+	//private int a = 0;
 	private int b = 0;
 	private int d = 0;
 	
@@ -154,12 +155,9 @@ public class Opcion2 extends JFrame implements Observer{
 		
 		Letras = new JPanel();
 		Letras.setBorder(new EmptyBorder(0, 0, 0, 0));
-		panel.add(Letras, BorderLayout.CENTER);
-		//Letras.setLayout(new GridLayout(3, 10, 30, 70));
-		
 		intelliKeyBoard(ka, Letras);
-		
-		
+		panel.add(Letras, BorderLayout.CENTER);
+			
 		if(c.getModo() == true) {
 			timer.start();
 			btnE.requestFocus();
@@ -171,6 +169,7 @@ public class Opcion2 extends JFrame implements Observer{
 		
 		contentPane.addMouseListener(mGeneral);
 		textArea.addMouseListener(mGeneral);
+		this.setVisible(true);
 		this.c.addObserver(this);
 		this.setLocationRelativeTo(null);
 		this.setExtendedState(MAXIMIZED_BOTH);	
@@ -253,13 +252,6 @@ public class Opcion2 extends JFrame implements Observer{
 		btnC.addKeyListener(ka);
 		btnC.addMouseListener(mGeneral);
 		botones.add(btnC);
-			
-//		button_2 = new JButton("<- inicio");
-//		button_2.addKeyListener(ka);
-//		button_2.addMouseListener(mGeneral);
-//		Letras.add(button_2);
-//		button_2.setFont(new Font("arial",Font.PLAIN,20)); 
-//		botones.add(button_2);
 			
 		btnT = new JButton("T");
 		Letras.add(btnT);
@@ -382,12 +374,18 @@ public class Opcion2 extends JFrame implements Observer{
 		this.setVisible(true);
 		
 		button_3 = new JButton("ESPACIO");
+		Letras.add(button_3);
 		button_3.addKeyListener(ka);
+		button_3.setFont(new Font("arial",Font.PLAIN,20)); 
 		button_3.addMouseListener(mGeneral);
+		botones.add(button_3);
 		
 		button_4 = new JButton("ATRAS");
+		Letras.add(button_4);
 		button_4.addKeyListener(ka);
 		button_4.addMouseListener(mGeneral);
+		button_4.setFont(new Font("arial",Font.PLAIN,20)); 
+		botones.add(button_4);
 		
 		button = new JButton("BORRAR");
 		Letras.add(button);
@@ -395,13 +393,8 @@ public class Opcion2 extends JFrame implements Observer{
 		button.addKeyListener(ka);
 		button.addMouseListener(mGeneral);
 		botones.add(button);
-		Letras.add(button_3);
-		Letras.add(button_4);
-		button_3.setFont(new Font("arial",Font.PLAIN,20)); 
-		button_4.setFont(new Font("arial",Font.PLAIN,20)); 
-		botones.add(button_3);
-		botones.add(button_4);
-				
+		
+		
 		button_2 = new JButton("<- inicio");
 		button_2.addKeyListener(ka);
 		button_2.addMouseListener(mGeneral);
@@ -615,7 +608,7 @@ public class Opcion2 extends JFrame implements Observer{
 		button_3 = new JButton("ESPACIO");
 		button_3.addKeyListener(ka);
 		button_3.addMouseListener(mGeneral);
-		button_4 = new JButton("Atrás");
+		button_4 = new JButton("ATRAS");
 		button_4.addKeyListener(ka);
 		button_4.addMouseListener(mGeneral);
 		
@@ -638,19 +631,16 @@ public class Opcion2 extends JFrame implements Observer{
 	}
 
 	private void intelliKeyBoard(KeyAdapter ka, JPanel Letras) {
-		Letras.setLayout(new GridLayout(5, 7));
-		bBotones.add(false);		
-		for(int i=1; i<30;i++){		
+		Letras.setLayout(new GridLayout(5, 6));
+		//bBotones.add(false);		
+		for(int i=0; i<30;i++){		
 			bBotones.add(false);
 		}
-		bBotones2.add(false);
-		for(int i=1; i<30;i++){	
+		//bBotones2.add(false);
+		for(int i=0; i<30;i++){	
 			bBotones2.add(false);
 		}
-//		bBotones.set(6, true);
-//		bBotones.set(12, true);
-//		bBotones.set(18, true);
-//		bBotones.set(24, true);
+		
 		keyBoardType = 2;
 		
 		btnS = new JButton("S");
@@ -850,7 +840,7 @@ public class Opcion2 extends JFrame implements Observer{
 		btnK.addMouseListener(mGeneral);
 		botones.add(btnK);
 			
-		button_4 = new JButton("ATRÁS");
+		button_4 = new JButton("ATRAS");
 		Letras.add(button_4);
 		button_4.addKeyListener(ka);
 		button_4.addMouseListener(mGeneral);
@@ -954,7 +944,7 @@ public class Opcion2 extends JFrame implements Observer{
 		btn9.addMouseListener(mGeneral);
 		botones.add(btn9);
 			
-		button_4 = new JButton("ATRÁS");
+		button_4 = new JButton("ATRAS");
 		button_4.addKeyListener(ka);
 		button_4.addMouseListener(mGeneral);
 		Letras.add(button_4);
@@ -1176,7 +1166,7 @@ public class Opcion2 extends JFrame implements Observer{
 		button.addMouseListener(mGeneral);
 		botones.add(button);
 			
-		button_4 = new JButton("ATRÁS");
+		button_4 = new JButton("ATRAS");
 		Letras.add(button_4);
 		button_4.addKeyListener(ka);
 		button_4.addMouseListener(mGeneral);
@@ -1244,7 +1234,7 @@ public class Opcion2 extends JFrame implements Observer{
 	}
 	
 	public void onCambioModo(boolean mod) {
-		// TODO Auto-generated method stub
+		
 		c.setModo(mod);
 		if(mod == false){
 			timer.stop();
@@ -1318,7 +1308,7 @@ public class Opcion2 extends JFrame implements Observer{
 	}
 	
 	private void escribe(int i){
-		
+
 		if(botones.get(i).getText().equalsIgnoreCase("A"))
 			textArea.append("A");
 		if(botones.get(i).getText().equalsIgnoreCase("B"))
@@ -1373,8 +1363,17 @@ public class Opcion2 extends JFrame implements Observer{
 			textArea.append("Y");
 		if(botones.get(i).getText().equalsIgnoreCase("Z"))
 			textArea.append("Z");
-		if(botones.get(i).getText().equalsIgnoreCase("ATRÁS"))
-			c.onCambioVentanaAtras();
+		if(botones.get(i).getText().equalsIgnoreCase("ATRAS")){
+					
+			try{
+				c.onCambioVentanaAtras();	
+				
+			} catch (ConcurrentModificationException c){
+				//this.setVisible(false);
+				//Hacemos el try catch por si algun elemento falta 
+				//por actualizar en la vista antes de pulsar atrás.
+			}
+		}
 		if(botones.get(i).getText().equalsIgnoreCase("BORRAR"))
 			if (textArea.getText() != null)
 				textArea.setText(textArea.getText().substring(0, (textArea.getText().length()-1)));
@@ -1403,7 +1402,6 @@ public class Opcion2 extends JFrame implements Observer{
 	private void accionTeclado() {
 		
 		if (keyBoardType == 2){
-		
 			for (int i = 0; i < 30; i++){
 				if( bBotones2.get(i)==true){
 					escribe(i);
@@ -1412,9 +1410,12 @@ public class Opcion2 extends JFrame implements Observer{
 			}
 
 			if (fila == false){
-				if (d-1 > 0)
-					b=d-1;
-				else b = 0;
+				System.out.println(b);
+				System.out.println(d);
+				if (d == 0)
+					b=5;
+				else 
+					b = d-1;
 			}
 			if (fila != true) 
 				fila=true;
@@ -1482,9 +1483,11 @@ public class Opcion2 extends JFrame implements Observer{
 	}
 
 	public void atras() {
+		
 		this.c.removeObserver(this);
 		this.setVisible(false);
-	}			
+		
+	}		
 
 	private void temporizadorVertical(){
 		timer = new Timer (c.getFrecuencia(), new ActionListener () 
@@ -1499,10 +1502,11 @@ public class Opcion2 extends JFrame implements Observer{
 					bBotones.set(d+18, true);
 					bBotones.set(d+24, true);
 				}
-				else{
-					if (b-6 >= 0)
+				else {
+					if (b >= 6)
 						bBotones2.set(b-6, false);
-					bBotones2.set(b, true);				
+					if (b < 30 && b >= 0)
+						bBotones2.set(b, true);				
 				}
 				
 				for(int i=0; i<6;i++){	
@@ -1550,24 +1554,37 @@ public class Opcion2 extends JFrame implements Observer{
 					
 				}
 				if (fila == false){
+
 					bBotones.set(d, false);
 					bBotones.set(d+6, false);
 					bBotones.set(d+12, false);
 					bBotones.set(d+18, false);
 					bBotones.set(d+24, false);
 
-					if (d < 6)
+					if (d < 5)
 						d++;
 					else
 						d=0;
 				}
 				else{
-					if (b+6 < 30){
+					if (b < 24){
 						b+=6;
+					}else if (b >= 24 && b <= 29){
+						b = 30;
 					}
 					else{
-						bBotones2.set(b, false);
+						if (b != 30)
+							bBotones2.set(b, false);
+						else {
+							bBotones2.set(24, false);
+							bBotones2.set(25, false);
+							bBotones2.set(26, false);
+							bBotones2.set(27, false);
+							bBotones2.set(28, false);
+							bBotones2.set(29, false);
+						}
 						fila = false;
+						
 					}
 					
 				}
@@ -1575,4 +1592,5 @@ public class Opcion2 extends JFrame implements Observer{
 		}); 
 	}
 
+	
 }

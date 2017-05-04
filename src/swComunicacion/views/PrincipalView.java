@@ -191,7 +191,7 @@ private void listModNiño(){
 	
 		public void keyPressed(KeyEvent e) { //al pulsar cualquier tecla
 			if(vs1 == true){
-				timer.stop();
+				//timer.stop();
 				cerrarVentana();
 				c.onCambioOpcion(0);
 				@SuppressWarnings("unused")
@@ -208,7 +208,7 @@ private void listModNiño(){
 			// TODO Auto-generated method stub
 			
 			if(vs2 == true){
-				timer.stop();
+				//timer.stop();
 				cerrarVentana();
 				
 				c.onCambioOpcion(0);
@@ -226,7 +226,7 @@ private void listModNiño(){
 			
 			if(vs3 == true){
 				// TODO Auto-generated method stub
-				timer.stop();
+				//timer.stop();
 				cerrarVentana();
 				c.onCambioOpcion(0);
 				@SuppressWarnings("unused")
@@ -261,7 +261,7 @@ private void listModMadre(){
 
 		public void mouseClicked(MouseEvent e) {
 			// TODO Auto-generated method stub
-				timer.stop();
+				//timer.stop();
 				cerrarVentana();
 				c.onCambioOpcion(0);
 				@SuppressWarnings("unused")
@@ -276,7 +276,7 @@ private void listModMadre(){
 
 		public void mouseClicked(MouseEvent e) {
 			// TODO Auto-generated method stub
-				timer.stop();
+				//timer.stop();
 				cerrarVentana();
 				c.onCambioOpcion(0);
 				@SuppressWarnings("unused")
