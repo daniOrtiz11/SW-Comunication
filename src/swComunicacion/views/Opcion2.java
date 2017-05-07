@@ -1242,15 +1242,7 @@ public class Opcion2 extends JFrame implements Observer{
 			textArea.setFocusable(true);
 			textArea.requestFocus();
 			t.enabledModo();
-
-			bBotones = new LinkedList<Boolean>();
-			bBotones2 = new LinkedList<Boolean>();
-			Letras.removeAll();
-			panel.add(Letras, BorderLayout.CENTER);
-			Letras.setLayout(new GridLayout(3, 6));
-			botones.removeAll(botones);
-			botones = new LinkedList<JButton>();
-			
+		
 			String[] teclados = {
             "QWERTY",
             "Letras mayor uso",
@@ -1268,23 +1260,32 @@ public class Opcion2 extends JFrame implements Observer{
             
             	if(resp == null || (resp != null && ("".equals(resp)))){
             		
+            	}else{
+        			bBotones = new LinkedList<Boolean>();
+        			bBotones2 = new LinkedList<Boolean>();
+        			Letras.removeAll();
+        			panel.add(Letras, BorderLayout.CENTER);
+        			Letras.setLayout(new GridLayout(3, 6));
+        			botones.removeAll(botones);
+        			botones = new LinkedList<JButton>();
+        			
+        			if(resp.equalsIgnoreCase("Letras mayor uso")){	
+    		        	mostUsedLetters(ka, Letras);
+    		        }
+    		        else if (resp.equalsIgnoreCase("QWERTY")){	        	
+    		        	qwertyLetters(ka, Letras);
+    		        }
+    		        else if (resp.equalsIgnoreCase("Inteligente")){	        	
+    		        	intelliKeyBoard(ka, Letras);
+    		        }
+    		        else if (resp.equalsIgnoreCase("Numérico")){	        	
+    		        	numericKeyBoard(ka, Letras);
+    		        }
+    		        else if (resp.equalsIgnoreCase("Abecedario")){	        	
+    		        	abcKeyBoard(ka, Letras);
+    		        }
             	}
-	            else if(resp.equalsIgnoreCase("Letras mayor uso")){	
-		        	mostUsedLetters(ka, Letras);
-		        }
-		        else if (resp.equalsIgnoreCase("QWERTY")){	        	
-		        	qwertyLetters(ka, Letras);
-		        }
-		        else if (resp.equalsIgnoreCase("Inteligente")){	        	
-		        	intelliKeyBoard(ka, Letras);
-		        }
-		        else if (resp.equalsIgnoreCase("Numérico")){	        	
-		        	numericKeyBoard(ka, Letras);
-		        }
-		        else if (resp.equalsIgnoreCase("Abecedario")){	        	
-		        	abcKeyBoard(ka, Letras);
-		        }
-
+            
 		} else{
 			timer.start();
 			botones.get(it).requestFocus();
@@ -1301,7 +1302,11 @@ public class Opcion2 extends JFrame implements Observer{
 	public void onCambioFrecuencia(int f) {
 		// TODO Auto-generated method stub
 		c.setFrecuencia(f);
-		temporizador();
+		if (keyBoardType == 2){
+			temporizadorVertical();
+		} else {
+			temporizador();
+		}
 	}
 
 	public void mouseNiño() {
