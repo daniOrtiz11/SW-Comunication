@@ -1266,9 +1266,11 @@ public class Opcion2 extends JFrame implements Observer{
             		teclados, 
             		teclados[0]);
             
-		        if(resp.equalsIgnoreCase("Letras mayor uso")){	
+            	if(resp == null || (resp != null && ("".equals(resp)))){
+            		
+            	}
+	            else if(resp.equalsIgnoreCase("Letras mayor uso")){	
 		        	mostUsedLetters(ka, Letras);
-		        	
 		        }
 		        else if (resp.equalsIgnoreCase("QWERTY")){	        	
 		        	qwertyLetters(ka, Letras);

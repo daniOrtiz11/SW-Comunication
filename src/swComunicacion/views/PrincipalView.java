@@ -109,10 +109,10 @@ public PrincipalView(Controller c2) {
 		 * VOZ:
 		 * actualmente solo disponible voz en ingl�s
 		 * pasar texto a decir como par�metro en el constructor
-		 */
+		 
 		voz = new Voz("Welcome to software communication app");
 		voz.Reproducir();
-		
+		*/
 	}
 private void cerrarVentana() {
 		// TODO Auto-generated method stub

@@ -73,8 +73,10 @@ public class ToolbarSup extends JToolBar implements Observer{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(btnHelp.isEnabled()){
-				JOptionPane.showMessageDialog(null, "Modo Niño: Para seleccionar una opción debemos pulsar cualquier tecla cuando "
-						+ "la opción que queramos está en verde" + "\nModo Madre: Para seleccionar una opción se selecciona con el ratón en cualquier momento.", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Modo Niño: Funciona mediante un simple click. Cuando vea o escuche la opción deseada seleccionada en verde se debe hacer click "
+						 + "\n\nModo Madre: Se debe pulsar con el ratón en la opción 'Cambiar de modo' del menú superior.Una vez con las opciones en verde se puede empezar a configurar la aplicación."
+				         + "\nLa velocidad se puede aumentar o disminuir entre 1, 2, 3 o 4 segundos mediante los botones '+' y '-'."
+				         + "\nLos cambios se verán reflejados al volver al modo niño, basta con volver a pulsar en 'Cambiar de modo'.", "Ayuda", JOptionPane.INFORMATION_MESSAGE);
 				btnHelp.transferFocus();
 			}
 			}
